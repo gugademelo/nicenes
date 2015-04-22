@@ -5,7 +5,11 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 
 public class ConnectionFactory {
-	public Connection getConnection(String server, String database, String user, String pass) {
+	public Connection getConnection() {
+		String server = "localhost";
+		String database = "nicenes";
+		String user = "root";
+		String pass = "fiap";
 		String url = "jdbc:mysql://"+ server + "/" + database;
 		
 		Connection con;

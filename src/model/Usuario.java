@@ -17,27 +17,28 @@ public class Usuario {
 	public Usuario() {}
 	
 	public boolean salva() {
-		Connection con = new ConnectionFactory().getConnection("localhost", "nicenes", "root", "");
+		Connection con = new ConnectionFactory().getConnection();
 		
 		if(con == null){
 			return false;	
 		}
-		
-		String sql = "INSERT INTO usuario (nome, email, senha, cd_perfil) VALUES(?, ?, ?, ?)";
+
+		String sql = "INSERT INTO usuario (nome, email, senha, id_perfil) VALUES(?, ?, ?, ?)";
 		
 		try {
 			PreparedStatement st = con.prepareStatement(sql);
 			st.setString(1, this.getNome());
 			st.setString(2, this.getEmail());
-			st.setString(1, this.getSenha());
-			st.setInt(1, 2);
+			st.setString(3, this.getSenha());
+			st.setInt(4, 2);
+			if(st.executeUpdate() == 1) return true;
+			return true;
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+			return false;
 		}
-		
-		return true;
-		
+				
 	}
 	
 	public String getNome() {
