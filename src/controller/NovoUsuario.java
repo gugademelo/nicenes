@@ -38,7 +38,7 @@ public class NovoUsuario extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String address;		
-		Usuario usuario = new Usuario(request.getParameter("nome"), request.getParameter("usuario"), request.getParameter("senha"));
+		Usuario usuario = new Usuario(request.getParameter("nome"), request.getParameter("email"), request.getParameter("senha"));
 		
 		if(usuario.salva()) {
 			request.setAttribute("usuario", usuario);
