@@ -1,23 +1,28 @@
 package controller;
 
 import java.io.IOException;
+
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import util.Erro;
+import model.Usuario;
+
 /**
  * Servlet implementation class CadastraUsuario
  */
-@WebServlet("/cadastra-usuario")
-public class CadastraUsuario extends HttpServlet {
+@WebServlet("/novo-usuario")
+public class NovoUsuario extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
     /**
      * Default constructor. 
      */
-    public CadastraUsuario() {
+    public NovoUsuario() {
         // TODO Auto-generated constructor stub
     }
 
@@ -25,14 +30,28 @@ public class CadastraUsuario extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
+		
 	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
+		String address;		
+		Usuario usuario = new Usuario(request.getParameter("nome"), request.getParameter("usuario"), request.getParameter("senha"));
+		
+		if(usuario.salva()) {
+			request.setAttribute("usuario", usuario);
+			address = "/WEB-INF/UsuarioCadastrado.jsp";
+		}
+		else {
+			Erro erro = new Erro("Não foi possivel cadastrar o usuário.");
+			request.setAttribute("erro", erro);
+			address = "/WEB-INF/Erro.jsp";
+		}
+		
+		RequestDispatcher dispatcher = request.getRequestDispatcher(address);
+		dispatcher.forward(request, response);
 	}
 
 }
