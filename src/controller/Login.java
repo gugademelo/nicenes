@@ -9,6 +9,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import util.Erro;
+import model.Usuario;
+
 /**
  * Servlet implementation class Login
  */
@@ -35,8 +38,20 @@ public class Login extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/LoginEfetuado.jsp");
-		dispatcher.forward(request, response);
+		String path = "";
+		
+		Usuario usuario = Usuario.login(request.getParameter("email"), request.getParameter("senha"));
+		
+		if(usuario != null) {
+			path = "/WEB-INF/LoginEfetuado.jsp";
+		}
+		else {
+			Erro erro = new Erro("Usuario ou senha invalidos");
+			request.setAttribute("erro", erro);
+			path = "/WEB-INF/Erro.jsp";
+		}
+		RequestDispatcher dispatcher = request.getRequestDispatcher(path);
+		dispatcher.forward(request, response);			
 	}
 
 }

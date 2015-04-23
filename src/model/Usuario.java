@@ -6,8 +6,9 @@ import database.ConnectionFactory;
 
 public class Usuario {
 	private String nome, email, senha;
+	private int id, perfil;
 
-	public Usuario(String nome, String email, String senha) {
+	public Usuario(int id, String nome, String email, String senha, int perfil) {
 		super();
 		this.nome = nome;
 		this.email = email;
@@ -41,6 +42,30 @@ public class Usuario {
 				
 	}
 	
+	public static Usuario login(String email, String senha){
+		Connection con = new ConnectionFactory().getConnection();
+		
+		String sql="SELECT * FROM usuario WHERE email = ? AND senha = ?";
+		
+		try {
+			PreparedStatement st = con.prepareStatement(sql);
+			st.setString(1, email);
+			st.setString(2, senha);
+			
+			ResultSet rs = st.executeQuery();
+			
+			if(rs.next()) {
+				Usuario usuario = new Usuario(rs.getInt("id_usuario"), rs.getString("nome"), rs.getString("email"), rs.getString("senha"), rs.getInt("id_perfil"));
+				return usuario;
+			}
+			return null;
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return null;
+		}
+	}
+	
 	public String getNome() {
 		return nome;
 	}
@@ -63,5 +88,20 @@ public class Usuario {
 
 	public void setSenha(String senha) {
 		this.senha = senha;
+	}
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public int getPerfil() {
+		return perfil;
+	}
+
+	public void setPerfil(int perfil) {
+		this.perfil = perfil;
 	}
 }

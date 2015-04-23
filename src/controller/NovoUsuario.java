@@ -38,14 +38,16 @@ public class NovoUsuario extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String address;		
-		Usuario usuario = new Usuario(request.getParameter("nome"), request.getParameter("email"), request.getParameter("senha"));
-		
+		Usuario usuario = new Usuario();
+		usuario.setNome(request.getParameter("nome"));
+		usuario.setEmail(request.getParameter("email"));
+		usuario.setSenha(request.getParameter("senha"));
 		if(usuario.salva()) {
 			request.setAttribute("usuario", usuario);
 			address = "/WEB-INF/UsuarioCadastrado.jsp";
 		}
 		else {
-			Erro erro = new Erro("Não foi possivel cadastrar o usuário.");
+			Erro erro = new Erro("Nao foi possivel logar.");
 			request.setAttribute("erro", erro);
 			address = "/WEB-INF/Erro.jsp";
 		}
