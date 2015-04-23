@@ -46,7 +46,7 @@ public class Login extends HttpServlet {
 			path = "/WEB-INF/LoginEfetuado.jsp";
 		}
 		else {
-			Erro erro = new Erro("Usuario ou senha invalidos");
+			Erro erro = new Erro("Usuario ou senha invalidoss");
 			request.setAttribute("erro", erro);
 			path = "/WEB-INF/Erro.jsp";
 		}
