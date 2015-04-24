@@ -42,6 +42,7 @@ public class Login extends HttpServlet {
 		
 		Usuario usuario = Usuario.login(request.getParameter("email"), request.getParameter("senha"));
 		
+		//teste
 		if(usuario != null) {
 			path = "/WEB-INF/LoginEfetuado.jsp";
 		}
