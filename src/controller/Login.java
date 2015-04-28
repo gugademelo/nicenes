@@ -45,6 +45,7 @@ public class Login extends HttpServlet {
 		//teste
 		if(usuario != null) {
 			path = "/WEB-INF/LoginEfetuado.jsp";
+			request.getSession().setAttribute("loggedUser", usuario);
 		}
 		else {
 			Erro erro = new Erro("Usuario ou senha invalidoss");
