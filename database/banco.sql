@@ -14,3 +14,10 @@ CREATE TABLE usuario (
     primary key (id_usuario),
     foreign key (id_perfil) references perfil (id_perfil)
 );
+
+insert into perfil(nome) values("Adm");
+insert into perfil(nome) values("Visitante");
+insert into usuario(nome,email,senha,id_perfil) values ("UserTeste","admin@admin","admin",1);
+
+
+
