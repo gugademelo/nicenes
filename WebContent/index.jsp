@@ -6,6 +6,9 @@
 </head>
 <body>
 <a href="cadastra-usuario.html">Cadastre-se</a>
-<a href="login.html">FaÃ§a o login</a>
+<a href="login.html">Faça o login</a>
+<a href="logout">Logout</a>
+
+${usuarioLogado.nome}
 </body>
 </html>

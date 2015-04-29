@@ -7,7 +7,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<h1>Login efetuado com sucesso.</h1>
+	<h1>Olá ${usuarioLogado.nome}, seu login foi efetuado com sucesso.</h1>
 	<a href="../nicenes">Home</a>
 </body>
 </html>
