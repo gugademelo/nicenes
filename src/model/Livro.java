@@ -10,7 +10,7 @@ import database.ConnectionFactory;
 public class Livro {
 	private Integer livro_id;
 	private String titulo, isbn, colecao, edicao, idioma, assunto;
-	private Date ano;
+	private date ano;
 	private String autor;
 	private String editora;
 	private String categoria;
@@ -50,10 +50,13 @@ public class Livro {
 			st.setString(1, this.getTitulo());
 			st.setString(2, this.getIsbn());
 			st.setString(3, this.getColecao());
-			st.setString(1, this.getEdicao());
-			st.setString(2, this.getIdioma());
-			st.setString(3, this.getAssunto());
-			//terminar
+			st.setString(4, this.getEdicao());
+			st.setString(5, this.getIdioma());
+			st.setString(6, this.getAssunto());
+		  //st.setDate(7,   this.getAno());
+			st.setString(8, this.getAutor());
+			st.setString(9, this.getEditora());
+			st.setString(10, this.getCategoria());
 			if(st.executeUpdate() == 1) return true;
 			return true;
 		} catch (SQLException e) {
