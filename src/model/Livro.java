@@ -10,7 +10,7 @@ import database.ConnectionFactory;
 public class Livro {
 	private Integer livro_id;
 	private String titulo, isbn, colecao, edicao, idioma, assunto;
-	private date ano;
+	private Date ano;
 	private String autor;
 	private String editora;
 	private String categoria;
@@ -65,6 +65,36 @@ public class Livro {
 			return false;
 		}
 				
+	}
+	
+	public boolean atualizarLivro(Livro livro)
+	{
+		Connection con = new ConnectionFactory().getConnection();
+		
+		if(con == null){
+			return false;	
+		}
+		String sql = "UPDATE LIVRO(titulo = ?, isbn = ?, colecao = ?, edicao = ?, idioma = ?, assunto = ?, ano = ?, autor = ?, editora = ?, categoria = ?) WHERE livro_id = ?";
+		try{
+			PreparedStatement st = con.prepareStatement(sql);
+			st.setString(1, livro.titulo);
+			st.setString(2, livro.isbn);
+			st.setString(3, livro.colecao);
+			st.setString(4, livro.edicao);
+			st.setString(5, livro.idioma);
+			st.setString(6, livro.assunto);
+		    //st.setDate(7,   livro.ano);
+			st.setString(8, livro.autor);
+			st.setString(9, livro.editora);
+			st.setString(10, livro.categoria);
+			st.setInt   (11, livro.livro_id);
+			return true;
+			
+		} catch (SQLException e){
+			
+			e.printStackTrace();
+			return false;
+		}
 	}
 	
 	
