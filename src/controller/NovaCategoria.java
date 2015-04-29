@@ -9,20 +9,20 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import model.Categoria;
 import util.Erro;
-import model.Usuario;
 
 /**
- * Servlet implementation class Login
+ * Servlet implementation class NovaCategoria
  */
-@WebServlet("/login")
-public class Login extends HttpServlet {
+@WebServlet("/NovaCategoria")
+public class NovaCategoria extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public Login() {
+    public NovaCategoria() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -38,22 +38,23 @@ public class Login extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String path = "";
 		
-		Usuario usuario = Usuario.login(request.getParameter("email"), request.getParameter("senha"));
+		String address;		
+		Categoria categoria = new Categoria();
+		categoria.setCategoria(request.getParameter("categoria"));
 		
-		//teste
-		if(usuario != null) {
-			path = "/WEB-INF/LoginEfetuado.jsp";
-			request.getSession().setAttribute("loggedUser", usuario);
+		if(categoria.salva()) {
+			request.setAttribute("categoria", categoria);
+			address = "/WEB-INF/CategoriaCadastrada.jsp";
 		}
 		else {
-			Erro erro = new Erro("Usuario ou senha invalidoss");
+			Erro erro = new Erro("Nao foi possivel cadastrar.");
 			request.setAttribute("erro", erro);
-			path = "/WEB-INF/Erro.jsp";
+			address = "/WEB-INF/Erro.jsp";
 		}
-		RequestDispatcher dispatcher = request.getRequestDispatcher(path);
-		dispatcher.forward(request, response);			
+		
+		RequestDispatcher dispatcher = request.getRequestDispatcher(address);
+		dispatcher.forward(request, response);
 	}
 
 }
