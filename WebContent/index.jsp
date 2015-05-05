@@ -9,10 +9,7 @@
 <title>Nicenes</title>
 </head>
 <body>
-<a href="cadastra-usuario.html">Cadastre-se</a>
-<a href="login.html">Faça o login</a>
-<a href="logout">Logout</a>
+<jsp:include page="WEB-INF/jsp/menu.jsp" />
 
-${usuarioLogado.nome}
 </body>
 </html>
