@@ -6,6 +6,7 @@
 		<li><a href="login.html">Faça o login</a></li>
 	</c:if>
 	<c:if test = "${not empty usuarioLogado }" >
-		<p>Usuario logado: <b>${usuarioLogado}</b></p>	
+		<li><a href="logout">Logout</a></li>
+		<p>Usuario logado: <b>${usuarioLogado.nome}</b></p>	
 	</c:if>
 </ul>
