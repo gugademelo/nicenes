@@ -16,7 +16,7 @@
 	<c:if test="${usuarioLogado.perfil == 1 }">
 		<h1>Usuario ${usuario.email} cadastrado com sucesso.</h1>
 		<a href="/nicenes">Home</a>
-		<a href="/nicenes/cadastra-usuario.html">Cadastre outro</a>
+		<a href="/nicenes/cadastra-usuario.jsp">Cadastre outro</a>
 	</c:if>
 </body>
 </html>

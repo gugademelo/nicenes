@@ -12,7 +12,7 @@
 		<input type="text" name="email">
 		<label for="senha">Senha</label>
 		<input type="password" name="senha">
-		<input type="submit" value="Cadastrar">
+		<input type="submit" value="Cadastrarrrrrrrrrrrrrr">
 	</form>
 </body>
 </html>
