@@ -9,7 +9,7 @@ public class ConnectionFactory {
 		String server = "localhost";
 		String database = "nicenes";
 		String user = "root";
-		String pass = "1234";
+		String pass = "fiap";
 		String url = "jdbc:mysql://"+ server + "/" + database;
 		
 		Connection con;
