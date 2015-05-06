@@ -1,8 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    
-<jsp:useBean id="categoria" type="model.Categoria" scope="request" />    
-    
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -10,6 +7,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-Categoria cadastrada com sucesso: ${categoria.categoria}
+Editora cadastrada com sucesso: ${editora.nome}
 </body>
 </html>
