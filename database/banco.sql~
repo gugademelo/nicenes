@@ -19,5 +19,27 @@ insert into perfil(nome) values("Adm");
 insert into perfil(nome) values("Visitante");
 insert into usuario(nome,email,senha,id_perfil) values ("UserTeste","admin@admin","admin",1);
 
+create table categoria (
+	id_categoria int not null auto_increment,
+    categoria varchar(255),
+    primary key (id_categoria)
+);
+
+create table editora(
+	id_editora int not null auto_increment,
+    nome varchar(255),
+	endereco varchar(255),
+	cidade varchar(255),
+	uf varchar(255),
+	pais varchar(255),
+	cep varchar(255),
+	fone varchar(255),
+	cnpj varchar(255),
+	razao varchar(255),
+	web varchar(255),
+    primary key (id_editora)
+);
+
+
 
 
