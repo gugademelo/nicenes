@@ -58,7 +58,7 @@ public class Categoria {
 			
 			categorias = new ArrayList<Categoria>();
 			
-			if(rs.next()) {
+			while(rs.next()) {
 				Categoria cat = new Categoria();
 				cat.setCategoria(rs.getString("categoria"));
 				
