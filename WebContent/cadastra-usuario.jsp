@@ -1,3 +1,5 @@
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -12,7 +14,14 @@
 		<input type="text" name="email">
 		<label for="senha">Senha</label>
 		<input type="password" name="senha">
-		<input type="submit" value="Cadastrarrrrrrrrrrrrrr">
+		<c:if test="${usuarioLogado.perfil == 1 }">
+			<label for="perfil">Perfil</label>
+			<select name="perfil">
+				<option value="asd">adadsd</option>
+				<option value="qweweq">qweqwe</option>
+			</select>
+		</c:if>
+		<input type="submit" value="Cadastrar">
 	</form>
 </body>
 </html>
