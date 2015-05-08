@@ -41,7 +41,7 @@ public class NovoUsuario extends HttpServlet {
 		
 		if(usuario != null) {
 			List<Perfil> perfis = new Perfil().lista();
-			request.setAttribute("perfis", perfis);
+			request.getSession().setAttribute("perfis", perfis);
 		}
 		
 		RequestDispatcher dispatcher = request.getRequestDispatcher(address);
