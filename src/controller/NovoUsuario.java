@@ -1,6 +1,8 @@
 package controller;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -11,6 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import util.Erro;
+import model.Perfil;
 import model.Usuario;
 
 /**
@@ -35,8 +38,9 @@ public class NovoUsuario extends HttpServlet {
 		Usuario usuario = (Usuario) request.getSession().getAttribute("usuarioLogado");
 		
 		address = "/cadastra-usuario.jsp";
-
+		
 		if(usuario != null) {
+			List<Perfil> perfis = new Perfil().lista();
 			request.setAttribute("perfis", perfis);
 		}
 		
@@ -53,6 +57,14 @@ public class NovoUsuario extends HttpServlet {
 		usuario.setNome(request.getParameter("nome"));
 		usuario.setEmail(request.getParameter("email"));
 		usuario.setSenha(request.getParameter("senha"));
+		
+		if(request.getSession().getAttribute("usuarioLogado") != null) {
+			usuario.setPerfil(Integer.parseInt(request.getParameter("perfil")));
+		}
+		else {
+			usuario.setPerfil(2);
+		}
+		
 		if(usuario.salva()) {
 			request.setAttribute("usuario", usuario);
 			address = "/WEB-INF/UsuarioCadastrado.jsp";

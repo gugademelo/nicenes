@@ -19,6 +19,8 @@ public class Perfil {
 		this.id = id;
 	}
 	
+	public Perfil(){}
+	
 	public boolean salva() {
 		Connection con = new ConnectionFactory().getConnection();
 		
@@ -44,7 +46,7 @@ public class Perfil {
 	public List<Perfil> lista() {
 		Connection con = new ConnectionFactory().getConnection();
 		
-		String sql="SELECT * FROM pefil";
+		String sql="SELECT * FROM perfil";
 		
 		List<Perfil> perfis = null;
 		

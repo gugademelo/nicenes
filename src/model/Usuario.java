@@ -32,7 +32,7 @@ public class Usuario {
 			st.setString(1, this.getNome());
 			st.setString(2, this.getEmail());
 			st.setString(3, this.getSenha());
-			st.setInt(4, 2);
+			st.setInt(4, this.getPerfil());
 			if(st.executeUpdate() == 1) return true;
 			return true;
 		} catch (SQLException e) {

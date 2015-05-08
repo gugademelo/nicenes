@@ -17,8 +17,9 @@
 		<c:if test="${usuarioLogado.perfil == 1 }">
 			<label for="perfil">Perfil</label>
 			<select name="perfil">
-				<option value="asd">adadsd</option>
-				<option value="qweweq">qweqwe</option>
+			<c:forEach items="${perfis}" var="perfil">
+    			<option value="${perfil.id }">${perfil.perfil }</option>
+			</c:forEach>
 			</select>
 		</c:if>
 		<input type="submit" value="Cadastrar">
