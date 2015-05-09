@@ -1,6 +1,8 @@
 package model;
 
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 
 import database.ConnectionFactory;
 
@@ -65,6 +67,33 @@ public class Usuario {
 			e.printStackTrace();
 			return null;
 		}
+	}
+	
+	public List<Usuario> lista() {
+		Connection con = new ConnectionFactory().getConnection();
+		
+		String sql="SELECT * FROM usuario";
+		
+		List<Usuario> usuarios = null;
+		
+		try {
+			PreparedStatement st = con.prepareStatement(sql);
+			
+			ResultSet rs = st.executeQuery();
+			
+			usuarios = new ArrayList<Usuario>();
+			
+			while(rs.next()) {
+				Usuario usuario = new Usuario(Integer.parseInt(rs.getString("id_usuario")), rs.getString("nome"), rs.getString("email"), rs.getString("senha"), Integer.parseInt(rs.getString("id_perfil")));
+				usuarios.add(usuario);
+			}
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return usuarios;
 	}
 	
 	public String getNome() {

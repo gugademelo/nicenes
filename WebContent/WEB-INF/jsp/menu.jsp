@@ -11,6 +11,7 @@
 		<c:if test = "${usuarioLogado.perfil == 1 }" >
 			<li><a href="novo-usuario">Cadastre um novo usuario</a></li>
 			<li><a href="novo-perfil">Cadastre um novo perfil</a>
+			<li><a href="lista-usuarios">Lista de usuarios</a>
 		</c:if>	
 	</c:if>
 </ul>
