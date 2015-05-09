@@ -17,7 +17,7 @@
 				<td>${usuario.nome }</td>
 				<td>${usuario.email }</td>
 				<td>${usuario.perfil }</td>
-				<td>sadas</td>
+				<td><a href="excluir-usuario?id=${usuario.id }">Excluir</a></td>
 			</tr>
 		</c:forEach>
 	</table>
