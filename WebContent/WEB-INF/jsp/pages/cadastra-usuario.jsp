@@ -15,7 +15,7 @@
 		<input type="text" name="email">
 		<label for="senha">Senha</label>
 		<input type="password" name="senha">
-		<c:if test="${usuarioLogado.perfil == 1 }">
+		<c:if test="${usuarioLogado.perfil.id == 1 }">
 			<label for="perfil">Perfil</label>
 			<select name="perfil">
 			<c:forEach items="${perfis}" var="perfil">

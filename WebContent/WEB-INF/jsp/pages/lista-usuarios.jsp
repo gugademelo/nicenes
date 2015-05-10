@@ -17,8 +17,8 @@
 			<tr>
 				<td>${usuario.nome }</td>
 				<td>${usuario.email }</td>
-				<td>${usuario.perfil }</td>
-				<td><a href="excluir-usuario?id=${usuario.id }">Excluir</a></td>
+				<td>${usuario.perfil.perfil }</td>
+				<td><a href="excluir-usuario?id=${usuario.id }">Excluir</a> | <a href="editar-usuario?id=${usuario.id }">Editar</a></td>
 			</tr>
 		</c:forEach>
 	</table>

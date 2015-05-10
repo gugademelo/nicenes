@@ -8,9 +8,11 @@ import database.ConnectionFactory;
 
 public class Usuario {
 	private String nome, email, senha;
-	private int id, perfil;
+	private int id;
+	private Perfil perfil;
 
-	public Usuario(int id, String nome, String email, String senha, int perfil) {
+	public Usuario(int id, String nome, String email, String senha,
+			Perfil perfil) {
 		super();
 		this.id = id;
 		this.nome = nome;
@@ -18,48 +20,75 @@ public class Usuario {
 		this.senha = senha;
 		this.perfil = perfil;
 	}
-	
-	public Usuario() {}
-	
+
+	public Usuario() {
+	}
+
 	public boolean salva() {
 		Connection con = new ConnectionFactory().getConnection();
-		
-		if(con == null){
-			return false;	
+
+		if (con == null) {
+			return false;
 		}
 
 		String sql = "INSERT INTO usuario (nome, email, senha, id_perfil) VALUES(?, ?, ?, ?)";
-		
+
 		try {
 			PreparedStatement st = con.prepareStatement(sql);
 			st.setString(1, this.getNome());
 			st.setString(2, this.getEmail());
 			st.setString(3, this.getSenha());
-			st.setInt(4, this.getPerfil());
-			if(st.executeUpdate() == 1) return true;
+			st.setInt(4, this.getPerfil().getId());
+			if (st.executeUpdate() == 1)
+				return true;
 			return true;
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 			return false;
 		}
-				
+
 	}
-	
-	public static Usuario login(String email, String senha){
+
+	public boolean exclui() {
 		Connection con = new ConnectionFactory().getConnection();
-		
-		String sql="SELECT * FROM usuario WHERE email = ? AND senha = ?";
-		
+
+		if (con == null) {
+			return false;
+		}
+
+		String sql = "DELETE FROM usuario WHERE id_usuario = ?";
+
+		try {
+			PreparedStatement st = con.prepareStatement(sql);
+			st.setInt(1, this.getId());
+			if (st.executeUpdate() == 1) return true;
+			return false;
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return false;
+		}
+
+	}
+
+	public static Usuario login(String email, String senha) {
+		Connection con = new ConnectionFactory().getConnection();
+
+		String sql = "SELECT * FROM usuario WHERE email = ? AND senha = ?";
+
 		try {
 			PreparedStatement st = con.prepareStatement(sql);
 			st.setString(1, email);
 			st.setString(2, senha);
-			
+
 			ResultSet rs = st.executeQuery();
-			
-			if(rs.next()) {
-				Usuario usuario = new Usuario(rs.getInt("id_usuario"), rs.getString("nome"), rs.getString("email"), rs.getString("senha"), rs.getInt("id_perfil"));
+
+			if (rs.next()) {
+				Perfil perfil = Perfil.getPerfilPeloId(rs.getInt("id_perfil"));
+				Usuario usuario = new Usuario(rs.getInt("id_usuario"),
+						rs.getString("nome"), rs.getString("email"),
+						rs.getString("senha"), perfil);
 				return usuario;
 			}
 			return null;
@@ -69,34 +98,62 @@ public class Usuario {
 			return null;
 		}
 	}
-	
+
 	public List<Usuario> lista() {
 		Connection con = new ConnectionFactory().getConnection();
-		
-		String sql="SELECT * FROM usuario";
-		
+
+		String sql = "SELECT * FROM usuario";
+
 		List<Usuario> usuarios = null;
-		
+
 		try {
 			PreparedStatement st = con.prepareStatement(sql);
-			
+
 			ResultSet rs = st.executeQuery();
-			
+
 			usuarios = new ArrayList<Usuario>();
-			
-			while(rs.next()) {
-				Usuario usuario = new Usuario(Integer.parseInt(rs.getString("id_usuario")), rs.getString("nome"), rs.getString("email"), rs.getString("senha"), Integer.parseInt(rs.getString("id_perfil")));
+
+			while (rs.next()) {
+				Perfil perfil = Perfil.getPerfilPeloId(rs.getInt("id_perfil"));
+				Usuario usuario = new Usuario(Integer.parseInt(rs
+						.getString("id_usuario")), rs.getString("nome"),
+						rs.getString("email"), rs.getString("senha"), perfil);
 				usuarios.add(usuario);
 			}
-			
+
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
+
 		return usuarios;
 	}
-	
+
+	public static Usuario getUsuarioPeloId(int id) {
+		Connection con = new ConnectionFactory().getConnection();
+
+		String sql = "SELECT * FROM usuario WHERE id_usuario = ?";
+
+		try {
+			PreparedStatement st = con.prepareStatement(sql);
+			st.setInt(1, id);
+			ResultSet rs = st.executeQuery();
+
+			if (rs.next()) {
+				Perfil perfil = Perfil.getPerfilPeloId(rs.getInt("id_perfil"));
+				Usuario usuario = new Usuario(Integer.parseInt(rs
+						.getString("id_usuario")), rs.getString("nome"),
+						rs.getString("email"), rs.getString("senha"), perfil);
+				return usuario;
+			}
+
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return null;
+	}
+
 	public String getNome() {
 		return nome;
 	}
@@ -120,6 +177,7 @@ public class Usuario {
 	public void setSenha(String senha) {
 		this.senha = senha;
 	}
+
 	public int getId() {
 		return id;
 	}
@@ -128,11 +186,11 @@ public class Usuario {
 		this.id = id;
 	}
 
-	public int getPerfil() {
+	public Perfil getPerfil() {
 		return perfil;
 	}
 
-	public void setPerfil(int perfil) {
+	public void setPerfil(Perfil perfil) {
 		this.perfil = perfil;
 	}
 }

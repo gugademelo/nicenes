@@ -56,12 +56,14 @@ public class NovoUsuario extends HttpServlet {
 		usuario.setEmail(request.getParameter("email"));
 		usuario.setSenha(request.getParameter("senha"));
 		
+		Perfil perfil = null;
 		if(request.getSession().getAttribute("usuarioLogado") != null) {
-			usuario.setPerfil(Integer.parseInt(request.getParameter("perfil")));
+			perfil = Perfil.getPerfilPeloId(Integer.parseInt(request.getParameter("perfil")));
 		}
 		else {
-			usuario.setPerfil(2);
+			perfil = Perfil.getPerfilPeloId(2);
 		}
+		usuario.setPerfil(perfil);
 		
 		if(usuario.salva()) {
 			Mensagem mensagem = new Mensagem("Usuario cadastrado.");
