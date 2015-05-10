@@ -9,8 +9,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import util.Erro;
 import model.Usuario;
+import util.Mensagem;
 
 /**
  * Servlet implementation class Login
@@ -51,8 +51,8 @@ public class Login extends HttpServlet {
 			request.getSession().setAttribute("usuarioLogado", usuario);
 		}
 		else {
-			Erro erro = new Erro("Usuario ou senha invalidoss");
-			request.setAttribute("erro", erro);
+			Mensagem mensagem = new Mensagem("Usuario ou senha invalidos");
+			request.setAttribute("mensagem", mensagem);
 			path = "/WEB-INF/jsp/pages/Erro.jsp";
 		}
 		RequestDispatcher dispatcher = request.getRequestDispatcher(path);

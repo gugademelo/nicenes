@@ -10,9 +10,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import util.Erro;
-import model.Perfil;
 import model.Usuario;
+import util.Mensagem;
 
 /**
  * Servlet implementation class ListaUsuarios
@@ -43,8 +42,8 @@ public class ListaUsuarios extends HttpServlet {
 		}
 		else {
 			address = "/WEB-INF/jsp/pages/Erro.jsp";
-			Erro erro = new Erro("Voc� n�o tem permiss�o para acessar esta pagina");
-			request.setAttribute("erro", erro);
+			Mensagem mensagem = new Mensagem("Voc� n�o tem permiss�o para acessar esta pagina");
+			request.setAttribute("erro", mensagem);
 		}
 		
 		RequestDispatcher dispatcher = request.getRequestDispatcher(address);

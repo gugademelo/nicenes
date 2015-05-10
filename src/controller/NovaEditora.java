@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import model.Editora;
-import util.Erro;
+import util.Mensagem;
 
 /**
  * Servlet implementation class NovaEditora
@@ -57,8 +57,8 @@ public class NovaEditora extends HttpServlet {
 			address = "/WEB-INF/jsp/pages/EditoraCadastrada.jsp";
 		}
 		else {
-			Erro erro = new Erro("Nao foi possivel cadastrar.");
-			request.setAttribute("erro", erro);
+			Mensagem mensagem = new Mensagem("Nao foi possivel cadastrar.");
+			request.setAttribute("erro", mensagem);
 			address = "/WEB-INF/jsp/pages/Erro.jsp";
 		}
 		

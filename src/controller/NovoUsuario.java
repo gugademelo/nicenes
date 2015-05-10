@@ -1,7 +1,6 @@
 package controller;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.RequestDispatcher;
@@ -10,11 +9,10 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
-import util.Erro;
 import model.Perfil;
 import model.Usuario;
+import util.Mensagem;
 
 /**
  * Servlet implementation class CadastraUsuario
@@ -70,8 +68,8 @@ public class NovoUsuario extends HttpServlet {
 			address = "/WEB-INF/jsp/pages/UsuarioCadastrado.jsp";
 		}
 		else {
-			Erro erro = new Erro("Nao foi possivel logar.");
-			request.setAttribute("erro", erro);
+			Mensagem mensagem = new Mensagem("Nao foi possivel logar.");
+			request.setAttribute("erro", mensagem);
 			address = "/WEB-INF/jsp/pages/Erro.jsp";
 		}
 		
