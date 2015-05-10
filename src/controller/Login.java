@@ -47,7 +47,7 @@ public class Login extends HttpServlet {
 		
 		//teste
 		if(usuario != null) {
-			path = "/WEB-INF/jsp/pages/Sucesso.jsp";
+			path = "/WEB-INF/jsp/pages/sucesso.jsp";
 			Mensagem mensagem = new Mensagem("Seja bem vindo!");
 			request.setAttribute("mensagem", mensagem);
 			request.getSession().setAttribute("usuarioLogado", usuario);
@@ -55,7 +55,7 @@ public class Login extends HttpServlet {
 		else {
 			Mensagem mensagem = new Mensagem("Usuario ou senha invalidos");
 			request.setAttribute("mensagem", mensagem);
-			path = "/WEB-INF/jsp/pages/Erro.jsp";
+			path = "/WEB-INF/jsp/pages/erro.jsp";
 		}
 		RequestDispatcher dispatcher = request.getRequestDispatcher(path);
 		dispatcher.forward(request, response);			

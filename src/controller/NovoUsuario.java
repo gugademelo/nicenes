@@ -67,12 +67,12 @@ public class NovoUsuario extends HttpServlet {
 			Mensagem mensagem = new Mensagem("Usuario cadastrado.");
 			request.setAttribute("mensagem", mensagem);
 			request.setAttribute("usuario", usuario);
-			address = "/WEB-INF/jsp/pages/Sucesso.jsp";
+			address = "/WEB-INF/jsp/pages/sucesso.jsp";
 		}
 		else {
 			Mensagem mensagem = new Mensagem("Nao foi possivel logar.");
 			request.setAttribute("erro", mensagem);
-			address = "/WEB-INF/jsp/pages/Erro.jsp";
+			address = "/WEB-INF/jsp/pages/erro.jsp";
 		}
 		
 		RequestDispatcher dispatcher = request.getRequestDispatcher(address);

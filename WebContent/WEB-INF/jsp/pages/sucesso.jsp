@@ -7,6 +7,7 @@
 <title>Insert title here</title>
 </head>
 <body>
+	<jsp:include page="/WEB-INF/jsp/partials/menu.jsp" />
 	<h1>Sucesso!</h1>
 	<p>${mensagem.texto }</p>
 </body>

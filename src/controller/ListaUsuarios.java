@@ -41,7 +41,7 @@ public class ListaUsuarios extends HttpServlet {
 			request.getSession().setAttribute("usuarios", usuarios);
 		}
 		else {
-			address = "/WEB-INF/jsp/pages/Erro.jsp";
+			address = "/WEB-INF/jsp/pages/erro.jsp";
 			Mensagem mensagem = new Mensagem("Voc� n�o tem permiss�o para acessar esta pagina");
 			request.setAttribute("erro", mensagem);
 		}
