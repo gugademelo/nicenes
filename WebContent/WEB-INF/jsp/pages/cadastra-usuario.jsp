@@ -12,14 +12,19 @@
 		<label for="nome">Nome</label>
 		<input type="text" name="nome" value="${editar.nome }">
 		<label for="email">Email</label>
-		<input type="text" name="email">
+		<input type="text" name="email" value="${editar.email }">
 		<label for="senha">Senha</label>
-		<input type="password" name="senha">
+		<input type="password" name="senha" value="${editar.senha }">
 		<c:if test="${usuarioLogado.perfil.id == 1 }">
 			<label for="perfil">Perfil</label>
 			<select name="perfil">
 			<c:forEach items="${perfis}" var="perfil">
-    			<option value="${perfil.id }">${perfil.perfil }</option>
+				<c:if test="${perfil.id == editar.perfil.id }">
+    				<option value="${perfil.id }" selected="selected">${perfil.perfil }</option>
+    			</c:if>
+    			<c:if test="${perfil.id != editar.perfil.id }">
+    				<option value="${perfil.id }">${perfil.perfil }</option>
+    			</c:if>
 			</c:forEach>
 			</select>
 		</c:if>
