@@ -10,7 +10,7 @@
 	<jsp:include page="/WEB-INF/jsp/partials/menu.jsp" />
 	<form method="post" action="novo-usuario">
 		<label for="nome">Nome</label>
-		<input type="text" name="nome">
+		<input type="text" name="nome" value="${editar.nome }">
 		<label for="email">Email</label>
 		<input type="text" name="email">
 		<label for="senha">Senha</label>
