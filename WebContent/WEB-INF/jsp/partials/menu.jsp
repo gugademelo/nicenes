@@ -3,7 +3,7 @@
 <ul>
 	<c:if test = "${empty usuarioLogado }" >
 		<li><a href="novo-usuario">Cadastre-se</a></li>
-		<li><a href="login.html">Faça o login</a></li>
+		<li><a href="login">Faça o login</a></li>
 	</c:if>
 	<c:if test = "${not empty usuarioLogado }" >
 		<li><a href="logout">Logout</a></li>

@@ -45,12 +45,12 @@ public class NovaCategoria extends HttpServlet {
 		
 		if(categoria.salva()) {
 			request.setAttribute("categoria", categoria);
-			address = "/WEB-INF/CategoriaCadastrada.jsp";
+			address = "/WEB-INF/jsp/pages/CategoriaCadastrada.jsp";
 		}
 		else {
 			Erro erro = new Erro("Nao foi possivel cadastrar.");
 			request.setAttribute("erro", erro);
-			address = "/WEB-INF/Erro.jsp";
+			address = "/WEB-INF/jsp/pages/Erro.jsp";
 		}
 		
 		RequestDispatcher dispatcher = request.getRequestDispatcher(address);

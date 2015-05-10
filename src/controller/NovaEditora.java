@@ -54,12 +54,12 @@ public class NovaEditora extends HttpServlet {
 		
 		if(editora.salva()) {
 			request.setAttribute("editora", editora);
-			address = "/WEB-INF/EditoraCadastrada.jsp";
+			address = "/WEB-INF/jsp/pages/EditoraCadastrada.jsp";
 		}
 		else {
 			Erro erro = new Erro("Nao foi possivel cadastrar.");
 			request.setAttribute("erro", erro);
-			address = "/WEB-INF/Erro.jsp";
+			address = "/WEB-INF/jsp/pages/Erro.jsp";
 		}
 		
 		RequestDispatcher dispatcher = request.getRequestDispatcher(address);

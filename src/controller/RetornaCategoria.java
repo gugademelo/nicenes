@@ -50,7 +50,7 @@ public class RetornaCategoria extends HttpServlet {
 		
 		
 			request.setAttribute("categorias", Listcategorias);
-			address = "/WEB-INF/cadastra-livro.jsp";
+			address = "/WEB-INF/jsp/pages/cadastra-livro.jsp";
 		
 			RequestDispatcher dispatcher = request.getRequestDispatcher(address);
 			dispatcher.forward(request, response);

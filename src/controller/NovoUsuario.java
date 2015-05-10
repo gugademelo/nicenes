@@ -37,7 +37,7 @@ public class NovoUsuario extends HttpServlet {
 		String address;		
 		Usuario usuario = (Usuario) request.getSession().getAttribute("usuarioLogado");
 		
-		address = "/cadastra-usuario.jsp";
+		address = "/WEB-INF/jsp/pages/cadastra-usuario.jsp";
 		
 		if(usuario != null) {
 			List<Perfil> perfis = new Perfil().lista();
@@ -67,12 +67,12 @@ public class NovoUsuario extends HttpServlet {
 		
 		if(usuario.salva()) {
 			request.setAttribute("usuario", usuario);
-			address = "/WEB-INF/UsuarioCadastrado.jsp";
+			address = "/WEB-INF/jsp/pages/UsuarioCadastrado.jsp";
 		}
 		else {
 			Erro erro = new Erro("Nao foi possivel logar.");
 			request.setAttribute("erro", erro);
-			address = "/WEB-INF/Erro.jsp";
+			address = "/WEB-INF/jsp/pages/Erro.jsp";
 		}
 		
 		RequestDispatcher dispatcher = request.getRequestDispatcher(address);

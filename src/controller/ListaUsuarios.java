@@ -38,12 +38,12 @@ public class ListaUsuarios extends HttpServlet {
 			
 		if(usuario != null) {
 			List<Usuario> usuarios = new Usuario().lista();
-			address = "/WEB-INF/jsp/lista-usuarios.jsp";
+			address = "/WEB-INF/jsp/pages/lista-usuarios.jsp";
 			request.getSession().setAttribute("usuarios", usuarios);
 		}
 		else {
-			address = "/WEB-INF/Erro.jsp";
-			Erro erro = new Erro("Você não tem permissão para acessar esta pagina");
+			address = "/WEB-INF/jsp/pages/Erro.jsp";
+			Erro erro = new Erro("Vocï¿½ nï¿½o tem permissï¿½o para acessar esta pagina");
 			request.setAttribute("erro", erro);
 		}
 		

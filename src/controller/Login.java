@@ -31,7 +31,9 @@ public class Login extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub		
+		String address = "/WEB-INF/jsp/pages/login.jsp";
+		RequestDispatcher dispatcher = request.getRequestDispatcher(address);
+		dispatcher.forward(request, response);		
 		
 	}
 
@@ -45,13 +47,13 @@ public class Login extends HttpServlet {
 		
 		//teste
 		if(usuario != null) {
-			path = "/WEB-INF/LoginEfetuado.jsp";
+			path = "/WEB-INF/jsp/pages/LoginEfetuado.jsp";
 			request.getSession().setAttribute("usuarioLogado", usuario);
 		}
 		else {
 			Erro erro = new Erro("Usuario ou senha invalidoss");
 			request.setAttribute("erro", erro);
-			path = "/WEB-INF/Erro.jsp";
+			path = "/WEB-INF/jsp/pages/Erro.jsp";
 		}
 		RequestDispatcher dispatcher = request.getRequestDispatcher(path);
 		dispatcher.forward(request, response);			
