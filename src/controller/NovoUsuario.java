@@ -51,6 +51,12 @@ public class NovoUsuario extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String address;		
+		
+		if(request.getSession().getAttribute("usuarioLogado") != null) {
+			if(request.getParameter("editar_id") != null) {
+				
+			}
+		}
 		Usuario usuario = new Usuario();
 		usuario.setNome(request.getParameter("nome"));
 		usuario.setEmail(request.getParameter("email"));

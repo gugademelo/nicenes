@@ -38,8 +38,8 @@ public class EditarUsuario extends HttpServlet {
 
 		Usuario usuario =
 		Usuario.getUsuarioPeloId(Integer.parseInt(request.getParameter("id")));
-
-		request.setAttribute("editar", usuario);
+		
+		if(usuario != null) request.setAttribute("editar", usuario);
 		
 		List<Perfil> perfis = new Perfil().lista();
 		request.getSession().setAttribute("perfis", perfis);

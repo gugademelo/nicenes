@@ -28,6 +28,9 @@
 			</c:forEach>
 			</select>
 		</c:if>
+		<c:if test="${not empty editar }">
+			<input type="hidden" name="editar_id" value="${editar.id }">
+		</c:if>
 		<input type="submit" value="Cadastrar">
 	</form>
 </body>
