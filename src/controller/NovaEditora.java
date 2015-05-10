@@ -53,12 +53,14 @@ public class NovaEditora extends HttpServlet {
 		editora.setWeb(request.getParameter("web"));
 		
 		if(editora.salva()) {
+			Mensagem mensagem = new Mensagem("Editora cadastrada.");
+			request.setAttribute("mensagem", mensagem);
 			request.setAttribute("editora", editora);
-			address = "/WEB-INF/jsp/pages/EditoraCadastrada.jsp";
+			address = "/WEB-INF/jsp/pages/Sucesso.jsp";
 		}
 		else {
 			Mensagem mensagem = new Mensagem("Nao foi possivel cadastrar.");
-			request.setAttribute("erro", mensagem);
+			request.setAttribute("mensagem", mensagem);
 			address = "/WEB-INF/jsp/pages/Erro.jsp";
 		}
 		

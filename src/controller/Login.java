@@ -47,7 +47,9 @@ public class Login extends HttpServlet {
 		
 		//teste
 		if(usuario != null) {
-			path = "/WEB-INF/jsp/pages/LoginEfetuado.jsp";
+			path = "/WEB-INF/jsp/pages/Sucesso.jsp";
+			Mensagem mensagem = new Mensagem("Seja bem vindo!");
+			request.setAttribute("mensagem", mensagem);
 			request.getSession().setAttribute("usuarioLogado", usuario);
 		}
 		else {

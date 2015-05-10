@@ -64,8 +64,10 @@ public class NovoUsuario extends HttpServlet {
 		}
 		
 		if(usuario.salva()) {
+			Mensagem mensagem = new Mensagem("Usuario cadastrado.");
+			request.setAttribute("mensagem", mensagem);
 			request.setAttribute("usuario", usuario);
-			address = "/WEB-INF/jsp/pages/UsuarioCadastrado.jsp";
+			address = "/WEB-INF/jsp/pages/Sucesso.jsp";
 		}
 		else {
 			Mensagem mensagem = new Mensagem("Nao foi possivel logar.");
