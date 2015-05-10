@@ -7,6 +7,7 @@
 <title>Insert title here</title>
 </head>
 <body>
+	<jsp:include page="/WEB-INF/jsp/partials/menu.jsp" />
 	<form method="post" action="NovaCategoria">
 		<label for="nome">Categoria</label>
 		<input type="text" name="categoria">

@@ -10,6 +10,7 @@
 <title>Insert title here</title>
 </head>
 <body>
+<jsp:include page="/WEB-INF/jsp/partials/menu.jsp" />
  
  <label for="categoria">Categoria</label>
  <select name="categoria" >

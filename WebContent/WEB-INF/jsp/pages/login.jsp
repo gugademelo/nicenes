@@ -5,6 +5,7 @@
 <title>Insert title here</title>
 </head>
 <body>
+	<jsp:include page="/WEB-INF/jsp/partials/menu.jsp" />
 	<form action="login" method="post">
 		<label for="email">Email</label>
 		<input type="text" name="email">
