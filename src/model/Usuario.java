@@ -30,8 +30,19 @@ public class Usuario {
 		if (con == null) {
 			return false;
 		}
+		
+		Integer id = this.getId();
+		
+		String sql = null;
+		
+		if (id == null) {
+			sql = "INSERT INTO usuario (nome, email, senha, id_perfil) VALUES(?, ?, ?, ?)";
+		}
+		else{
+			sql = "UPDATE SET nome = ?, email = ?, senha = ?, id_perfil = ? WHERE id_usuario = ?";
+		}
 
-		String sql = "INSERT INTO usuario (nome, email, senha, id_perfil) VALUES(?, ?, ?, ?)";
+		
 
 		try {
 			PreparedStatement st = con.prepareStatement(sql);
@@ -39,6 +50,11 @@ public class Usuario {
 			st.setString(2, this.getEmail());
 			st.setString(3, this.getSenha());
 			st.setInt(4, this.getPerfil().getId());
+			
+			if(id != null) {
+				st.setInt(5, id);
+			}
+			
 			if (st.executeUpdate() == 1)
 				return true;
 			return true;
@@ -146,6 +162,8 @@ public class Usuario {
 						rs.getString("email"), rs.getString("senha"), perfil);
 				return usuario;
 			}
+			
+			return null;
 
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block

@@ -8,7 +8,12 @@
 </head>
 <body>
 	<jsp:include page="/WEB-INF/jsp/partials/menu.jsp" />
-	<form method="post" action="novo-usuario">
+	<c:if test="${empty editar }">
+		<form method="post" action="novo-usuario">
+	</c:if>
+	<c:if test="${not empty editar }">
+		<form method="post" action="editar-usuario">
+	</c:if>
 		<label for="nome">Nome</label>
 		<input type="text" name="nome" value="${editar.nome }">
 		<label for="email">Email</label>

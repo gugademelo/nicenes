@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import util.Mensagem;
 import model.Perfil;
 import model.Usuario;
 
@@ -54,13 +55,19 @@ public class EditarUsuario extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
-		String address = "/WEB-INF/jsp/pages/sucessoo.jsp";
+		String address = "/WEB-INF/jsp/pages/sucesso.jsp";
+		
+		Usuario usuario = Usuario.getUsuarioPeloId(Integer.parseInt(request.getParameter("editar_id")));
+		if(usuario != null) {
+			usuario.salva();
+		}
 
 		// Usuario usuario =
 		// Usuario.getUsuarioPeloId(Integer.parseInt(request.getParameter("id")));
 
 		// request.setAttribute("editar", usuario);
-
+		Mensagem mensagem = new Mensagem("rola");
+		request.setAttribute("mensagem", mensagem);
 		RequestDispatcher dispatcher = request.getRequestDispatcher(address);
 		dispatcher.forward(request, response);
 	}
