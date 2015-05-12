@@ -35,11 +35,12 @@ public class Usuario {
 		
 		String sql = null;
 		
-		if (id == null) {
+		if (id == 0) {
 			sql = "INSERT INTO usuario (nome, email, senha, id_perfil) VALUES(?, ?, ?, ?)";
 		}
 		else{
 			sql = "UPDATE usuario SET nome = ?, email = ?, senha = ?, id_perfil = ? WHERE id_usuario = ?";
+			System.out.println("\n\n\n\n\n"+id+"\n\n\n\n\n");
 		}
 
 		try {
@@ -49,9 +50,10 @@ public class Usuario {
 			st.setString(3, this.getSenha());
 			st.setInt(4, this.getPerfil().getId());
 			
-			if(id != null) {
+			if(id != 0) {
 				st.setInt(5, id);
 			}
+			System.out.println("\n\n\n\n\n"+st+"\n\n\n\n");
 			if (st.executeUpdate() == 1)
 				return true;
 			return true;
