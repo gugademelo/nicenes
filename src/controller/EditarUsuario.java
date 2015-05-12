@@ -59,6 +59,10 @@ public class EditarUsuario extends HttpServlet {
 		
 		Usuario usuario = Usuario.getUsuarioPeloId(Integer.parseInt(request.getParameter("editar_id")));
 		if(usuario != null) {
+			usuario.setNome(request.getParameter("nome"));
+			usuario.setEmail(request.getParameter("email"));
+			usuario.setSenha(request.getParameter("senha"));
+			usuario.setPerfil(Perfil.getPerfilPeloId(Integer.parseInt(request.getParameter("perfil"))));
 			usuario.salva();
 		}
 

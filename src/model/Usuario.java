@@ -39,10 +39,8 @@ public class Usuario {
 			sql = "INSERT INTO usuario (nome, email, senha, id_perfil) VALUES(?, ?, ?, ?)";
 		}
 		else{
-			sql = "UPDATE SET nome = ?, email = ?, senha = ?, id_perfil = ? WHERE id_usuario = ?";
+			sql = "UPDATE usuario SET nome = ?, email = ?, senha = ?, id_perfil = ? WHERE id_usuario = ?";
 		}
-
-		
 
 		try {
 			PreparedStatement st = con.prepareStatement(sql);
@@ -54,7 +52,6 @@ public class Usuario {
 			if(id != null) {
 				st.setInt(5, id);
 			}
-			
 			if (st.executeUpdate() == 1)
 				return true;
 			return true;
