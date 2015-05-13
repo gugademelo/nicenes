@@ -31,8 +31,17 @@ public class Logout extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.getSession().invalidate();
-		RequestDispatcher dispatcher = request.getRequestDispatcher("/index.jsp");
-		dispatcher.forward(request, response);
+		
+		// Set response content type
+	    response.setContentType("text/html");
+
+	    // New location to be redirected
+	    String site = new String("/nicenes");
+
+	    response.setStatus(response.SC_MOVED_TEMPORARILY);
+	    response.setHeader("Location", site);
+		//RequestDispatcher dispatcher = request.getRequestDispatcher("/index.jsp");
+		//dispatcher.forward(request, response);
 	}
 
 	/**

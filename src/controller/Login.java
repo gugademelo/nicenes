@@ -9,8 +9,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import util.Erro;
 import model.Usuario;
+import util.Mensagem;
 
 /**
  * Servlet implementation class Login
@@ -31,7 +31,9 @@ public class Login extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub		
+		String address = "/WEB-INF/jsp/pages/login.jsp";
+		RequestDispatcher dispatcher = request.getRequestDispatcher(address);
+		dispatcher.forward(request, response);		
 		
 	}
 
@@ -45,13 +47,15 @@ public class Login extends HttpServlet {
 		
 		//teste
 		if(usuario != null) {
-			path = "/WEB-INF/LoginEfetuado.jsp";
+			path = "/WEB-INF/jsp/pages/sucesso.jsp";
+			Mensagem mensagem = new Mensagem("Seja bem vindo!");
+			request.setAttribute("mensagem", mensagem);
 			request.getSession().setAttribute("usuarioLogado", usuario);
 		}
 		else {
-			Erro erro = new Erro("Usuario ou senha invalidoss");
-			request.setAttribute("erro", erro);
-			path = "/WEB-INF/Erro.jsp";
+			Mensagem mensagem = new Mensagem("Usuario ou senha invalidos");
+			request.setAttribute("mensagem", mensagem);
+			path = "/WEB-INF/jsp/pages/erro.jsp";
 		}
 		RequestDispatcher dispatcher = request.getRequestDispatcher(path);
 		dispatcher.forward(request, response);			

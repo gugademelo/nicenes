@@ -2,8 +2,11 @@ package model;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import database.ConnectionFactory;
 
@@ -95,6 +98,100 @@ public class Livro {
 			e.printStackTrace();
 			return false;
 		}
+	}
+	
+	public boolean exclui() {
+		Connection con = new ConnectionFactory().getConnection();
+
+		if (con == null) {
+			return false;
+		}
+
+		String sql = "DELETE FROM LIVRO WHERE livro_id = ?";
+
+		try {
+			PreparedStatement st = con.prepareStatement(sql);
+			st.setInt(1, this.getLivro_id());
+			if (st.executeUpdate() == 1) return true;
+			return false;
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return false;
+		}
+
+	}
+	
+	public List<Livro> lista() {
+		Connection con = new ConnectionFactory().getConnection();
+
+		String sql = "SELECT * FROM LIVRO";
+
+		List<Livro> livros = null;
+
+		try {
+			PreparedStatement st = con.prepareStatement(sql);
+
+			ResultSet rs = st.executeQuery();
+
+			livros = new ArrayList<Livro>();
+
+			while (rs.next()) {
+				Livro livro = new Livro(rs.getInt("id"), rs.getString("nome"),
+				rs.getString("isbn"),
+				rs.getString("colecao"),
+				rs.getString("edicao"),
+				rs.getString("idioma"),
+				rs.getString("assunto"),
+			    rs.getDate  ("ano"), // verificar formato de data
+				rs.getString("autor"),
+				rs.getString("editora"),
+				rs.getString("categoria"));
+				
+				
+				livros.add(livro);
+			}
+
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		return livros;
+	}
+	
+	public static Livro getLivroPeloId(int id) {
+		Connection con = new ConnectionFactory().getConnection();
+
+		String sql = "SELECT * FROM LIVRO WHERE livro_id = ?";
+
+		try {
+			PreparedStatement st = con.prepareStatement(sql);
+			st.setInt(1, id);
+			ResultSet rs = st.executeQuery();
+
+			if (rs.next()) {
+				Livro livro = new Livro(rs.getInt("id"), rs.getString("nome"),
+						rs.getString("isbn"),
+						rs.getString("colecao"),
+						rs.getString("edicao"),
+						rs.getString("idioma"),
+						rs.getString("assunto"),
+					    rs.getDate  ("ano"), // verificar formato de data
+						rs.getString("autor"),
+						rs.getString("editora"),
+						rs.getString("categoria"));
+				
+				return livro;
+			}
+			
+			return null;
+
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return null;
 	}
 	
 	

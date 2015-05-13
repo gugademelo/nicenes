@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import model.Categoria;
-import util.Erro;
+import util.Mensagem;
 
 /**
  * Servlet implementation class NovaCategoria
@@ -44,13 +44,15 @@ public class NovaCategoria extends HttpServlet {
 		categoria.setCategoria(request.getParameter("categoria"));
 		
 		if(categoria.salva()) {
+			Mensagem mensagem = new Mensagem("Categoria cadastrada!");
+			request.setAttribute("mensagem", mensagem);
 			request.setAttribute("categoria", categoria);
-			address = "/WEB-INF/CategoriaCadastrada.jsp";
+			address = "/WEB-INF/jsp/pages/sucesso.jsp";
 		}
 		else {
-			Erro erro = new Erro("Nao foi possivel cadastrar.");
-			request.setAttribute("erro", erro);
-			address = "/WEB-INF/Erro.jsp";
+			Mensagem mensagem = new Mensagem("Nao foi possivel cadastrar.");
+			request.setAttribute("mensagem", mensagem);
+			address = "/WEB-INF/jsp/pages/erro.jsp";
 		}
 		
 		RequestDispatcher dispatcher = request.getRequestDispatcher(address);

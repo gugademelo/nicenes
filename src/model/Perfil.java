@@ -72,6 +72,28 @@ public class Perfil {
 
 	}
 	
+	public static Perfil getPerfilPeloId(int id) {
+		Connection con = new ConnectionFactory().getConnection();
+		
+		String sql = "SELECT * FROM perfil WHERE id_perfil = ?";
+		
+		try {
+			PreparedStatement st = con.prepareStatement(sql);
+			st.setInt(1, id);
+			ResultSet rs = st.executeQuery();
+			
+			if(rs.next()) {
+				Perfil perfil = new Perfil(rs.getString("nome"), Integer.parseInt(rs.getString("id_perfil")));
+				return perfil;
+			}
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return null;
+	}
+	
 	public int getId() {
 		return id;
 	}

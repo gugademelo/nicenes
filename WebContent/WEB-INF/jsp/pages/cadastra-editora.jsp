@@ -7,7 +7,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-
+	<jsp:include page="/WEB-INF/jsp/partials/menu.jsp" />
 	<form method="post" action="NovaEditora">
 	
 		<label for="nome">Nome</label>

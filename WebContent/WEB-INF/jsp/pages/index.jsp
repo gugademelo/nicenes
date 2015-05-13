@@ -9,7 +9,7 @@
 </head>
 <body>
 
-<jsp:include page="WEB-INF/jsp/menu.jsp" />
+<jsp:include page="/WEB-INF/jsp/partials/menu.jsp" />
 
 </body>
 </html>

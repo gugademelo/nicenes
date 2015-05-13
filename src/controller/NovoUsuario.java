@@ -1,7 +1,6 @@
 package controller;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.RequestDispatcher;
@@ -10,11 +9,10 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
-import util.Erro;
 import model.Perfil;
 import model.Usuario;
+import util.Mensagem;
 
 /**
  * Servlet implementation class CadastraUsuario
@@ -37,7 +35,7 @@ public class NovoUsuario extends HttpServlet {
 		String address;		
 		Usuario usuario = (Usuario) request.getSession().getAttribute("usuarioLogado");
 		
-		address = "/cadastra-usuario.jsp";
+		address = "/WEB-INF/jsp/pages/cadastra-usuario.jsp";
 		
 		if(usuario != null) {
 			List<Perfil> perfis = new Perfil().lista();
@@ -53,26 +51,36 @@ public class NovoUsuario extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String address;		
+		
+		if(request.getSession().getAttribute("usuarioLogado") != null) {
+			if(request.getParameter("editar_id") != null) {
+				
+			}
+		}
 		Usuario usuario = new Usuario();
 		usuario.setNome(request.getParameter("nome"));
 		usuario.setEmail(request.getParameter("email"));
 		usuario.setSenha(request.getParameter("senha"));
 		
+		Perfil perfil = null;
 		if(request.getSession().getAttribute("usuarioLogado") != null) {
-			usuario.setPerfil(Integer.parseInt(request.getParameter("perfil")));
+			perfil = Perfil.getPerfilPeloId(Integer.parseInt(request.getParameter("perfil")));
 		}
 		else {
-			usuario.setPerfil(2);
+			perfil = Perfil.getPerfilPeloId(2);
 		}
+		usuario.setPerfil(perfil);
 		
 		if(usuario.salva()) {
+			Mensagem mensagem = new Mensagem("Usuario cadastrado.");
+			request.setAttribute("mensagem", mensagem);
 			request.setAttribute("usuario", usuario);
-			address = "/WEB-INF/UsuarioCadastrado.jsp";
+			address = "/WEB-INF/jsp/pages/sucesso.jsp";
 		}
 		else {
-			Erro erro = new Erro("Nao foi possivel logar.");
-			request.setAttribute("erro", erro);
-			address = "/WEB-INF/Erro.jsp";
+			Mensagem mensagem = new Mensagem("Nao foi possivel logar.");
+			request.setAttribute("erro", mensagem);
+			address = "/WEB-INF/jsp/pages/erro.jsp";
 		}
 		
 		RequestDispatcher dispatcher = request.getRequestDispatcher(address);
