@@ -11,7 +11,9 @@ import database.ConnectionFactory;
 
 public class Categoria {
 	
+	//colocar atributos
 	private String categoria;
+	private int categoria_id;
 
 	
 	public String getCategoria() {
@@ -43,6 +45,52 @@ public class Categoria {
 		}
 				
 	}
+	
+	public boolean atualizar(Categoria categoria)
+	{
+		Connection con = new ConnectionFactory().getConnection();
+		
+		if(con == null){
+			return false;	
+		}
+		String sql = "UPDATE CATEGORIA(titulo = ?) WHERE categoria_id = ?";
+		try{
+			PreparedStatement st = con.prepareStatement(sql);
+			st.setString(1, categoria.categoria);
+			st.setInt(2, categoria.categoria_id);
+			return true;
+			
+		} catch (SQLException e){
+			
+			e.printStackTrace();
+			return false;
+		}
+	}
+	
+	public boolean exclui() {
+		Connection con = new ConnectionFactory().getConnection();
+
+		if (con == null) {
+			return false;
+		}
+
+		String sql = "DELETE FROM CATEGORIA WHERE categoria_id = ?";
+
+		try {
+			PreparedStatement st = con.prepareStatement(sql);
+			st.setInt(1, this.getCategoria_id());
+			if (st.executeUpdate() == 1) return true;
+			return false;
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return false;
+		}
+
+	}
+	
+
+	
 
 	public List<Categoria> lista() {
 		Connection con = new ConnectionFactory().getConnection();
@@ -75,6 +123,40 @@ public class Categoria {
 		return categorias;
 		
 
+	}
+	
+	//colocar atributos
+	public static Categoria getCategoriaPeloId(int id) {
+		Connection con = new ConnectionFactory().getConnection();
+
+		String sql = "SELECT * FROM CATEGORIA WHERE categoria_id = ?";
+
+		try {
+			PreparedStatement st = con.prepareStatement(sql);
+			st.setInt(1, id);
+			ResultSet rs = st.executeQuery();
+
+			if (rs.next()) {
+				Categoria categoria = new Categoria();
+				
+				return categoria;
+			}
+			
+			return null;
+
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return null;
+	}
+	
+	public int getCategoria_id() {
+		return categoria_id;
+	}
+
+	public void setCategoria_id(int categoria_id) {
+		this.categoria_id = categoria_id;
 	}
 
 }
