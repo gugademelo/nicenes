@@ -8,9 +8,10 @@
 </head>
 <body>
 	<jsp:include page="/WEB-INF/jsp/partials/menu.jsp" />
-	<form method="post" action="NovaCategoria">
+	<form method="post" action="nova-categoria">
 		<label for="nome">Categoria</label>
 		<input type="text" name="categoria">
+		<input type="submit" value="ok">
 	</form>
 	
 </body>

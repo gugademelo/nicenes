@@ -12,6 +12,7 @@
 			<li><a href="novo-usuario">Cadastre um novo usuario</a></li>
 			<li><a href="lista-usuarios">Lista de usuarios</a>
 			<li><a href="nova-editora">Cadastre uma nova editora</a></li>
+			<li><a href="nova-categoria">Cadastre uma nova categoria</a></li>
 		</c:if>	
 	</c:if>
 </ul>

@@ -15,7 +15,7 @@ import util.Mensagem;
 /**
  * Servlet implementation class NovaCategoria
  */
-@WebServlet("/NovaCategoria")
+@WebServlet("/nova-categoria")
 public class NovaCategoria extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -31,14 +31,15 @@ public class NovaCategoria extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
+		String address = "/WEB-INF/jsp/pages/cadastra-categoria.jsp";
+		RequestDispatcher dispatcher = request.getRequestDispatcher(address);
+		dispatcher.forward(request, response);
 	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
 		String address;		
 		Categoria categoria = new Categoria();
 		categoria.setCategoria(request.getParameter("categoria"));
