@@ -13,8 +13,8 @@
 			<attribute name="owner.project.facets" value="java"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="/home/gmelo/web_projects/eclipse_workspace/nicenes/WebContent/WEB-INF/lib/javax.servlet.jsp.jstl-1.2.1.jar"/>
-	<classpathentry kind="lib" path="/home/gmelo/web_projects/eclipse_workspace/nicenes/WebContent/WEB-INF/lib/javax.servlet.jsp.jstl-api-1.2.1.jar"/>
-	<classpathentry kind="lib" path="/home/gmelo/web_projects/eclipse_workspace/nicenes/WebContent/WEB-INF/lib/mysql-connector-java-5.0.8-bin.jar"/>
+	<classpathentry kind="lib" path="Q:/nicenes/WebContent/WEB-INF/lib/javax.servlet.jsp.jstl-1.2.1.jar"/>
+	<classpathentry kind="lib" path="Q:/nicenes/WebContent/WEB-INF/lib/javax.servlet.jsp.jstl-api-1.2.1.jar"/>
+	<classpathentry kind="lib" path="Q:/nicenes/WebContent/WEB-INF/lib/mysql-connector-java-5.0.8-bin.jar"/>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>

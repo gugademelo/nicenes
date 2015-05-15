@@ -66,11 +66,7 @@ public class EditarUsuario extends HttpServlet {
 			usuario.salva();
 		}
 
-		// Usuario usuario =
-		// Usuario.getUsuarioPeloId(Integer.parseInt(request.getParameter("id")));
-
-		// request.setAttribute("editar", usuario);
-		Mensagem mensagem = new Mensagem("rola");
+		Mensagem mensagem = new Mensagem("Usuario editado com sucesso!");
 		request.setAttribute("mensagem", mensagem);
 		RequestDispatcher dispatcher = request.getRequestDispatcher(address);
 		dispatcher.forward(request, response);
