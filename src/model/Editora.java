@@ -2,17 +2,71 @@ package model;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import database.ConnectionFactory;
 
 public class Editora {
 	
-	private Integer cep,fone,cnpj;
-	private String nome, endereco, cidade, uf, pais, assunto,razaoSocial,web;
+	private Integer id,cep,fone,cnpj;
+	private String nome, endereco, cidade, uf, pais,razaoSocial,web;
+	
+	public static List<Editora> lista() {
+		Connection con = new ConnectionFactory().getConnection();
+		
+		String sql="SELECT * FROM editora";
+		
+		List<Editora> editoras = null;
+		
+		try {
+			PreparedStatement st = con.prepareStatement(sql);
+			
+			ResultSet rs = st.executeQuery();
+			
+			editoras = new ArrayList<Editora>();
+			
+			while(rs.next()) {
+				System.out.println("\n\n\n\n\n\n"+rs.getString("id_editora")+"\n\n\n\n\n\n");
+				Editora editora = new Editora(Integer.parseInt(rs.getString("id_editora")), Integer.parseInt(rs.getString("cep")), Integer.parseInt(rs.getString("fone")), Integer.parseInt(rs.getString("cnpj")), rs.getString("nome"), rs.getString("endereco"), rs.getString("cidade"), rs.getString("uf"), rs.getString("pais"), rs.getString("razao"), rs.getString("web"));
+				editoras.add(editora);
+			}
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			
+		}
+		
+		return editoras;
+	}
 	
 	
+	
+	
+	public Editora(Integer id, Integer cep, Integer fone, Integer cnpj, String nome,
+			String endereco, String cidade, String uf, String pais,
+			String razaoSocial, String web) {
+		this.id = id;
+		this.cep = cep;
+		this.fone = fone;
+		this.cnpj = cnpj;
+		this.nome = nome;
+		this.endereco = endereco;
+		this.cidade = cidade;
+		this.uf = uf;
+		this.pais = pais;
+		this.razaoSocial = razaoSocial;
+		this.web = web;
+	}
+	
+	public Editora() {
+		
+	}
+
 	public Integer getCep() {
 		return cep;
 	}
@@ -60,12 +114,6 @@ public class Editora {
 	}
 	public void setPais(String pais) {
 		this.pais = pais;
-	}
-	public String getAssunto() {
-		return assunto;
-	}
-	public void setAssunto(String assunto) {
-		this.assunto = assunto;
 	}
 	public String getRazaoSocial() {
 		return razaoSocial;

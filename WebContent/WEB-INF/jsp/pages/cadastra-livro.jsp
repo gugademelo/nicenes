@@ -14,8 +14,14 @@
  
  <label for="categoria">Categoria</label>
  <select name="categoria" >
- <c:forEach var="u" items="${categorias}">
- 		<option >${u.categoria}</option> 
+ <c:forEach var="categoria" items="${categorias}">
+ 		<option value="${categoria.categoria_id }">${categoria.categoria}</option> 
+ </c:forEach>
+ </select>
+ 
+  <select name="editora" >
+ <c:forEach var="editora" items="${editoras}">
+ 		<option value="asdasda">${editoras.editora}</option> 
  </c:forEach>
  </select>
 

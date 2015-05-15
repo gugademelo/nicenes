@@ -15,6 +15,14 @@ public class Categoria {
 	private String categoria;
 	private int categoria_id;
 
+	public Categoria(String categoria, int id) {
+		this.categoria = categoria;
+		this.categoria_id = id;
+	}
+	
+	public Categoria() {
+		
+	}
 	
 	public String getCategoria() {
 		return categoria;
@@ -92,7 +100,7 @@ public class Categoria {
 
 	
 
-	public List<Categoria> lista() {
+	public static List<Categoria> lista() {
 		Connection con = new ConnectionFactory().getConnection();
 		
 		String sql="SELECT * FROM categoria";
@@ -107,11 +115,8 @@ public class Categoria {
 			categorias = new ArrayList<Categoria>();
 			
 			while(rs.next()) {
-				Categoria cat = new Categoria();
-				cat.setCategoria(rs.getString("categoria"));
-				
-				categorias.add(cat);
-				
+				Categoria categoria = new Categoria(rs.getString("categoria"), Integer.parseInt(rs.getString("id_categoria")));
+				categorias.add(categoria);
 			}
 			
 		} catch (SQLException e) {
