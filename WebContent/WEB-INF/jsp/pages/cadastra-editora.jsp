@@ -8,7 +8,7 @@
 </head>
 <body>
 	<jsp:include page="/WEB-INF/jsp/partials/menu.jsp" />
-	<form method="post" action="NovaEditora">
+	<form method="post" action="nova-editora">
 	
 		<label for="nome">Nome</label>
 		<input type="text" name="nome">

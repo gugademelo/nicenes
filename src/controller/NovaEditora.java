@@ -15,7 +15,7 @@ import util.Mensagem;
 /**
  * Servlet implementation class NovaEditora
  */
-@WebServlet("/NovaEditora")
+@WebServlet("/nova-editora")
 public class NovaEditora extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -24,14 +24,15 @@ public class NovaEditora extends HttpServlet {
      */
     public NovaEditora() {
         super();
-        // TODO Auto-generated constructor stub
     }
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
+		String address = "/WEB-INF/jsp/pages/cadastra-editora.jsp";
+		RequestDispatcher dispatcher = request.getRequestDispatcher(address);
+		dispatcher.forward(request, response);
 	}
 
 	/**

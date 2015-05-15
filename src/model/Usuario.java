@@ -52,7 +52,6 @@ public class Usuario {
 			if(id != 0) {
 				st.setInt(5, id);
 			}
-			System.out.println("\n\n\n\n\n"+st+"\n\n\n\n");
 			if (st.executeUpdate() == 1)
 				return true;
 			return true;
