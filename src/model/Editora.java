@@ -127,6 +127,15 @@ public class Editora {
 	public void setWeb(String web) {
 		this.web = web;
 	}
+	public Integer getId() {
+		return id;
+	}
+	public void setId(Integer id) {
+		this.id = id;
+	}
+
+
+
 
 	public boolean salva() {
 		Connection con = new ConnectionFactory().getConnection();

@@ -21,7 +21,7 @@
  
   <select name="editora" >
  <c:forEach var="editora" items="${editoras}">
- 		<option value="asdasda">${editora.nome}</option> 
+ 		<option value="${editora.id }">${editora.nome}</option> 
  </c:forEach>
  </select>
 
