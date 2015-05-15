@@ -40,6 +40,21 @@ create table editora(
     primary key (id_editora)
 );
 
+create table autor (
+	id_autor int not null auto_increment,
+    nome varchar(255),
+    sobrenome varchar(255),
+    principal_livro varchar(255),
+    endereco varchar(255),
+    telefone varchar(255),
+    email varchar(255),
+    rg varchar(255),
+    dt_nascimento date,
+    obs varchar(255),
+    qtd_livros int,
+    primary key (id_autor)
+);
+
 create table livro (
 	id_livro int not null auto_increment,
     titulo varchar(255),
@@ -61,27 +76,4 @@ create table livro (
     REFERENCES categoria (id_categoria)
 );
 
-
-
-
-
-create table autor (
-	id_autor int not null auto_increment,
-    nome varchar(255),
-    sobrenome varchar(255),
-    principal_livro varchar(255),
-    endereco varchar(255),
-    telefone varchar(255),
-    email varchar(255),
-    rg varchar(255),
-    dt_nascimento date,
-    obs varchar(255),
-    qtd_livros int,
-    primary key (id_autor)
-);
-
 insert into autor values(null,'Dan', 'Brown', 'O Código Da Vinci', 'Exeter. Nova Hampshire', '857645632', 'dan_brown@hotmail.com', '3777652608', CURDATE(), 'Sem obs', 55);
-
-
-
-
