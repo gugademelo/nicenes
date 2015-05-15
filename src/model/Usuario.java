@@ -40,7 +40,6 @@ public class Usuario {
 		}
 		else{
 			sql = "UPDATE usuario SET nome = ?, email = ?, senha = ?, id_perfil = ? WHERE id_usuario = ?";
-			System.out.println("\n\n\n\n\n"+id+"\n\n\n\n\n");
 		}
 
 		try {
