@@ -44,20 +44,21 @@ public class Autor {
 			return false;	
 		}
 
-		String sql = "INSERT INTO AUTOR (nome, sobrenome, dtNascimento, principalLivro, endereco, telefone, email, rg, obs, qtdLivros) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+		String sql = "INSERT INTO AUTOR (nome, sobrenome, dt_nascimento, principal_livro, endereco, telefone, email, rg, obs, qtd_livros) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 		
 		try {
 			PreparedStatement st = con.prepareStatement(sql);
-			st.setString(1, this.getNome());
-			st.setString(2, this.getSobrenome());
-			//st.setDate  (3, this.getDtNascimento());
-			st.setString(4, this.getPrincipalLivro());
-			st.setString(5, this.getEndereco());
-			st.setString(6, this.getTelefone());
-		    //st.setDate  (7,   this.getEmail());
-			st.setString(8, this.getRg());
-			st.setString(9, this.getObs());
-			st.setInt   (10, this.getQtdLivros());
+			st.setString(1, this.nome);
+			st.setString(2, this.sobrenome);
+			java.sql.Date sqlData = new java.sql.Date(this.dtNascimento.getTime());
+			st.setDate(3, sqlData);
+			st.setString(4, this.principalLivro);
+			st.setString(5, this.endereco);
+			st.setString(6, this.telefone);
+		    st.setString(7, this.email);
+			st.setString(8, this.rg);
+			st.setString(9, this.obs);
+			st.setInt   (10, this.qtdLivros);
 			if(st.executeUpdate() == 1) return true;
 			return true;
 		} catch (SQLException e) {
