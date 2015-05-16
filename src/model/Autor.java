@@ -201,10 +201,7 @@ public class Autor {
 				new java.util.Date());
 				
 				java.util.Date date = rs.getDate("dt_nascimento");
-				autor.setDtNascimento(date);
-				
-				System.out.println(autor.nome + "/n/n/n/n/n/n/n/n/n/n/n/n/n/n");
-				
+				autor.setDtNascimento(date);				
 				
 				autores.add(autor);
 			}
