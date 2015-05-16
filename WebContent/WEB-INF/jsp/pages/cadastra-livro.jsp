@@ -11,6 +11,21 @@
 </head>
 <body>
 	<jsp:include page="/WEB-INF/jsp/partials/menu.jsp" />
+	
+	<label for="titulo">Titulo</label>
+	<input type="text" name="titulo">
+	<label for="isbn">ISBN</label>
+	<input type="text" name="isbn">
+	<label for="colecao">Coleção</label>
+	<input type="text" name="colecao">
+	<label for="edicao">Edição</label>
+	<input type="text" name="edicao">
+	<label for="idioma">Idioma</label>
+	<input type="text" name="idioma">
+	<label for="assunto">Assunto</label>
+	<input type="text" name="assunto">
+	<label for="ano">Ano</label>
+	<input type="text" name="ano">
 
 	<label for="categoria">Categoria</label>
 	<select name="categoria">
