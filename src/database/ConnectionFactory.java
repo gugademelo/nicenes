@@ -18,9 +18,16 @@ public class ConnectionFactory {
 			con = DriverManager.getConnection(url, user, pass);
 			return con;
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-			return null;
+			try {
+				pass = "";
+				DriverManager.registerDriver(new com.mysql.jdbc.Driver());
+				con = DriverManager.getConnection(url, user, pass);
+				return con;
+			} catch (Exception e2) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+				return null;
+			}
 		}
 	}
 }
