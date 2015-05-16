@@ -56,14 +56,14 @@ create table autor (
 );
 
 create table livro (
-	id_livro int not null auto_increment,
+    id_livro int not null auto_increment,
     titulo varchar(255),
     isbn varchar(255),
     colecao varchar(255),
     edicao varchar(255),
     idioma varchar(255),
     assunto varchar(255),
-    ano date,
+    ano int,
     id_autor int not null,
     id_editora int not null,
     id_categoria int not null,

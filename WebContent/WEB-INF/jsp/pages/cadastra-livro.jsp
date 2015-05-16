@@ -26,5 +26,11 @@
  </select>
 
 
+<select name="autor" >
+ <c:forEach var="autor" items="${autores}">
+ 		<option value="${autor.autor_Id}">${autor.nome}&nbsp;${autor.sobrenome}</option> 
+ </c:forEach>
+ </select>
+
 </body>
 </html>

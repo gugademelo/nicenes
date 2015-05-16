@@ -1,5 +1,6 @@
 package model;
 
+import java.text.ParseException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -13,7 +14,7 @@ import database.ConnectionFactory;
 public class Livro {
 	private Integer livro_id;
 	private String titulo, isbn, colecao, edicao, idioma, assunto;
-	private Date ano;
+	private Integer ano;
 	private String autor;
 	private String editora;
 	private String categoria;
@@ -23,7 +24,7 @@ public class Livro {
 	
 	}
 	
-	public Livro(int livro_id ,String titulo, String isbn, String colecao, String edicao, String idioma, String assunto, Date ano, String autor, String editora, String categoria)
+	public Livro(int livro_id ,String titulo, String isbn, String colecao, String edicao, String idioma, String assunto, Integer ano, String autor, String editora, String categoria)
 	{
 		this.livro_id = livro_id;
 		this.titulo = titulo;
@@ -39,7 +40,7 @@ public class Livro {
 		
 	}
 	
-	public boolean inserirLivro() {
+	public boolean salva() {
 		Connection con = new ConnectionFactory().getConnection();
 		
 		if(con == null){
@@ -56,7 +57,7 @@ public class Livro {
 			st.setString(4, this.getEdicao());
 			st.setString(5, this.getIdioma());
 			st.setString(6, this.getAssunto());
-		  //st.setDate(7,   this.getAno());
+			st.setInt(7,   this.getAno());
 			st.setString(8, this.getAutor());
 			st.setString(9, this.getEditora());
 			st.setString(10, this.getCategoria());
@@ -143,7 +144,7 @@ public class Livro {
 				rs.getString("edicao"),
 				rs.getString("idioma"),
 				rs.getString("assunto"),
-			    rs.getDate  ("ano"), // verificar formato de data
+			    rs.getInt  ("ano"), // verificar formato de data
 				rs.getString("autor"),
 				rs.getString("editora"),
 				rs.getString("categoria"));
@@ -177,7 +178,7 @@ public class Livro {
 						rs.getString("edicao"),
 						rs.getString("idioma"),
 						rs.getString("assunto"),
-					    rs.getDate  ("ano"), // verificar formato de data
+					    rs.getInt  ("ano"), // verificar formato de data
 						rs.getString("autor"),
 						rs.getString("editora"),
 						rs.getString("categoria"));
@@ -239,10 +240,10 @@ public class Livro {
 	public void setAssunto(String assunto) {
 		this.assunto = assunto;
 	}
-	public Date getAno() {
+	public Integer getAno() {
 		return ano;
 	}
-	public void setAno(Date ano) {
+	public void setAno(Integer ano) {
 		this.ano = ano;
 	}
 

@@ -2,8 +2,11 @@ package model;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import database.ConnectionFactory;
 
@@ -44,7 +47,7 @@ public class Autor {
 			return false;	
 		}
 
-		String sql = "INSERT INTO AUTOR (nome, sobrenome, dt_nascimento, principal_livro, endereco, telefone, email, rg, obs, qtd_livros) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+		String sql = "INSERT INTO autor (nome, sobrenome, dt_nascimento, principal_livro, endereco, telefone, email, rg, obs, qtd_livros) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 		
 		try {
 			PreparedStatement st = con.prepareStatement(sql);
@@ -168,6 +171,54 @@ public class Autor {
 		this.dtNascimento = dtNascimento;
 	}
 	
+	
+	public static List<Autor> lista() {
+		Connection con = new ConnectionFactory().getConnection();
+		
+		String sql="SELECT * FROM autor";
+		
+		List<Autor> autores = null;
+		
+		try {
+			PreparedStatement st = con.prepareStatement(sql);
+			
+			ResultSet rs = st.executeQuery();
+			
+			autores = new ArrayList<Autor>();
+			
+			
+			while(rs.next()) {
+				Autor autor = new Autor(rs.getInt("id_autor"),
+				rs.getInt   ("qtd_livros"),
+				rs.getString("nome"),
+				rs.getString("sobrenome"),				
+				rs.getString("principal_livro"),
+				rs.getString("endereco"),
+				rs.getString("telefone"),
+			    rs.getString("email"),
+				rs.getString("rg"),
+				rs.getString("obs"),
+				new java.util.Date());
+				
+				java.util.Date date = rs.getDate("dt_nascimento");
+				autor.setDtNascimento(date);
+				
+				System.out.println(autor.nome + "/n/n/n/n/n/n/n/n/n/n/n/n/n/n");
+				
+				
+				autores.add(autor);
+			}
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			
+		}
+		
+		return autores;
+		
+
+	}
 
 	
 }
