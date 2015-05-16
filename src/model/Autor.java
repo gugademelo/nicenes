@@ -37,7 +37,7 @@ public class Autor {
 		this.dtNascimento = dtNascimento;
 	}
 	
-	public boolean inserirAutor() {
+	public boolean salva() {
 		Connection con = new ConnectionFactory().getConnection();
 		
 		if(con == null){
@@ -80,17 +80,17 @@ public class Autor {
 			PreparedStatement st = con.prepareStatement(sql);
 			st.setString(1, autor.nome);
 			st.setString(2, autor.sobrenome);
-			//st.setDate(3, autor.dtNascimento);
+			java.sql.Date sqlData = new java.sql.Date(autor.dtNascimento.getTime());
+			st.setDate(3, sqlData);
 			st.setString(4, autor.principalLivro);
 			st.setString(5, autor.endereco);
 			st.setString(6, autor.telefone);
-		    st.setString(7,   autor.email);
+		    st.setString(7, autor.email);
 			st.setString(8, autor.rg);
 			st.setString(9, autor.obs);
 			st.setInt   (10, autor.qtdLivros);
 			st.setInt   (11, autor.autor_Id);
 			return true;
-			
 		} catch (SQLException e){
 			
 			e.printStackTrace();

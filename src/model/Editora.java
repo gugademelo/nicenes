@@ -30,7 +30,6 @@ public class Editora {
 			editoras = new ArrayList<Editora>();
 			
 			while(rs.next()) {
-				System.out.println("\n\n\n\n\n\n"+rs.getString("id_editora")+"\n\n\n\n\n\n");
 				Editora editora = new Editora(Integer.parseInt(rs.getString("id_editora")), Integer.parseInt(rs.getString("cep")), Integer.parseInt(rs.getString("fone")), Integer.parseInt(rs.getString("cnpj")), rs.getString("nome"), rs.getString("endereco"), rs.getString("cidade"), rs.getString("uf"), rs.getString("pais"), rs.getString("razao"), rs.getString("web"));
 				editoras.add(editora);
 			}
