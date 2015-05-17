@@ -10,21 +10,25 @@ import java.util.Date;
 import java.util.List;
 
 import database.ConnectionFactory;
+import model.Autor;
+import model.Editora;
+import model.Categoria;
 
 public class Livro {
 	private Integer livro_id;
-	private String titulo, isbn, colecao, edicao, idioma, assunto;
-	private Integer ano;
-	private String autor;
-	private String editora;
-	private String categoria;
+	private String titulo, isbn, colecao, edicao, idioma;
+	private Integer ano; 
+	private double preco;
+	private Autor autor;
+	private Editora editora;
+	private Categoria categoria;
 	
 	public Livro()
 	{
 	
 	}
 	
-	public Livro(int livro_id ,String titulo, String isbn, String colecao, String edicao, String idioma, String assunto, Integer ano, String autor, String editora, String categoria)
+	public Livro(int livro_id ,String titulo, String isbn, String colecao, String edicao, String idioma, double preco, Integer ano, int autor, int editora, int categoria)
 	{
 		this.livro_id = livro_id;
 		this.titulo = titulo;
@@ -32,11 +36,11 @@ public class Livro {
 		this.colecao = colecao;
 		this.edicao = edicao;
 		this.idioma = idioma;
-		this.assunto = assunto;
+		this.preco = preco;
 		this.ano = ano;
-		this.autor = autor;
-		this.editora = editora;
-		this.categoria = categoria;
+		this.autor = Autor.getAutorPeloId(autor);
+		this.editora = Editora.getEditoraPeloId(editora);
+		this.categoria = Categoria.getCategoriaPeloId(categoria);
 		
 	}
 	
@@ -47,7 +51,8 @@ public class Livro {
 			return false;	
 		}
 
-		String sql = "INSERT INTO livro (titulo, isbn, colecao, edicao, idioma, assunto, ano, autor, editora, categoria) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+		String sql = "INSERT INTO livro (titulo, isbn, colecao, edicao, idioma, preco, ano, id_autor, id_editora, id_categoria) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+		
 		
 		try {
 			PreparedStatement st = con.prepareStatement(sql);
@@ -56,11 +61,11 @@ public class Livro {
 			st.setString(3, this.getColecao());
 			st.setString(4, this.getEdicao());
 			st.setString(5, this.getIdioma());
-			st.setString(6, this.getAssunto());
+			st.setDouble(6, this.getPreco());
 			st.setInt(7,   this.getAno());
-			st.setString(8, this.getAutor());
-			st.setString(9, this.getEditora());
-			st.setString(10, this.getCategoria());
+			st.setInt(8, this.autor.getAutor_Id());
+			st.setInt(9, this.editora.getId());
+			st.setInt(10, this.categoria.getCategoria_id());
 			if(st.executeUpdate() == 1) return true;
 			return true;
 		} catch (SQLException e) {
@@ -78,7 +83,7 @@ public class Livro {
 		if(con == null){
 			return false;	
 		}
-		String sql = "UPDATE LIVRO(titulo = ?, isbn = ?, colecao = ?, edicao = ?, idioma = ?, assunto = ?, ano = ?, autor = ?, editora = ?, categoria = ?) WHERE livro_id = ?";
+		String sql = "UPDATE LIVRO(titulo = ?, isbn = ?, colecao = ?, edicao = ?, idioma = ?, preco = ?, ano = ?, autor = ?, editora = ?, categoria = ?) WHERE livro_id = ?";
 		try{
 			PreparedStatement st = con.prepareStatement(sql);
 			st.setString(1, livro.titulo);
@@ -86,11 +91,11 @@ public class Livro {
 			st.setString(3, livro.colecao);
 			st.setString(4, livro.edicao);
 			st.setString(5, livro.idioma);
-			st.setString(6, livro.assunto);
+			st.setDouble(6, livro.preco);
 		    //st.setDate(7,   livro.ano);
-			st.setString(8, livro.autor);
-			st.setString(9, livro.editora);
-			st.setString(10, livro.categoria);
+			st.setInt(8, livro.autor.getAutor_Id());
+			st.setInt(9, livro.editora.getId());
+			st.setInt(10, livro.categoria.getCategoria_id());
 			st.setInt   (11, livro.livro_id);
 			return true;
 			
@@ -143,11 +148,11 @@ public class Livro {
 				rs.getString("colecao"),
 				rs.getString("edicao"),
 				rs.getString("idioma"),
-				rs.getString("assunto"),
+				rs.getDouble("preco"),
 			    rs.getInt  ("ano"), // verificar formato de data
-				rs.getString("autor"),
-				rs.getString("editora"),
-				rs.getString("categoria"));
+				rs.getInt("autor"),
+				rs.getInt("editora"),
+				rs.getInt("categoria"));
 				
 				
 				livros.add(livro);
@@ -177,11 +182,11 @@ public class Livro {
 						rs.getString("colecao"),
 						rs.getString("edicao"),
 						rs.getString("idioma"),
-						rs.getString("assunto"),
+						rs.getDouble("preco"),
 					    rs.getInt  ("ano"), // verificar formato de data
-						rs.getString("autor"),
-						rs.getString("editora"),
-						rs.getString("categoria"));
+						rs.getInt("autor"),
+						rs.getInt("editora"),
+						rs.getInt("categoria"));
 				
 				return livro;
 			}
@@ -234,11 +239,11 @@ public class Livro {
 	public void setIdioma(String idioma) {
 		this.idioma = idioma;
 	}
-	public String getAssunto() {
-		return assunto;
+	public double getPreco() {
+		return preco;
 	}
-	public void setAssunto(String assunto) {
-		this.assunto = assunto;
+	public void setPreco(double preco) {
+		this.preco = preco;
 	}
 	public Integer getAno() {
 		return ano;
@@ -247,28 +252,28 @@ public class Livro {
 		this.ano = ano;
 	}
 
-	public String getAutor() {
+	public Autor getAutor() {
 		return autor;
 	}
 
-	public void setAutor(String autor) {
-		this.autor = autor;
+	public void setAutor(int autor) {
+		this.autor = Autor.getAutorPeloId(autor);
 	}
 
-	public String getEditora() {
+	public Editora getEditora() {
 		return editora;
 	}
 
-	public void setEditora(String editora) {
-		this.editora = editora;
+	public void setEditora(int editora) {
+		this.editora = Editora.getEditoraPeloId(editora);
 	}
 
-	public String getCategoria() {
+	public Categoria getCategoria() {
 		return categoria;
 	}
 
-	public void setCategoria(String categoria) {
-		this.categoria = categoria;
+	public void setCategoria(int categoria) {
+		this.categoria = Categoria.getCategoriaPeloId(categoria);
 	}
 	
 	

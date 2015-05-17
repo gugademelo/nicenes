@@ -62,7 +62,7 @@ create table livro (
     colecao varchar(255),
     edicao varchar(255),
     idioma varchar(255),
-    assunto varchar(255),
+    prceo double(10,2),
     ano int,
     id_autor int not null,
     id_editora int not null,

@@ -11,6 +11,7 @@
 </head>
 <body>
 	<jsp:include page="/WEB-INF/jsp/partials/menu.jsp" />
+	<form method="post" action="novo-livro">
 	
 	<label for="titulo">Titulo</label>
 	<input type="text" name="titulo">
@@ -22,8 +23,6 @@
 	<input type="text" name="edicao">
 	<label for="idioma">Idioma</label>
 	<input type="text" name="idioma">
-	<label for="assunto">Assunto</label>
-	<input type="text" name="assunto">
 	<label for="ano">Ano</label>
 	<input type="text" name="ano">
 
@@ -46,6 +45,12 @@
 			<option value="${autor.autor_Id}">${autor.nome}&nbsp;${autor.sobrenome}</option>
 		</c:forEach>
 	</select>
+	
+	<label for="assunto">Preço</label>
+	<input type="text" name="preco">
+	
+	<input type="submit" value="ok">
+	</form>
 
 </body>
 </html>

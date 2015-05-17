@@ -171,6 +171,32 @@ public class Editora {
 		}
 				
 	}
-	
+
+	public static Editora getEditoraPeloId(int id) {
+		Connection con = new ConnectionFactory().getConnection();
+
+		String sql = "SELECT * FROM editora WHERE id_editora = ?";
+
+		try {
+			PreparedStatement st = con.prepareStatement(sql);
+			st.setInt(1, id);
+			ResultSet rs = st.executeQuery();
+
+			if (rs.next()) {
+				
+				Editora editora = new Editora(Integer.parseInt(rs.getString("id_editora")), Integer.parseInt(rs.getString("cep")), Integer.parseInt(rs.getString("fone")), Integer.parseInt(rs.getString("cnpj")), rs.getString("nome"), rs.getString("endereco"), rs.getString("cidade"), rs.getString("uf"), rs.getString("pais"), rs.getString("razao"), rs.getString("web"));
+
+				
+				return editora;
+			}
+			
+			return null;
+
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return null;
+	}
 
 }

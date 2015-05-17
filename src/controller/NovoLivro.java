@@ -60,17 +60,16 @@ public class NovoLivro extends HttpServlet {
 		// TODO Auto-generated method stub
 	
 			Livro livro = new Livro();
-			livro.setLivro_id(Integer.parseInt(request.getParameter("sobrenome")));
-			livro.setTitulo(request.getParameter("sobrenome"));
-			livro.setIsbn(request.getParameter("sobrenome"));
-			livro.setColecao(request.getParameter("sobrenome"));
-			livro.setEdicao(request.getParameter("sobrenome"));
-			livro.setIdioma(request.getParameter("sobrenome"));
-			livro.setAssunto(request.getParameter("sobrenome"));
-			livro.setAno(Integer.parseInt(request.getParameter("sobrenome")));
-			livro.setAutor(request.getParameter("autor"));
-			livro.setEditora(request.getParameter("editora"));
-			livro.setCategoria(request.getParameter("categoria"));
+			livro.setTitulo(request.getParameter("titulo"));
+			livro.setIsbn(request.getParameter("isbn"));
+			livro.setColecao(request.getParameter("colecao"));
+			livro.setEdicao(request.getParameter("edicao"));
+			livro.setIdioma(request.getParameter("idioma"));
+			livro.setPreco(Double.parseDouble(request.getParameter("preco").replace(",", ".")));
+			livro.setAno(Integer.parseInt(request.getParameter("ano")));
+			livro.setAutor(Integer.parseInt(request.getParameter("autor")));
+			livro.setEditora(Integer.parseInt(request.getParameter("editora")));
+			livro.setCategoria(Integer.parseInt(request.getParameter("categoria")));
 						
 	        
 	        String address;

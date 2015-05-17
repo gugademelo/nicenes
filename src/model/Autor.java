@@ -216,6 +216,47 @@ public class Autor {
 		
 
 	}
+	
+	public static Autor getAutorPeloId(int id) {
+		Connection con = new ConnectionFactory().getConnection();
+
+		String sql = "SELECT * FROM autor WHERE id_autor = ?";
+
+		try {
+			PreparedStatement st = con.prepareStatement(sql);
+			st.setInt(1, id);
+			ResultSet rs = st.executeQuery();
+
+			if (rs.next()) {
+				
+					Autor autor = new Autor(rs.getInt("id_autor"),
+					rs.getInt   ("qtd_livros"),
+					rs.getString("nome"),
+					rs.getString("sobrenome"),				
+					rs.getString("principal_livro"),
+					rs.getString("endereco"),
+					rs.getString("telefone"),
+				    rs.getString("email"),
+					rs.getString("rg"),
+					rs.getString("obs"),
+					new java.util.Date());
+					
+					java.util.Date date = rs.getDate("dt_nascimento");
+					autor.setDtNascimento(date);				
+
+				
+				return autor;
+			}
+			
+			return null;
+
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return null;
+	}
+	
 
 	
 }

@@ -131,10 +131,19 @@ public class Categoria {
 	}
 	
 	//colocar atributos
+	
+	public int getCategoria_id() {
+		return categoria_id;
+	}
+
+	public void setCategoria_id(int categoria_id) {
+		this.categoria_id = categoria_id;
+	}
+
 	public static Categoria getCategoriaPeloId(int id) {
 		Connection con = new ConnectionFactory().getConnection();
 
-		String sql = "SELECT * FROM CATEGORIA WHERE categoria_id = ?";
+		String sql = "SELECT * FROM categoria WHERE id_categoria = ?";
 
 		try {
 			PreparedStatement st = con.prepareStatement(sql);
@@ -142,7 +151,9 @@ public class Categoria {
 			ResultSet rs = st.executeQuery();
 
 			if (rs.next()) {
-				Categoria categoria = new Categoria();
+				
+				Categoria categoria = new Categoria(rs.getString("categoria"), Integer.parseInt(rs.getString("id_categoria")));
+
 				
 				return categoria;
 			}
@@ -155,13 +166,7 @@ public class Categoria {
 		}
 		return null;
 	}
+
 	
-	public int getCategoria_id() {
-		return categoria_id;
-	}
-
-	public void setCategoria_id(int categoria_id) {
-		this.categoria_id = categoria_id;
-	}
-
+	
 }
