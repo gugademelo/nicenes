@@ -148,7 +148,7 @@ public class Editora {
 		
 		String sql = ""; 
 
-		if(id == 0 ){
+		if(id == null ){
 			sql = "INSERT INTO editora "
 					+ "(nome, endereco,cidade,uf,pais,cep,fone,cnpj,razao,web) "
 					+ "VALUES(?,?,?,?,?,?,?,?,?,?)";
@@ -173,7 +173,7 @@ public class Editora {
 			st.setString(9,this.getRazaoSocial());
 			st.setString(10,this.getWeb());
 			
-			if(id != 0 ){
+			if(!(id == null) ){
 				st.setInt(11, this.getId());
 			}
 			
@@ -213,5 +213,46 @@ public class Editora {
 		}
 		return null;
 	}
+
+	
+	public boolean exclui() {
+		Connection con = new ConnectionFactory().getConnection();
+		
+		if(con == null){
+			return false;	
+		}
+		
+		Integer id = this.getId();
+		
+		
+		String sql = ""; 
+
+		if(id != 0 ){
+			sql = "delete from editora where id_editora=?";
+				
+			
+			try {
+				PreparedStatement st = con.prepareStatement(sql);
+				
+				
+					st.setInt(1, this.getId());
+				
+			
+				
+				if(st.executeUpdate() == 1) return true;
+				return true;
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+				return false;
+			}
+			
+		}
+		
+		return false;
+		
+	}
+				
+	
 
 }
