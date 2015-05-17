@@ -9,7 +9,8 @@
 		<c:forEach items="${livros}" var="livro">
 			<tr>
 				<td>${livro.titulo }</td>
-				<td><a href="adiciona-carrinho?id=${livro.titulo }">Adicionar ao carrinho</a></td>
+				<td><a href="adiciona-carrinho?id=${livro.livro_id }">Adicionar ao carrinho</a></td>
 			</tr>
 		</c:forEach>
+		</table>
 </c:if>
