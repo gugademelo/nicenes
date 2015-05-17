@@ -142,10 +142,22 @@ public class Editora {
 		if(con == null){
 			return false;	
 		}
+		
+		Integer id = this.getId();
+		
+		
+		String sql = ""; 
 
-		String sql = "INSERT INTO editora "
+		if(id == 0 ){
+			sql = "INSERT INTO editora "
 					+ "(nome, endereco,cidade,uf,pais,cep,fone,cnpj,razao,web) "
 					+ "VALUES(?,?,?,?,?,?,?,?,?,?)";
+		}else{
+			sql = "UPDATE editora SET "
+					+ "nome=?, endereco=?,cidade=?,uf=?,pais=?,cep=?,fone=?,cnpj=?,razao=?,web=? "
+					+" WHERE id_editora = ?";
+		}
+		
 		
 		
 		try {
@@ -161,6 +173,9 @@ public class Editora {
 			st.setString(9,this.getRazaoSocial());
 			st.setString(10,this.getWeb());
 			
+			if(id != 0 ){
+				st.setInt(11, this.getId());
+			}
 			
 			if(st.executeUpdate() == 1) return true;
 			return true;

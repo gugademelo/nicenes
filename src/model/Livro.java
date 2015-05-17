@@ -83,7 +83,7 @@ public class Livro {
 		if(con == null){
 			return false;	
 		}
-		String sql = "UPDATE LIVRO(titulo = ?, isbn = ?, colecao = ?, edicao = ?, idioma = ?, preco = ?, ano = ?, autor = ?, editora = ?, categoria = ?) WHERE livro_id = ?";
+		String sql = "UPDATE LIVRO(titulo = ?, isbn = ?, colecao = ?, edicao = ?, idioma = ?, preco = ?, ano = ?, id_autor = ?, id_editora = ?, id_categoria = ?) WHERE id_livro = ?";
 		try{
 			PreparedStatement st = con.prepareStatement(sql);
 			st.setString(1, livro.titulo);
@@ -113,7 +113,7 @@ public class Livro {
 			return false;
 		}
 
-		String sql = "DELETE FROM LIVRO WHERE livro_id = ?";
+		String sql = "DELETE FROM LIVRO WHERE id_livro = ?";
 
 		try {
 			PreparedStatement st = con.prepareStatement(sql);
@@ -131,7 +131,7 @@ public class Livro {
 	public List<Livro> lista() {
 		Connection con = new ConnectionFactory().getConnection();
 
-		String sql = "SELECT * FROM LIVRO";
+		String sql = "SELECT * FROM livro";
 
 		List<Livro> livros = null;
 
@@ -169,7 +169,7 @@ public class Livro {
 	public static Livro getLivroPeloId(int id) {
 		Connection con = new ConnectionFactory().getConnection();
 
-		String sql = "SELECT * FROM LIVRO WHERE livro_id = ?";
+		String sql = "SELECT * FROM livro WHERE livro_id = ?";
 
 		try {
 			PreparedStatement st = con.prepareStatement(sql);
