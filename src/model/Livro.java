@@ -128,10 +128,10 @@ public class Livro {
 
 	}
 	
-	public List<Livro> lista() {
+	public static List<Livro> lista() {
 		Connection con = new ConnectionFactory().getConnection();
 
-		String sql = "SELECT * FROM LIVRO";
+		String sql = "SELECT * FROM livro";
 
 		List<Livro> livros = null;
 
@@ -143,16 +143,16 @@ public class Livro {
 			livros = new ArrayList<Livro>();
 
 			while (rs.next()) {
-				Livro livro = new Livro(rs.getInt("id"), rs.getString("nome"),
+				Livro livro = new Livro(rs.getInt("id_livro"), rs.getString("titulo"),
 				rs.getString("isbn"),
 				rs.getString("colecao"),
 				rs.getString("edicao"),
 				rs.getString("idioma"),
 				rs.getDouble("preco"),
 			    rs.getInt  ("ano"), // verificar formato de data
-				rs.getInt("autor"),
-				rs.getInt("editora"),
-				rs.getInt("categoria"));
+				rs.getInt("id_autor"),
+				rs.getInt("id_editora"),
+				rs.getInt("id_categoria"));
 				
 				
 				livros.add(livro);
