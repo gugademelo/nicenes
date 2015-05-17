@@ -128,7 +128,7 @@ public class Livro {
 
 	}
 	
-	public List<Livro> lista() {
+	public static List<Livro> lista() {
 		Connection con = new ConnectionFactory().getConnection();
 
 		String sql = "SELECT * FROM livro";
@@ -143,16 +143,16 @@ public class Livro {
 			livros = new ArrayList<Livro>();
 
 			while (rs.next()) {
-				Livro livro = new Livro(rs.getInt("id"), rs.getString("nome"),
+				Livro livro = new Livro(rs.getInt("id_livro"), rs.getString("titulo"),
 				rs.getString("isbn"),
 				rs.getString("colecao"),
 				rs.getString("edicao"),
 				rs.getString("idioma"),
 				rs.getDouble("preco"),
 			    rs.getInt  ("ano"), // verificar formato de data
-				rs.getInt("autor"),
-				rs.getInt("editora"),
-				rs.getInt("categoria"));
+				rs.getInt("id_autor"),
+				rs.getInt("id_editora"),
+				rs.getInt("id_categoria"));
 				
 				
 				livros.add(livro);
@@ -169,7 +169,8 @@ public class Livro {
 	public static Livro getLivroPeloId(int id) {
 		Connection con = new ConnectionFactory().getConnection();
 
-		String sql = "SELECT * FROM livro WHERE livro_id = ?";
+		String sql = "SELECT * FROM livro WHERE id_livro = ?";
+
 
 		try {
 			PreparedStatement st = con.prepareStatement(sql);
@@ -177,16 +178,16 @@ public class Livro {
 			ResultSet rs = st.executeQuery();
 
 			if (rs.next()) {
-				Livro livro = new Livro(rs.getInt("id"), rs.getString("nome"),
+				Livro livro = new Livro(rs.getInt("id_livro"), rs.getString("titulo"),
 						rs.getString("isbn"),
 						rs.getString("colecao"),
 						rs.getString("edicao"),
 						rs.getString("idioma"),
 						rs.getDouble("preco"),
 					    rs.getInt  ("ano"), // verificar formato de data
-						rs.getInt("autor"),
-						rs.getInt("editora"),
-						rs.getInt("categoria"));
+						rs.getInt("id_autor"),
+						rs.getInt("id_editora"),
+						rs.getInt("id_categoria"));
 				
 				return livro;
 			}
