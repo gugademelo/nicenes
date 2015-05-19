@@ -7,9 +7,10 @@
 <title>Pagamento</title>
 </head>
 <body>
-	<h1>Pagina de pagamento</h1>
+	<jsp:include page="/WEB-INF/jsp/partials/header.jsp" />
+	<h2>Pagina de pagamento</h2>
 	<jsp:include page="/WEB-INF/jsp/partials/lista-carrinho.jsp" />
-	<h2>Opções de frete</h2>
+	<h3>Opções de frete</h3>
 	<form action="fechar-compra" method="post">
 		<input type="hidden" name="totalCarrinho" value="${carrinho.subTotal }">
 		<input type="radio" name="frete" value="sedex-0.2">

@@ -61,6 +61,8 @@ public class FecharCompra extends HttpServlet {
 					venda.addLivro(livro);
 				}
 				
+				request.getSession().removeAttribute("carrinho");
+				
 				address = "/WEB-INF/jsp/pages/sucesso.jsp";
 				Mensagem mensagem = new Mensagem("Venda cadastrada com sucesso");
 				
