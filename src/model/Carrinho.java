@@ -5,7 +5,8 @@ import java.util.Iterator;
 import java.util.List;
 
 public class Carrinho {
-	List<Livro> livros = new ArrayList<Livro>();
+	private List<Livro> livros = new ArrayList<Livro>();
+	private double subTotal;
 	public void adiciona(Livro livro) {
 		livros.add(livro);
 	}
@@ -23,4 +24,17 @@ public class Carrinho {
 	public void setLivros(List<Livro> livros) {
 		this.livros = livros;
 	}
+
+	public double getSubTotal() {
+		this.subTotal = 0;
+		for(Livro livro: this.livros) {
+			this.subTotal+=livro.getPreco(); 
+		}
+		return subTotal;
+	}
+
+	public void setSubTotal(double subTotal) {
+		this.subTotal = subTotal;
+	}
+	
 }
