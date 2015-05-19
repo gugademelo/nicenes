@@ -11,45 +11,76 @@
 </head>
 <body>
 	<jsp:include page="/WEB-INF/jsp/partials/menu.jsp" />
-	<form method="post" action="novo-livro">
+	<c:if test="${empty editar }">
+		<form method="post" action="novo-livro">
+	</c:if>
+	<c:if test="${not empty editar }">
+		<form method="post" action="editar-livro">
+	</c:if>
 	
 	<label for="titulo">Titulo</label>
-	<input type="text" name="titulo">
+	<input type="text" name="titulo" value="${editar.titulo}">
 	<label for="isbn">ISBN</label>
-	<input type="text" name="isbn">
+	<input type="text" name="isbn" value="${editar.isbn}">
 	<label for="colecao">Coleção</label>
-	<input type="text" name="colecao">
+	<input type="text" name="colecao" value="${editar.colecao}">
 	<label for="edicao">Edição</label>
-	<input type="text" name="edicao">
+	<input type="text" name="edicao" value="${editar.edicao}">
 	<label for="idioma">Idioma</label>
-	<input type="text" name="idioma">
+	<input type="text" name="idioma" value="${editar.idioma}">
 	<label for="ano">Ano</label>
-	<input type="text" name="ano">
+	<input type="text" name="ano" value="${editar.ano}">
 
 	<label for="categoria">Categoria</label>
 	<select name="categoria">
 		<c:forEach var="categoria" items="${categorias}">
-			<option value="${categoria.categoria_id }">${categoria.categoria}</option>
+		
+			<c:if test="${editar.categoria.categoria_id == categoria.categoria_id}">
+				<option value="${categoria.categoria_id }" selected>${categoria.categoria}</option>
+			</c:if>
+			<c:if test="${editar.categoria.categoria_id != categoria.categoria_id}">
+				<option value="${categoria.categoria_id }">${categoria.categoria}</option>
+			</c:if>
+			
 		</c:forEach>
 	</select>
 	<label for="editora">Editora</label>
 	<select name="editora">
 		<c:forEach var="editora" items="${editoras}">
-			<option value="${editora.id }">${editora.nome}</option>
+		
+			<c:if test="${editar.editora.id == editora.id}">
+				<option value="${editora.id }" selected>${editora.nome}</option>
+			</c:if>
+			<c:if test="${editar.editora.id != editora.id}">
+				<option value="${editora.id }">${editora.nome}</option>
+			</c:if>
+		
 		</c:forEach>
 	</select>
 
 	<label for="autor">Autor</label>
 	<select name="autor">
 		<c:forEach var="autor" items="${autores}">
-			<option value="${autor.autor_Id}">${autor.nome}&nbsp;${autor.sobrenome}</option>
+		
+			<c:if test="${editar.autor.autor_Id == autor.autor_Id}">
+				<option value="${autor.autor_Id }" selected>${autor.nome}&nbsp;${autor.sobrenome}</option>
+			</c:if>
+			<c:if test="${editar.autor.autor_Id != autor.autor_Id}">
+				<option value="${autor.autor_Id }" >${autor.nome}&nbsp;${autor.sobrenome}</option>
+			</c:if>
+			
 		</c:forEach>
 	</select>
 	
 	<label for="assunto">Preço</label>
-	<input type="text" name="preco">
+	<input type="text" name="preco" value="${editar.preco}">
 	
-	<input type="submit" value="ok">
+		<c:if test="${not empty editar }">
+			<input type="hidden" name="editar_id" value="${editar.livro_id }">
+		</c:if>
+		
+	<input type="submit" value="Cadastrar">
+	
 	</form>
 
 </body>

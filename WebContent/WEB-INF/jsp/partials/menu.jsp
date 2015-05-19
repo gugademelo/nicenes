@@ -18,6 +18,7 @@
 			<li><a href="lista-editoras">Lista de Editoras</a>
 			<li><a href="lista-categorias">Lista de Categorias</a>
 			<li><a href="lista-autores">Lista de Autores</a>
+			<li><a href="lista-livros">Lista de Livros</a>
 		</c:if>	
 	</c:if>
 </ul>
