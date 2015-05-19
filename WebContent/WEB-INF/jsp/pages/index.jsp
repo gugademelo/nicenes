@@ -8,6 +8,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Nicenes</title>
+<link href="<c:url value="resources/css/main.css"/>" rel="stylesheet">
 </head>
 <body>
 	<jsp:include page="/WEB-INF/jsp/partials/menu.jsp" />
