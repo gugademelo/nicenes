@@ -72,28 +72,30 @@ public class Autor {
 				
 	}
 	
-	public boolean atualizarAutor(Autor autor)
+	public boolean atualizar()
 	{
 		Connection con = new ConnectionFactory().getConnection();
 		
 		if(con == null){
 			return false;	
 		}
-		String sql = "UPDATE AUTOR(nome = ?, sobrenome = ?, dtNascimento = ?, principalLivro = ?, endereco = ?, telefone = ?, email = ?, rg = ?, obs = ?, qtdLivros = ?) WHERE autor_Id = ?";
+		String sql = "UPDATE autor SET nome = ?, sobrenome = ?, dt_nascimento = ?, principal_livro = ?, endereco = ?, telefone = ?, email = ?, rg = ?, obs = ?, qtd_livros = ? WHERE id_autor = ?";
 		try{
 			PreparedStatement st = con.prepareStatement(sql);
-			st.setString(1, autor.nome);
-			st.setString(2, autor.sobrenome);
-			java.sql.Date sqlData = new java.sql.Date(autor.dtNascimento.getTime());
+			st.setString(1, this.nome);
+			st.setString(2, this.sobrenome);
+			java.sql.Date sqlData = new java.sql.Date(this.dtNascimento.getTime());
 			st.setDate(3, sqlData);
-			st.setString(4, autor.principalLivro);
-			st.setString(5, autor.endereco);
-			st.setString(6, autor.telefone);
-		    st.setString(7, autor.email);
-			st.setString(8, autor.rg);
-			st.setString(9, autor.obs);
-			st.setInt   (10, autor.qtdLivros);
-			st.setInt   (11, autor.autor_Id);
+			st.setString(4, this.principalLivro);
+			st.setString(5, this.endereco);
+			st.setString(6, this.telefone);
+		    st.setString(7, this.email);
+			st.setString(8, this.rg);
+			st.setString(9, this.obs);
+			st.setInt   (10, this.qtdLivros);
+			st.setInt   (11, this.autor_Id);
+			
+			if(st.executeUpdate() == 1) return true;
 			return true;
 		} catch (SQLException e){
 			
@@ -256,7 +258,29 @@ public class Autor {
 		}
 		return null;
 	}
+
 	
+	public boolean exclui() {
+		Connection con = new ConnectionFactory().getConnection();
+
+		String sql = "DELETE FROM autor WHERE id_autor = ?";
+
+		try {
+			PreparedStatement st = con.prepareStatement(sql);
+			st.setInt(1, this.autor_Id);
+			
+			
+
+			if (st.executeUpdate() == 1) return true;
+			return false;
+
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return false;
+	}
+
 
 	
 }

@@ -43,7 +43,7 @@
 				<td><u:formatDate pattern="dd/MM/yyyy" value="${autor.dtNascimento}"/></td>
 				<td>${autor.obs}</td>
 				<td>${autor.qtdLivros }</td>
-				<td><a href="excluir-editora?id=${autor.autor_Id }">Excluir</a> | <a href="editar-editora?id=${editora.autor_Id }">Editar</a></td>
+				<td><a href="excluir-autor?id=${autor.autor_Id }">Excluir</a> | <a href="editar-autor?id=${autor.autor_Id}">Editar</a></td>
 			</tr>
 		</c:forEach>
 	</table>
