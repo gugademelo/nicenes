@@ -16,6 +16,7 @@
 			<li><a href="novo-livro">Cadastre um novo livro</a></li>
 			<li><a href="novo-autor">Cadastre um novo autor</a></li>
 			<li><a href="lista-editoras">Lista de Editoras</a>
+			<li><a href="lista-categorias">Lista de Categorias</a>
 		</c:if>	
 	</c:if>
 </ul>
