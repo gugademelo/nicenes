@@ -86,7 +86,7 @@ public class Categoria {
 			return false;
 		}
 
-		String sql = "DELETE FROM CATEGORIA WHERE categoria_id = ?";
+		String sql = "DELETE FROM categoria WHERE id_categoria = ?";
 
 		try {
 			PreparedStatement st = con.prepareStatement(sql);

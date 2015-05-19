@@ -24,7 +24,7 @@
 		<c:forEach var="categoria" items="${categorias}">
 			<tr>
 				<td>${categoria.categoria}</td>
-				<td><a href="excluir-editora?id=${categoria.categoria_id }">Excluir</a> | <a href="editar-categoria?id=${categoria.categoria_id }">Editar</a></td>
+				<td><a href="excluir-categoria?id=${categoria.categoria_id }">Excluir</a> | <a href="editar-categoria?id=${categoria.categoria_id }">Editar</a></td>
 			</tr>
 		</c:forEach>
 	</table>
