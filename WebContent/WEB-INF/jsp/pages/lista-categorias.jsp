@@ -1,8 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     
+    
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-
+    
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -12,22 +13,21 @@
 <body>
 
 	<jsp:include page="/WEB-INF/jsp/partials/menu.jsp" />
-	<c:if test="${empty editar }">
-		<form method="post" action="nova-categoria">
-	</c:if>
-	<c:if test="${not empty editar }">
-		<form method="post" action="editar-categoria">
-	</c:if>
-		<label for="nome">Categoria</label>
-		<input type="text" name="categoria" value="${editar.categoria} ">
-		<c:if test="${not empty editar }">
-			<input type="hidden" name="editar_id" value="${editar.categoria_id }">
-		</c:if>
+	<h1>Lista de Categorias</h1>
+	<table border="1">
+		<tr>
+			<th>Nome</th>
+			<th>Opções</th>
+		</tr>
 		
-	<input type="submit" value="Cadastrar">
-		
-	</form>
-		
-	
+					
+		<c:forEach var="categoria" items="${categorias}">
+			<tr>
+				<td>${categoria.categoria}</td>
+				<td><a href="excluir-editora?id=${categoria.categoria_id }">Excluir</a> | <a href="editar-categoria?id=${categoria.categoria_id }">Editar</a></td>
+			</tr>
+		</c:forEach>
+	</table>
+
 </body>
 </html>

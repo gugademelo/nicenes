@@ -24,6 +24,8 @@ public class Categoria {
 		
 	}
 	
+	
+	
 	public String getCategoria() {
 		return categoria;
 	}
@@ -54,18 +56,20 @@ public class Categoria {
 				
 	}
 	
-	public boolean atualizar(Categoria categoria)
+	public boolean atualizar()
 	{
 		Connection con = new ConnectionFactory().getConnection();
 		
 		if(con == null){
 			return false;	
 		}
-		String sql = "UPDATE CATEGORIA(titulo = ?) WHERE categoria_id = ?";
+		String sql = "UPDATE categoria SET categoria=? WHERE id_categoria = ?";
 		try{
 			PreparedStatement st = con.prepareStatement(sql);
-			st.setString(1, categoria.categoria);
-			st.setInt(2, categoria.categoria_id);
+			st.setString(1, this.categoria);
+			st.setInt(2, this.categoria_id);
+			
+			if(st.executeUpdate() == 1)return true;
 			return true;
 			
 		} catch (SQLException e){
