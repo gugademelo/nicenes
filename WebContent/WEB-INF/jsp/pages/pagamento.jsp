@@ -11,9 +11,10 @@
 	<jsp:include page="/WEB-INF/jsp/partials/lista-carrinho.jsp" />
 	<h2>Opções de frete</h2>
 	<form action="fechar-compra" method="post">
-		<input type="radio" name="frete" value="sedex">
+		<input type="hidden" name="totalCarrinho" value="${carrinho.subTotal }">
+		<input type="radio" name="frete" value="sedex-0.2">
 		<label for="sedex">Sedex (R$ ${carrinho.subTotal * 0.2 + carrinho.subTotal})</label>
-		<input type="radio" name="frete" value="pac">
+		<input type="radio" name="frete" value="pac-0.1">
 		<label for="sedex">PAC (R$ ${(carrinho.subTotal * 0.1) + carrinho.subTotal })</label>
 		<input type="submit" value="Fechar compra">
 	</form>

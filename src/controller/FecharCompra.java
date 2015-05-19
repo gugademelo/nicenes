@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import model.Carrinho;
+import model.Livro;
 import model.Usuario;
 import model.Venda;
 import util.Mensagem;
@@ -48,28 +49,28 @@ public class FecharCompra extends HttpServlet {
 		if(usuario != null) {
 			Carrinho carrinho = (Carrinho) request.getSession().getAttribute("carrinho");
 			id_usuario = usuario.getId();
-			valor_frete = 0;
 			if(carrinho != null) {
-				frete = request.getParameter("frete");
+				String frete_arr[] = request.getParameter("frete").split("-");
+				valor_frete = Double.parseDouble(frete_arr[1]);
+				valor_frete = carrinho.getSubTotal() * valor_frete;
+				frete = frete_arr[0];
 				Venda venda = new Venda(id_usuario, frete, valor_frete);
-				if(venda.salva()) {
-					address = "/WEB-INF/jsp/pages/sucesso.jsp";
-					Mensagem mensagem = new Mensagem("Venda cadastrada com sucesso");
-					
-					request.setAttribute("mensagem", mensagem);
-					RequestDispatcher dispatcher = request.getRequestDispatcher(address);
-					dispatcher.forward(request, response);
+				venda = venda.cria();
+				
+				for(Livro livro: carrinho.getLivros()) {
+					venda.addLivro(livro);
 				}
-				else{
-					System.out.println("\n\n\n\n erro 1 \n\n\n\n");
-				}
-			}
-			else {
-				System.out.println("\n\n\n\n erro 2 \n\n\n\n");
+				
+				address = "/WEB-INF/jsp/pages/sucesso.jsp";
+				Mensagem mensagem = new Mensagem("Venda cadastrada com sucesso");
+				
+				request.setAttribute("mensagem", mensagem);
+				RequestDispatcher dispatcher = request.getRequestDispatcher(address);
+				dispatcher.forward(request, response);
 			}
 		}
 		else {
-			System.out.println("\n\n\n\n erro 3 \n\n\n\n");
+			System.out.println("\n\n\n\n erro 2 \n\n\n\n");
 		}
 	}
 
