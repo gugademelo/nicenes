@@ -11,7 +11,7 @@
 <title>Novo autor</title>
 </head>
 <body>
-	
+	<jsp:include page="/WEB-INF/jsp/partials/header.jsp" />
 	<jsp:include page="/WEB-INF/jsp/partials/menu.jsp" />
 	<c:if test="${empty editar }">
 		<form method="post" action="novo-autor">

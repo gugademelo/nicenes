@@ -12,7 +12,7 @@
 </head>
 <body>
 
-	
+	<jsp:include page="/WEB-INF/jsp/partials/header.jsp" />
 	<jsp:include page="/WEB-INF/jsp/partials/menu.jsp" />
 	<h1>Lista de Autor</h1>
 	<table border="1">

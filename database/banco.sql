@@ -79,6 +79,7 @@ create table livro (
 create table venda(
 	id_venda int not null auto_increment,
     frete varchar(255),
+    valor_frete double,
     id_usuario int,
     primary key (id_venda),
     foreign key (id_usuario) references usuario (id_usuario)

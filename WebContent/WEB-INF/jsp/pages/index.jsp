@@ -11,6 +11,7 @@
 <link href="<c:url value="resources/css/main.css"/>" rel="stylesheet">
 </head>
 <body>
+	<jsp:include page="/WEB-INF/jsp/partials/header.jsp" />
 	<jsp:include page="/WEB-INF/jsp/partials/menu.jsp" />
 	<jsp:include page="/WEB-INF/jsp/partials/lista-livros.jsp" />
 	<jsp:include page="/WEB-INF/jsp/partials/lista-carrinho.jsp" />
