@@ -13,7 +13,7 @@
 <body>
 
 	<jsp:include page="/WEB-INF/jsp/partials/menu.jsp" />
-	<h1>Lista de Autor</h1>
+	<h1>Lista de Livros</h1>
 	<table border="1">
 		<tr>
 			<th>Titulo</th>
