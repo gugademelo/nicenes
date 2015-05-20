@@ -17,7 +17,7 @@ import model.Usuario;
 /**
  * Servlet implementation class Index
  */
-@WebServlet("/")
+@WebServlet("/nicenes")
 public class Index extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
