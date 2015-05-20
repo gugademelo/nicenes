@@ -76,28 +76,30 @@ public class Livro {
 				
 	}
 	
-	public boolean atualizarLivro(Livro livro)
+	public boolean atualizar()
 	{
 		Connection con = new ConnectionFactory().getConnection();
 		
 		if(con == null){
 			return false;	
 		}
-		String sql = "UPDATE LIVRO(titulo = ?, isbn = ?, colecao = ?, edicao = ?, idioma = ?, preco = ?, ano = ?, id_autor = ?, id_editora = ?, id_categoria = ?) WHERE id_livro = ?";
+		String sql = "UPDATE livro set titulo = ?, isbn = ?, colecao = ?, edicao = ?, idioma = ?, preco = ?, ano = ?, id_autor = ?, id_editora = ?, id_categoria = ?  WHERE id_livro = ?";
 		try{
 			PreparedStatement st = con.prepareStatement(sql);
-			st.setString(1, livro.titulo);
-			st.setString(2, livro.isbn);
-			st.setString(3, livro.colecao);
-			st.setString(4, livro.edicao);
-			st.setString(5, livro.idioma);
-			st.setDouble(6, livro.preco);
-		    //st.setDate(7,   livro.ano);
-			st.setInt(8, livro.autor.getAutor_Id());
-			st.setInt(9, livro.editora.getId());
-			st.setInt(10, livro.categoria.getCategoria_id());
-			st.setInt   (11, livro.livro_id);
-			return true;
+			st.setString(1, this.titulo);
+			st.setString(2, this.isbn);
+			st.setString(3, this.colecao);
+			st.setString(4, this.edicao);
+			st.setString(5, this.idioma);
+			st.setDouble(6, this.preco);
+		    st.setInt(7,   this.ano);
+			st.setInt(8, this.autor.getAutor_Id());
+			st.setInt(9, this.editora.getId());
+			st.setInt(10, this.categoria.getCategoria_id());
+			st.setInt   (11, this.livro_id);
+			
+			if (st.executeUpdate() == 1) return true;
+				return false;
 			
 		} catch (SQLException e){
 			
@@ -113,7 +115,7 @@ public class Livro {
 			return false;
 		}
 
-		String sql = "DELETE FROM LIVRO WHERE id_livro = ?";
+		String sql = "DELETE FROM livro WHERE id_livro = ?";
 
 		try {
 			PreparedStatement st = con.prepareStatement(sql);

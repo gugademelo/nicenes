@@ -37,9 +37,9 @@
 				<td>${livro.edicao}</td>
 				<td>${livro.idioma}</td>
 				<td>${livro.ano}</td>
-				<td>${livro.autor.autor_Id}</td>
-				<td>${livro.editora}</td>
-				<td>${livro.categoria}</td>
+				<td>${livro.autor.nome}&nbsp;${livro.autor.sobrenome}</td>
+				<td>${livro.editora.nome}</td>
+				<td>${livro.categoria.categoria}</td>
 				<td>${livro.preco}</td>
 				<td><a href="excluir-livro?id=${livro.livro_id }">Excluir</a> | <a href="editar-livro?id=${livro.livro_id}">Editar</a></td>
 			</tr>
