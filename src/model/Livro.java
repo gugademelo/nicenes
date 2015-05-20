@@ -168,6 +168,43 @@ public class Livro {
 		return livros;
 	}
 	
+	public static List<Livro> listaPeloTitulo(String titulo) {
+		Connection con = new ConnectionFactory().getConnection();
+
+		String sql = "SELECT * FROM livro WHERE titulo like ?";
+
+		List<Livro> livros = null;
+
+		try {
+			PreparedStatement st = con.prepareStatement(sql);
+			st.setString(1, "%" + titulo + "%");
+			ResultSet rs = st.executeQuery();
+
+			livros = new ArrayList<Livro>();
+
+			while (rs.next()) {
+				Livro livro = new Livro(rs.getInt("id_livro"), rs.getString("titulo"),
+				rs.getString("isbn"),
+				rs.getString("colecao"),
+				rs.getString("edicao"),
+				rs.getString("idioma"),
+				rs.getDouble("preco"),
+			    rs.getInt  ("ano"), // verificar formato de data
+				rs.getInt("id_autor"),
+				rs.getInt("id_editora"),
+				rs.getInt("id_categoria"));
+				
+				livros.add(livro);
+			}
+
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		return livros;
+	}
+	
 	public static Livro getLivroPeloId(int id) {
 		Connection con = new ConnectionFactory().getConnection();
 
