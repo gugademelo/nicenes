@@ -76,11 +76,11 @@ public class NovoLivro extends HttpServlet {
 	        Mensagem mensagem = new Mensagem();
 	        if(livro.salva()) {
 	        	address = "/WEB-INF/jsp/pages/sucesso.jsp";
-	        	mensagem.setTexto("Autor cadastrado com sucesso.");
+	        	mensagem.setTexto("Livro cadastrado com sucesso.");
 	        }
 	        else{
 	        	address = "/WEB-INF/jsp/pages/erro.jsp";
-	        	mensagem.setTexto("Autor cadastrado com sucesso.");
+	        	mensagem.setTexto("Livro cadastrado com sucesso.");
 	        }
 	        request.setAttribute("mensagem", mensagem);
 	        RequestDispatcher dispatcher = request.getRequestDispatcher(address);
