@@ -25,6 +25,7 @@ create table categoria (
     primary key (id_categoria)
 );
 
+
 create table editora(
 	id_editora int not null auto_increment,
     nome varchar(255),
@@ -76,6 +77,8 @@ create table livro (
     REFERENCES categoria (id_categoria)
 );
 
+
+
 create table venda(
 	id_venda int not null auto_increment,
     frete varchar(255),
@@ -93,6 +96,13 @@ create table item_venda(
     primary key(id_item_venda),
     foreign key(id_item) references livro(id_livro),
     foreign key(id_venda) references venda(id_venda)
+);
+
+create table lista_desejo(
+	id_livro int not null,
+    id_usuario int not null,
+    foreign key(id_livro) references livro(id_livro),
+    foreign key(id_usuario) references usuario(id_usuario)
 );
 
 insert into autor values(null,'Dan', 'Brown', 'O Código Da Vinci', 'Exeter. Nova Hampshire', '857645632', 'dan_brown@hotmail.com', '3777652608', CURDATE(), 'Sem obs', 55);
