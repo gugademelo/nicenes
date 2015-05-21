@@ -205,6 +205,47 @@ public class Livro {
 		return livros;
 	}
 	
+	public static List<Livro> listaGoogle(String titulo, Integer id_autor, Integer id_editora, Integer id_categoria) {
+		Connection con = new ConnectionFactory().getConnection();
+
+		String sql = "SELECT * FROM livro WHERE titulo like ? AND id_autor BETWEEN ? AND '9%' AND id_editora BETWEEN '0' AND '9%' AND id_categoria BETWEEN '0' AND '9%';";
+
+		List<Livro> livros = null;
+
+		try {
+			PreparedStatement st = con.prepareStatement(sql);
+			st.setString(1, "%" + titulo + "%");
+			st.setString(2, id_autor == 0 ? "0" : id_autor.toString());
+			st.setString(3, id_autor == 0 ? "9%" : id_autor.toString());
+			st.setString(4, id_editora == 0 ? "0" : id_editora.toString());
+			st.setString(5, id_editora == 0 ? "9%" : id_editora.toString());
+			ResultSet rs = st.executeQuery();
+
+			livros = new ArrayList<Livro>();
+
+			while (rs.next()) {
+				Livro livro = new Livro(rs.getInt("id_livro"), rs.getString("titulo"),
+				rs.getString("isbn"),
+				rs.getString("colecao"),
+				rs.getString("edicao"),
+				rs.getString("idioma"),
+				rs.getDouble("preco"),
+			    rs.getInt  ("ano"), // verificar formato de data
+				rs.getInt("id_autor"),
+				rs.getInt("id_editora"),
+				rs.getInt("id_categoria"));
+				
+				livros.add(livro);
+			}
+
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		return livros;
+	}
+	
 	public static Livro getLivroPeloId(int id) {
 		Connection con = new ConnectionFactory().getConnection();
 
