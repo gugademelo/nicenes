@@ -36,6 +36,6 @@
 		</select>
 		<input type="submit" value="ok">
 	</form>
-	<jsp:include page="/WEB-INF/jsp/partials/lista-livros.jsp" />
+	<jsp:include page="/WEB-INF/jsp/partials/listar-livros.jsp" />
 </body>
 </html>
