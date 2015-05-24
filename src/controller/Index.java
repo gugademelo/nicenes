@@ -40,6 +40,9 @@ public class Index extends HttpServlet {
 			List<Livro> livros = Livro.lista();
 			request.setAttribute("livros", livros);
 			
+			List<Livro> livrosAleatorios = Livro.listaAleatoria();
+			request.setAttribute("livrosAleatorios", livrosAleatorios);
+			
 			if(usuario != null) {
 				List<Livro> listaDeDesejos = ListaDeDesejos.lista(usuario);
 				if (!listaDeDesejos.isEmpty()) {

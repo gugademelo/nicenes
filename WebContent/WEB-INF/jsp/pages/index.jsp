@@ -14,6 +14,7 @@
 	<jsp:include page="/WEB-INF/jsp/partials/header.jsp" />
 	<jsp:include page="/WEB-INF/jsp/partials/menu.jsp" />
 	<jsp:include page="/WEB-INF/jsp/partials/listar-livros.jsp" />
+	<jsp:include page="/WEB-INF/jsp/partials/listar-livros-aleatorios.jsp" />
 	<jsp:include page="/WEB-INF/jsp/partials/lista-de-desejos.jsp" />
 	<jsp:include page="/WEB-INF/jsp/partials/lista-carrinho.jsp" />
 	<c:if test="${ not empty carrinho }">
