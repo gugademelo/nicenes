@@ -52,7 +52,7 @@ public class Google extends HttpServlet {
 			editora_id = editora.getId();
 		}
 		
-		System.out.println("\n\n\n\n\n"+autor.getAutor_Id()+"\n\n\n\n\n"+"\n\n\n\n\n"+categoria.getCategoria_id()+"\n\n\n\n\n"+"\n\n\n\n\n"+editora.getId()+"\n\n\n\n\n");
+		System.out.println("\n\n\n" + autor_id + "\n\n\n" + "\n\n\n" + editora_id + "\n\n\n" + "\n\n\n" + categoria_id + "\n\n\n");
 		
 		List<Livro> livros = Livro.listaGoogle(request.getParameter("titulo"), autor_id, editora_id, categoria_id);
 		List<Categoria> categorias = Categoria.lista();

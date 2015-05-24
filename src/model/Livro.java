@@ -208,7 +208,7 @@ public class Livro {
 	public static List<Livro> listaGoogle(String titulo, Integer id_autor, Integer id_editora, Integer id_categoria) {
 		Connection con = new ConnectionFactory().getConnection();
 
-		String sql = "SELECT * FROM livro WHERE titulo like ? AND id_autor BETWEEN ? AND '9%' AND id_editora BETWEEN '0' AND '9%' AND id_categoria BETWEEN '0' AND '9%';";
+		String sql = "SELECT * FROM livro WHERE titulo like ? AND id_autor BETWEEN ? AND ? AND id_editora BETWEEN ? AND ? AND id_categoria BETWEEN ? AND ?";
 
 		List<Livro> livros = null;
 
@@ -219,7 +219,12 @@ public class Livro {
 			st.setString(3, id_autor == 0 ? "9%" : id_autor.toString());
 			st.setString(4, id_editora == 0 ? "0" : id_editora.toString());
 			st.setString(5, id_editora == 0 ? "9%" : id_editora.toString());
+			st.setString(6, id_categoria == 0 ? "0" : id_categoria.toString());
+			st.setString(7, id_categoria == 0 ? "9%" : id_categoria.toString());
+			
 			ResultSet rs = st.executeQuery();
+			
+			System.out.println("\n\n\n\n\n\n" + st + "\n\n\n\n\n\n");
 
 			livros = new ArrayList<Livro>();
 

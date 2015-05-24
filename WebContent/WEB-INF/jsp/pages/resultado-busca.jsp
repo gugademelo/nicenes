@@ -29,11 +29,12 @@
 			</c:forEach>
 		</select>
 		<label for="autor">Autor</label>
-		<select name="editora">
+		<select name="autor">
 			<c:forEach var="autor" items="${autores}">
 				<option value="${autor.autor_Id }">${autor.nome}</option>
 			</c:forEach>
 		</select>
+		<input type="hidden" name="titulo" value="${tituloPesquisadoAntes }">
 		<input type="submit" value="ok">
 	</form>
 	<jsp:include page="/WEB-INF/jsp/partials/listar-livros.jsp" />
