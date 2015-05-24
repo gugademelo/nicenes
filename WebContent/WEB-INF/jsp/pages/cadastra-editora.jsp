@@ -7,7 +7,8 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
+<title>Nova editora</title>
+<jsp:include page="/WEB-INF/jsp/partials/css_links.jsp" />
 </head>
 <body>
 

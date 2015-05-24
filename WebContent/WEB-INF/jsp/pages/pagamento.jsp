@@ -5,6 +5,8 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Pagamento</title>
+<jsp:include page="/WEB-INF/jsp/partials/css_links.jsp" />
+
 </head>
 <body>
 	<jsp:include page="/WEB-INF/jsp/partials/header.jsp" />

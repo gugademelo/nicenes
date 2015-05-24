@@ -8,17 +8,19 @@
 <head>
 <meta charset="UTF-8">
 <title>Nicenes</title>
-
+<jsp:include page="/WEB-INF/jsp/partials/css_links.jsp" />
 </head>
 <body>
 	<jsp:include page="/WEB-INF/jsp/partials/header.jsp" />
-	<jsp:include page="/WEB-INF/jsp/partials/menu.jsp" />
-	<jsp:include page="/WEB-INF/jsp/partials/listar-livros.jsp" />
-	<jsp:include page="/WEB-INF/jsp/partials/listar-livros-aleatorios.jsp" />
-	<jsp:include page="/WEB-INF/jsp/partials/lista-de-desejos.jsp" />
-	<jsp:include page="/WEB-INF/jsp/partials/lista-carrinho.jsp" />
-	<c:if test="${ not empty carrinho }">
-		<a href="pagamento">Fechar compra</a>
-	</c:if>
+	<section class="container">
+		<jsp:include page="/WEB-INF/jsp/partials/menu.jsp" />
+		<jsp:include page="/WEB-INF/jsp/partials/listar-livros.jsp" />
+		<jsp:include page="/WEB-INF/jsp/partials/listar-livros-aleatorios.jsp" />
+		<jsp:include page="/WEB-INF/jsp/partials/lista-de-desejos.jsp" />
+		<jsp:include page="/WEB-INF/jsp/partials/lista-carrinho.jsp" />
+		<c:if test="${ not empty carrinho }">
+			<a href="pagamento">Fechar compra</a>
+		</c:if>
+	</section>
 </body>
 </html>
