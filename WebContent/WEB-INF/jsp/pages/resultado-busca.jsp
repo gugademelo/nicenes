@@ -18,18 +18,21 @@
 	<label for="categoria">Categoria</label>
 	<form action="google" method="get">
 		<select name="categoria">
+			<option value="0">Selecione...</option>
 			<c:forEach var="categoria" items="${categorias}">
 				<option value="${categoria.categoria_id }">${categoria.categoria}</option>
 			</c:forEach>
 		</select>
 		<label for="editora">Editora</label>
 		<select name="editora">
+			<option value="0">Selecione...</option>
 			<c:forEach var="editora" items="${editoras}">
 				<option value="${editora.id }">${editora.nome}</option>
 			</c:forEach>
 		</select>
 		<label for="autor">Autor</label>
 		<select name="autor">
+			<option value="0">Selecione...</option>
 			<c:forEach var="autor" items="${autores}">
 				<option value="${autor.autor_Id }">${autor.nome}</option>
 			</c:forEach>

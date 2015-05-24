@@ -39,15 +39,15 @@ public class Google extends HttpServlet {
 		Editora editora = null;
 		Categoria categoria = null;
 		int autor_id = 0, editora_id = 0, categoria_id = 0;
-		if(request.getParameter("autor") != null){ 
+		if(request.getParameter("autor") != null && Integer.parseInt(request.getParameter("autor")) != 0){ 
 			autor = Autor.getAutorPeloId(Integer.parseInt(request.getParameter("autor")));
 			autor_id = autor.getAutor_Id(); 
 		}
-		if(request.getParameter("categoria") != null) {
+		if(request.getParameter("categoria") != null && Integer.parseInt(request.getParameter("categoria")) != 0) {
 			categoria = Categoria.getCategoriaPeloId(Integer.parseInt(request.getParameter("categoria")));
 			categoria_id = categoria.getCategoria_id();
 		}
-		if(request.getParameter("editora") != null) {
+		if(request.getParameter("editora") != null && Integer.parseInt(request.getParameter("editora")) != 0) {
 			editora = Editora.getEditoraPeloId(Integer.parseInt(request.getParameter("editora")));
 			editora_id = editora.getId();
 		}
