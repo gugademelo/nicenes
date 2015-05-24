@@ -11,7 +11,10 @@
 			<tr>
 				<td>${livro.titulo }</td>
 				<td>${livro.preco }</td>
-				<td><a href="adiciona-carrinho?id=${livro.livro_id }">Adicionar ao carrinho</a></td>
+				<td>
+					<a href="adiciona-carrinho?id=${livro.livro_id }">Adicionar ao carrinho</a> | 
+					<a href="adiciona-lista-de-desejos?id=${livro.livro_id }">Adicionar a lista de desejos</a>
+				</td>
 			</tr>
 		</c:forEach>
 		</table>

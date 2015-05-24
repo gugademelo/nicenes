@@ -52,8 +52,6 @@ public class Google extends HttpServlet {
 			editora_id = editora.getId();
 		}
 		
-		System.out.println("\n\n\n" + autor_id + "\n\n\n" + "\n\n\n" + editora_id + "\n\n\n" + "\n\n\n" + categoria_id + "\n\n\n");
-		
 		List<Livro> livros = Livro.listaGoogle(request.getParameter("titulo"), autor_id, editora_id, categoria_id);
 		List<Categoria> categorias = Categoria.lista();
 		List<Editora> editoras = Editora.lista();
