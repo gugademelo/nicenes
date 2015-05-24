@@ -34,9 +34,7 @@ public class Index extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		Usuario usuario = (Usuario) request.getSession().getAttribute("usuarioLogado");
-		
-		System.out.println("porra2");
-		
+				
 		if(usuario == null || usuario.getPerfil().getId() != 1) {
 			List<Livro> livros = Livro.lista();
 			request.setAttribute("livros", livros);
