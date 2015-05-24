@@ -8,6 +8,7 @@
 </head>
 <body>
 	<jsp:include page="/WEB-INF/jsp/partials/header.jsp" />
+	<jsp:include page="/WEB-INF/jsp/partials/menu.jsp" />
 	<h2>Pagina de pagamento</h2>
 	<jsp:include page="/WEB-INF/jsp/partials/lista-carrinho.jsp" />
 	<h3>Opções de frete</h3>

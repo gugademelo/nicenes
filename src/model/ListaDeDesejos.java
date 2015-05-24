@@ -34,6 +34,29 @@ public class ListaDeDesejos {
 				
 	}
 	
+	public static boolean remove(Usuario usuario, Livro livro) {
+		Connection con = new ConnectionFactory().getConnection();
+		
+		if(con == null){
+			return false;	
+		}
+
+		String sql = "DELETE FROM lista_desejo WHERE id_usuario = ? AND id_livro = ?";
+		
+		try {
+			PreparedStatement st = con.prepareStatement(sql);
+			st.setInt(1, usuario.getId());
+			st.setInt(2, livro.getLivro_id());
+			if(st.executeUpdate() == 1) return true;
+			return true;
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return false;
+		}
+				
+	}
+	
 	public static List<Livro> lista(Usuario usuario) {
 		Connection con = new ConnectionFactory().getConnection();
 
