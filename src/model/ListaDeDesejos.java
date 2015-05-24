@@ -2,6 +2,7 @@ package model;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -9,9 +10,7 @@ import java.util.List;
 
 import database.ConnectionFactory;
 
-public class ListaDeDesejos {
-	private List<Livro> livros = new ArrayList<Livro>();
-	
+public class ListaDeDesejos {	
 	public static boolean adiciona(Usuario usuario, Livro livro) {
 		Connection con = new ConnectionFactory().getConnection();
 		
@@ -35,17 +34,43 @@ public class ListaDeDesejos {
 				
 	}
 	
-	public void remove(Livro livro) {
-		Iterator<Livro> iter = this.livros.iterator();
-		while(iter.hasNext()){
-		    if(iter.next().getLivro_id() == livro.getLivro_id())
-		        iter.remove();
+	public static List<Livro> lista(Usuario usuario) {
+		Connection con = new ConnectionFactory().getConnection();
+
+		String sql = "select * from lista_desejo ld JOIN livro l ON l.id_livro = ld.id_livro WHERE ld.id_usuario = ?";
+
+		List<Livro> livros = null;
+
+		try {
+			PreparedStatement st = con.prepareStatement(sql);
+			
+			st.setInt(1, usuario.getId());
+			
+			ResultSet rs = st.executeQuery();
+
+			livros = new ArrayList<Livro>();
+
+			while (rs.next()) {
+				Livro livro = new Livro(rs.getInt("id_livro"), rs.getString("titulo"),
+				rs.getString("isbn"),
+				rs.getString("colecao"),
+				rs.getString("edicao"),
+				rs.getString("idioma"),
+				rs.getDouble("preco"),
+			    rs.getInt  ("ano"), // verificar formato de data
+				rs.getInt("id_autor"),
+				rs.getInt("id_editora"),
+				rs.getInt("id_categoria"));
+				
+				
+				livros.add(livro);
+			}
+
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
-	}
-	public List<Livro> getLivros() {
+
 		return livros;
-	}
-	public void setLivros(List<Livro> livros) {
-		this.livros = livros;
 	}
 }

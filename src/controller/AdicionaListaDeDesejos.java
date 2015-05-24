@@ -39,9 +39,12 @@ public class AdicionaListaDeDesejos extends HttpServlet {
 		if(usuarioLogado != null) {
 			Livro livro = Livro.getLivroPeloId(Integer.parseInt(request.getParameter("id")));
 			if(ListaDeDesejos.adiciona(usuarioLogado, livro)) {
-				address = "WEB-INF/jsp/pages/sucesso.jsp";
-				Mensagem mensagem = new Mensagem("Livro adicionado a sua lista com sucesso.");
-				request.setAttribute("mensagem", mensagem);
+				response.setContentType("text/html");
+
+			    String site = new String("/nicenes");
+
+			    response.setStatus(response.SC_MOVED_TEMPORARILY);
+			    response.setHeader("Location", site);
 			}
 			else {
 				address = "WEB-INF/jsp/pages/erro.jsp";

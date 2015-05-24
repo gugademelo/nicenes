@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import model.ListaDeDesejos;
 import model.Livro;
 import model.Perfil;
 import model.Usuario;
@@ -38,6 +39,13 @@ public class Index extends HttpServlet {
 		if(usuario == null || usuario.getPerfil().getId() != 1) {
 			List<Livro> livros = Livro.lista();
 			request.setAttribute("livros", livros);
+			
+			if(usuario != null) {
+				List<Livro> listaDeDesejos = ListaDeDesejos.lista(usuario);
+				if (!listaDeDesejos.isEmpty()) {
+					request.setAttribute("listaDeDesejos", listaDeDesejos);
+				}
+			}
 		}
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/pages/index.jsp");
 		dispatcher.forward(request, response);
