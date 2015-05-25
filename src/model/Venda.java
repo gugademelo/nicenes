@@ -101,7 +101,6 @@ public class Venda {
 				
 		String sql = "select * from venda where id_venda = ? order by id_venda";
 	
-		Venda venda = null;
 		
 		try {
 			PreparedStatement st = con.prepareStatement(sql);
@@ -112,7 +111,7 @@ public class Venda {
 			ResultSet rs = st.executeQuery();
 			
 
-			while (rs.next()) {
+			if (rs.next()) {
 				Venda compra = new Venda();
 				compra.setFrete(rs.getString("frete"));
 				compra.setId_venda(rs.getInt("id_venda"));
@@ -120,14 +119,16 @@ public class Venda {
 				compra.setUsuario(rs.getInt("id_usuario"));				
 				
 				
-			
+				return compra;
 			}
+			
+			
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
-		return venda;
+		return null;
 	}
 	
 	public static List<Venda> lista(Usuario usuario) {
@@ -137,7 +138,7 @@ public class Venda {
 		
 		String sql = "select * from venda ";
 		
-		if (usuario.getId() != 1) {
+		if (usuario.getPerfil().getId() != 1) {
 			sql += "where id_usuario = ?";
 		}
 		
@@ -145,7 +146,7 @@ public class Venda {
 		try {
 			PreparedStatement st = con.prepareStatement(sql);
 			
-			if (usuario.getId() != 1) {
+			if (usuario.getPerfil().getId() != 1) {
 				st.setInt(1, usuario.getId());;
 			}	
 			

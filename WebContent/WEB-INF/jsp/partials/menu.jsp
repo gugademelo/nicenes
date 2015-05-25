@@ -4,6 +4,7 @@
 	
 	<li><a href="/nicenes">Início</a></li>
 	<li><a href="livros">Ver todos os livros</a></li>
+	<li><a href="lista-compras">Lista de Compras</a>
 	<c:if test = "${empty usuarioLogado }" >
 		<li><a href="novo-usuario">Cadastre-se</a></li>
 		<li><a href="login">Faça o login</a></li>
@@ -20,6 +21,7 @@
 			<li><a href="lista-categorias">Lista de Categorias</a>
 			<li><a href="lista-autores">Lista de Autores</a>
 			<li><a href="lista-livros">Lista de Livros</a>
+			<li><a href="lista-compras">Lista de Compras</a>
 		</c:if>	
 	</c:if>
 </ul>

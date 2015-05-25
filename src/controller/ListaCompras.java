@@ -1,6 +1,7 @@
 package controller;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.RequestDispatcher;
@@ -20,7 +21,7 @@ import model.ItemVenda;
 /**
  * Servlet implementation class ListaCompras
  */
-@WebServlet("/ListaCompras")
+@WebServlet("/lista-compras")
 public class ListaCompras extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -42,7 +43,9 @@ public class ListaCompras extends HttpServlet {
 		
 		if(usuario != null) {
 			List<Venda> vendas = Venda.lista(usuario);
-			List<ItemVenda> itensGeral = null;
+			
+			
+			List<ItemVenda> itensGeral = new ArrayList<ItemVenda>();
 			
 			for(Venda venda: vendas) {
 				
@@ -54,7 +57,7 @@ public class ListaCompras extends HttpServlet {
 				
 				
 			}
-			
+			//System.out.println(itensGeral.get(1).getLivro().getTitulo());
 			
 			request.getSession().setAttribute("vendas", vendas);
 			request.getSession().setAttribute("itensvenda", itensGeral);
