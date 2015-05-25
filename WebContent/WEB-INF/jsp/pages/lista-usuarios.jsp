@@ -7,6 +7,7 @@
 </head>
 <body>
 	<jsp:include page="/WEB-INF/jsp/partials/header.jsp" />
+<section class="container">
 	<jsp:include page="/WEB-INF/jsp/partials/menu.jsp" />
 	<h1>Lista de usuários</h1>
 	<table border="1">
@@ -25,5 +26,6 @@
 			</tr>
 		</c:forEach>
 	</table>
+</section>
 </body>
 </html>
