@@ -8,6 +8,7 @@
 </head>
 <body>
 	<jsp:include page="/WEB-INF/jsp/partials/header.jsp" />
+<section class="container">
 	<jsp:include page="/WEB-INF/jsp/partials/menu.jsp" />
 	<form action="login" method="post">
 		<label for="email">Email</label>
@@ -17,5 +18,6 @@
 		<input type="submit" value="Ok">
 	</form>
 
+</section>
 </body>
 </html>

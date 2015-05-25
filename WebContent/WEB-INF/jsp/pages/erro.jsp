@@ -9,8 +9,10 @@
 <jsp:include page="/WEB-INF/jsp/partials/css_links.jsp" />
 </head><body>
 	<jsp:include page="/WEB-INF/jsp/partials/header.jsp" />
+<section class="container">
 	<jsp:include page="/WEB-INF/jsp/partials/menu.jsp" />
 	<h1>Houve um problema</h1>
 	<p>${mensagem.texto}</p>
+</section>
 </body>
 </html>

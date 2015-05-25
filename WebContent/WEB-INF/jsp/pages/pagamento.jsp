@@ -10,6 +10,7 @@
 </head>
 <body>
 	<jsp:include page="/WEB-INF/jsp/partials/header.jsp" />
+<section class="container">
 	<jsp:include page="/WEB-INF/jsp/partials/menu.jsp" />
 	<h2>Pagina de pagamento</h2>
 	<jsp:include page="/WEB-INF/jsp/partials/lista-carrinho.jsp" />
@@ -22,5 +23,6 @@
 		<label for="sedex">PAC (R$ ${(carrinho.subTotal * 0.1) + carrinho.subTotal })</label>
 		<input type="submit" value="Fechar compra">
 	</form>
+</section>
 </body>
 </html>

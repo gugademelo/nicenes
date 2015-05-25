@@ -14,6 +14,7 @@
 </head>
 <body>
 	<jsp:include page="/WEB-INF/jsp/partials/header.jsp" />
+<section class="container">
 	<jsp:include page="/WEB-INF/jsp/partials/menu.jsp" />
 	<h2>Resultados da busca</h2>
 	<h3>Filtro avançado</h3>
@@ -43,5 +44,6 @@
 		<input type="submit" value="ok">
 	</form>
 	<jsp:include page="/WEB-INF/jsp/partials/listar-livros.jsp" />
+</section>
 </body>
 </html>

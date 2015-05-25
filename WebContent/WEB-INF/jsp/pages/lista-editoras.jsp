@@ -13,6 +13,7 @@
 </head>
 <body>
 	<jsp:include page="/WEB-INF/jsp/partials/header.jsp" />
+<section class="container">
 	<jsp:include page="/WEB-INF/jsp/partials/menu.jsp" />
 	<h1>Lista de Editoras</h1>
 	<table border="1">
@@ -48,5 +49,6 @@
 		</c:forEach>
 	</table>
 
+</section>
 </body>
 </html>

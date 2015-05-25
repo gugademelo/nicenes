@@ -9,10 +9,10 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import model.ListaDeDesejos;
 import model.Livro;
-import model.Perfil;
 import model.Usuario;
 
 /**
@@ -34,7 +34,8 @@ public class Index extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		Usuario usuario = (Usuario) request.getSession().getAttribute("usuarioLogado");
+		HttpSession session = request.getSession();
+		Usuario usuario = (Usuario) session.getAttribute("usuarioLogado");
 				
 		if(usuario == null || usuario.getPerfil().getId() != 1) {
 			List<Livro> livros = Livro.lista();

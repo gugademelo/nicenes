@@ -13,6 +13,7 @@
 <body>
 
 	<jsp:include page="/WEB-INF/jsp/partials/header.jsp" />
+<section class="container">
 	<jsp:include page="/WEB-INF/jsp/partials/menu.jsp" />
 	<c:if test="${empty editar }">
 		<form method="post" action="nova-editora">
@@ -51,5 +52,6 @@
 		
 	</form>
 	
+</section>
 </body>
 </html>
