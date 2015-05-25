@@ -14,6 +14,7 @@ import model.Livro;
 import model.Usuario;
 import model.Venda;
 import util.Mensagem;
+import model.ItemVenda;
 
 /**
  * Servlet implementation class FecharCompra
@@ -58,7 +59,8 @@ public class FecharCompra extends HttpServlet {
 				venda = venda.cria();
 				
 				for(Livro livro: carrinho.getLivros()) {
-					venda.addLivro(livro);
+					ItemVenda itemvenda = new ItemVenda(livro,venda);
+					itemvenda.addLivro();
 				}
 				
 				request.getSession().removeAttribute("carrinho");

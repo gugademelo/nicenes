@@ -3,21 +3,34 @@ package model;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
+import java.text.ParseException;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
 
-import com.mysql.jdbc.ResultSet;
 
 import database.ConnectionFactory;
+import model.Usuario;
 
 public class Venda {
-	int id_venda, id_usuario;
+	int id_venda;
+	Usuario usuario;
 	String frete;
 	double valor_frete;
+	
 	public Venda(int id_usuario, String frete, double valor_frete) {
 		super();
-		this.id_usuario = id_usuario;
+		this.usuario = Usuario.getUsuarioPeloId(id_usuario);
 		this.frete = frete;
 		this.valor_frete = valor_frete;
 	}
+	
 	public Venda() {}
 	
 	public Venda cria() {
@@ -53,30 +66,8 @@ public class Venda {
 		}
 		return null;
 	}
-	public boolean addLivro(Livro livro) {
-		Connection con = new ConnectionFactory().getConnection();
-		
-		String sql = "INSERT into item_venda (id_item, id_venda, preco) VALUES (?,?,?)";
-		
-		try {
-			PreparedStatement st = con.prepareStatement(sql);
-			st.setInt(1, livro.getLivro_id());
-			st.setInt(2, this.getId_venda());
-			st.setDouble(3, livro.getPreco());
-			
-			if (st.executeUpdate() == 1) {
-				return true;
-			}
-			else{
-				return false;
-			}
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
-		return false;
-	}
+	
+
 	public int getId_venda() {
 		return id_venda;
 	}
@@ -84,10 +75,13 @@ public class Venda {
 		this.id_venda = id_venda;
 	}
 	public int getId_usuario() {
-		return id_usuario;
+		return usuario.getId();
 	}
-	public void setId_usuario(int id_usuario) {
-		this.id_usuario = id_usuario;
+	public Usuario getUsuario() {
+		return this.usuario;
+	}
+	public void setUsuario(int id_usuario) {
+		this.usuario = Usuario.getUsuarioPeloId(id_usuario);
 	}
 	public String getFrete() {
 		return frete;
@@ -101,5 +95,82 @@ public class Venda {
 	public void setValor_frete(double valor_frete) {
 		this.valor_frete = valor_frete;
 	}
+	
+	public static Venda getVendaPeloId(Integer id_venda) {
+		Connection con = new ConnectionFactory().getConnection();
+				
+		String sql = "select * from venda where id_venda = ? order by id_venda";
+	
+		Venda venda = null;
+		
+		try {
+			PreparedStatement st = con.prepareStatement(sql);
+			
+			st.setInt(1, id_venda);
+			
+			
+			ResultSet rs = st.executeQuery();
+			
+
+			while (rs.next()) {
+				Venda compra = new Venda();
+				compra.setFrete(rs.getString("frete"));
+				compra.setId_venda(rs.getInt("id_venda"));
+				compra.setValor_frete(rs.getDouble("valor_frete"));
+				compra.setUsuario(rs.getInt("id_usuario"));				
+				
+				
+			
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return venda;
+	}
+	
+	public static List<Venda> lista(Usuario usuario) {
+		Connection con = new ConnectionFactory().getConnection();
+		
+		List<Venda> comprasUsuario = null;
+		
+		String sql = "select * from venda ";
+		
+		if (usuario.getId() != 1) {
+			sql += "where id_usuario = ?";
+		}
+		
+		
+		try {
+			PreparedStatement st = con.prepareStatement(sql);
+			
+			if (usuario.getId() != 1) {
+				st.setInt(1, usuario.getId());;
+			}	
+			
+			ResultSet rs = st.executeQuery();
+			
+			comprasUsuario = new ArrayList<Venda>();
+
+			while (rs.next()) {
+				Venda compra = new Venda();
+				compra.setFrete(rs.getString("frete"));
+				compra.setId_venda(rs.getInt("id_venda"));
+				compra.setValor_frete(rs.getDouble("valor_frete"));
+				compra.setUsuario(rs.getInt("id_usuario"));				
+				
+				
+				comprasUsuario.add(compra);
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return comprasUsuario;
+	}	
+	
+	
 	
 }
