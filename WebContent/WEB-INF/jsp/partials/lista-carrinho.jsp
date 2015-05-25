@@ -2,7 +2,7 @@
 <c:if test="${usuarioLogado.perfil.id != 1 }">
 	<c:if test="${not empty carrinho }">
 		<p>Meu carrinho</p>
-		<table border="1">
+		<table>
 		<tr>
 			<th>Nome</th>
 			<th>Preço</th>
