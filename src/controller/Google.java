@@ -38,7 +38,11 @@ public class Google extends HttpServlet {
 		Autor autor = null;
 		Editora editora = null;
 		Categoria categoria = null;
+		String titulo = "";
 		int autor_id = 0, editora_id = 0, categoria_id = 0;
+		if(request.getParameter("titulo") != null){ 
+			titulo = request.getParameter("titulo");  
+		}
 		if(request.getParameter("autor") != null && Integer.parseInt(request.getParameter("autor")) != 0){ 
 			autor = Autor.getAutorPeloId(Integer.parseInt(request.getParameter("autor")));
 			autor_id = autor.getAutor_Id(); 
@@ -52,7 +56,7 @@ public class Google extends HttpServlet {
 			editora_id = editora.getId();
 		}
 		
-		List<Livro> livros = Livro.listaGoogle(request.getParameter("titulo"), autor_id, editora_id, categoria_id);
+		List<Livro> livros = Livro.listaGoogle(titulo, autor_id, editora_id, categoria_id);
 		List<Categoria> categorias = Categoria.lista();
 		List<Editora> editoras = Editora.lista();
 		List<Autor> autores = Autor.lista();

@@ -3,21 +3,25 @@
 	<c:if test="${not empty listaDeDesejos }">
 		<p>Minha lista de desejos</p>
 		<table border="1">
+		<tr>
+			<th>Nome</th>
+			<th>Preço</th>
+			<th>Autor</th>
+			<th>Categoria</th>
+			<th>Opções</th>
+		</tr>
+		<c:forEach items="${listaDeDesejos}" var="livroListaDeDesejos">
 			<tr>
-				<th>Nome</th>
-				<th>Preço</th>
-				<th>Opções</th>
+				<td>${livroListaDeDesejos.titulo }</td>
+				<td>${livroListaDeDesejos.preco }</td>
+				<td><a href="google?autor=${livroListaDeDesejos.autor.autor_Id }">${livroListaDeDesejos.autor.nome }</a></td>
+				<td><a href="google?categoria=${livroListaDeDesejos.categoria.categoria_id }">${livroListaDeDesejos.categoria.categoria }</a></td>
+				<td>
+					<a href="adiciona-carrinho?id=${livroListaDeDesejos.livro_id }">Adicionar ao carrinho</a> | 
+					<a href="adiciona-lista-de-desejos?id=${livroListaDeDesejos.livro_id }">Adicionar a lista de desejos</a>
+				</td>
 			</tr>
-			<c:forEach items="${listaDeDesejos}" var="livroListaDeDesejos">
-				<tr>
-					<td>${livroListaDeDesejos.titulo }</td>
-					<td>${livroListaDeDesejos.preco }</td>
-					<td>
-						<a href="adiciona-carrinho?id=${livroListaDeDesejos.livro_id }">Adicionar ao carrinho</a> | 
-						<a href="remove-lista-de-desejos?id=${livroListaDeDesejos.livro_id }">Remover da lista de desejos</a>
-					</td>
-				</tr>
-			</c:forEach>
-			</table>
+		</c:forEach>
+		</table>
 		</c:if>
 </c:if>
