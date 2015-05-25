@@ -9,11 +9,35 @@ input[type="text"] {
 	border-radius: 2px;
 	border: 1px solid #999;
 }
-
+a {
+	text-decoration: none;
+	color: #0061ff;
+}
+table {
+	text-align: center;
+	border: 1px solid #ccc;
+	border-spacing: 0px;
+}
+table th {
+	background-color:#b5cfd2;
+	border-bottom: 1px solid #737373;
+}
+table td {
+    padding: 5px 15px 5px 15px;
+}
+table tr:nth-child(2n+1) {
+	background: #E4E2E2;
+}
+table tr:hover {
+	background: #cfdee0;
+}
 /* HEADER */
 .header {
 	background-color: #ccc;
 	text-align: center;
+}
+.header .logo a { 
+	color: #000;
 }
 .header .logo h1 {
 	font-family: 'Lobster', cursive;

@@ -1,6 +1,6 @@
 <section class="header">
 	<div class="logo">
-		<h1>Nicenes</h1>
+		<h1><a href="/nicenes">Nicenes</a></h1>
 	</div>
 	<div class="search">
 		<form action="google" method="get">
