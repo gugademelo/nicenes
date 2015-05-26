@@ -34,6 +34,10 @@ public class Editora {
 				editoras.add(editora);
 			}
 			
+			try{
+				con.close();
+			}catch(SQLException ex){}
+			
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -177,7 +181,12 @@ public class Editora {
 				st.setInt(11, this.getId());
 			}
 			
-			if(st.executeUpdate() == 1) return true;
+			if(st.executeUpdate() == 1){
+				try{
+					con.close();
+				}catch(SQLException ex){}
+				return true;
+			}
 			return true;
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -196,17 +205,23 @@ public class Editora {
 			PreparedStatement st = con.prepareStatement(sql);
 			st.setInt(1, id);
 			ResultSet rs = st.executeQuery();
+			
+			Editora editora = null;
 
 			if (rs.next()) {
 				
-				Editora editora = new Editora(Integer.parseInt(rs.getString("id_editora")), Integer.parseInt(rs.getString("cep")), Integer.parseInt(rs.getString("fone")), Integer.parseInt(rs.getString("cnpj")), rs.getString("nome"), rs.getString("endereco"), rs.getString("cidade"), rs.getString("uf"), rs.getString("pais"), rs.getString("razao"), rs.getString("web"));
+				 editora = new Editora(Integer.parseInt(rs.getString("id_editora")), Integer.parseInt(rs.getString("cep")), Integer.parseInt(rs.getString("fone")), Integer.parseInt(rs.getString("cnpj")), rs.getString("nome"), rs.getString("endereco"), rs.getString("cidade"), rs.getString("uf"), rs.getString("pais"), rs.getString("razao"), rs.getString("web"));
 
 				
-				return editora;
+				
 			}
 			
-			return null;
-
+			try{
+				con.close();
+			}catch(SQLException ex){}
+			
+			return editora;
+			
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -239,7 +254,12 @@ public class Editora {
 				
 			
 				
-				if(st.executeUpdate() == 1) return true;
+				if(st.executeUpdate() == 1) {
+					try{
+						con.close();
+					}catch(SQLException ex){}
+					return true;
+				}
 				return true;
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block

@@ -54,7 +54,13 @@ public class Venda {
 				st = con.prepareStatement(sql);
 				java.sql.ResultSet rs = st.executeQuery();
 				if(rs.next()) {
+					
 					this.setId_venda(rs.getInt("id_venda"));
+					
+					try{
+						con.close();
+					}catch(SQLException ex){}
+					
 					return this;
 				}
 			}
@@ -119,18 +125,24 @@ public class Venda {
 			
 			ResultSet rs = st.executeQuery();
 			
+			Venda compra = null;
 
 			if (rs.next()) {
-				Venda compra = new Venda();
+				compra = new Venda();
 				compra.setFrete(rs.getString("frete"));
 				compra.setId_venda(rs.getInt("id_venda"));
 				compra.setValor_frete(rs.getDouble("valor_frete"));
 				compra.setUsuario(rs.getInt("id_usuario"));				
 				
 				
-				return compra;
+				
 			}
 			
+			try{
+				con.close();
+			}catch(SQLException ex){}
+			
+			return compra;
 			
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -173,6 +185,11 @@ public class Venda {
 				
 				comprasUsuario.add(compra);
 			}
+			
+			try{
+				con.close();
+			}catch(SQLException ex){}
+			
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

@@ -16,9 +16,7 @@
 <section class="container">
 	<jsp:include page="/WEB-INF/jsp/partials/menu.jsp" />
 	
-	<c:if test="${not empty visualizar }">
-		<form method="post" action="">
-	</c:if>
+
 	
 	<c:if test="${empty editar }">
 		<form method="post" action="novo-autor">

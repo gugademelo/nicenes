@@ -33,7 +33,12 @@ public class Perfil {
 		try {
 			PreparedStatement st = con.prepareStatement(sql);
 			st.setString(1, this.getPerfil());
-			if(st.executeUpdate() == 1) return true;
+			if(st.executeUpdate() == 1) {
+				try{
+					con.close();
+				}catch(SQLException ex){}
+				return true;
+			}
 			return true;
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -67,6 +72,10 @@ public class Perfil {
 			e.printStackTrace();
 		}
 		
+		try{
+			con.close();
+		}catch(SQLException ex){}
+		
 		return perfis;
 		
 
@@ -82,10 +91,18 @@ public class Perfil {
 			st.setInt(1, id);
 			ResultSet rs = st.executeQuery();
 			
+			Perfil perfil = null;
+			
 			if(rs.next()) {
-				Perfil perfil = new Perfil(rs.getString("nome"), Integer.parseInt(rs.getString("id_perfil")));
-				return perfil;
+				 perfil = new Perfil(rs.getString("nome"), Integer.parseInt(rs.getString("id_perfil")));
+				
 			}
+			
+			try{
+				con.close();
+			}catch(SQLException ex){}
+			
+			return perfil;
 			
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block

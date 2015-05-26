@@ -46,7 +46,12 @@ public class Categoria {
 		try {
 			PreparedStatement st = con.prepareStatement(sql);
 			st.setString(1, this.getCategoria());
-			if(st.executeUpdate() == 1) return true;
+			if(st.executeUpdate() == 1) {
+				try{
+					con.close();
+				}catch(SQLException ex){}
+				return true;
+			}
 			return true;
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -69,7 +74,12 @@ public class Categoria {
 			st.setString(1, this.categoria);
 			st.setInt(2, this.categoria_id);
 			
-			if(st.executeUpdate() == 1)return true;
+			if(st.executeUpdate() == 1){
+				try{
+					con.close();
+				}catch(SQLException ex){}
+				return true;
+			}
 			return true;
 			
 		} catch (SQLException e){
@@ -91,7 +101,12 @@ public class Categoria {
 		try {
 			PreparedStatement st = con.prepareStatement(sql);
 			st.setInt(1, this.getCategoria_id());
-			if (st.executeUpdate() == 1) return true;
+			if (st.executeUpdate() == 1){
+				try{
+					con.close();
+				}catch(SQLException ex){}
+				return true;
+			}
 			return false;
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -122,6 +137,10 @@ public class Categoria {
 				Categoria categoria = new Categoria(rs.getString("categoria"), Integer.parseInt(rs.getString("id_categoria")));
 				categorias.add(categoria);
 			}
+			
+			try{
+				con.close();
+			}catch(SQLException ex){}
 			
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -154,15 +173,21 @@ public class Categoria {
 			st.setInt(1, id);
 			ResultSet rs = st.executeQuery();
 
+			Categoria categoria = null;
+			
 			if (rs.next()) {
 				
-				Categoria categoria = new Categoria(rs.getString("categoria"), Integer.parseInt(rs.getString("id_categoria")));
+				 categoria = new Categoria(rs.getString("categoria"), Integer.parseInt(rs.getString("id_categoria")));
 
 				
-				return categoria;
+				
 			}
 			
-			return null;
+			try{
+				con.close();
+			}catch(SQLException ex){}
+			
+			return categoria;
 
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block

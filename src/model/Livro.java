@@ -66,7 +66,12 @@ public class Livro {
 			st.setInt(8, this.autor.getAutor_Id());
 			st.setInt(9, this.editora.getId());
 			st.setInt(10, this.categoria.getCategoria_id());
-			if(st.executeUpdate() == 1) return true;
+			if(st.executeUpdate() == 1){
+				try{
+					con.close();
+				}catch(SQLException ex){}
+				return true;
+			}
 			return true;
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -98,7 +103,12 @@ public class Livro {
 			st.setInt(10, this.categoria.getCategoria_id());
 			st.setInt   (11, this.livro_id);
 			
-			if (st.executeUpdate() == 1) return true;
+			if (st.executeUpdate() == 1) {
+				try{
+					con.close();
+				}catch(SQLException ex){}
+				return true;
+			}
 				return false;
 			
 		} catch (SQLException e){
@@ -120,7 +130,12 @@ public class Livro {
 		try {
 			PreparedStatement st = con.prepareStatement(sql);
 			st.setInt(1, this.getLivro_id());
-			if (st.executeUpdate() == 1) return true;
+			if (st.executeUpdate() == 1){
+				try{
+					con.close();
+				}catch(SQLException ex){}
+				return true;
+			}
 			return false;
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -159,6 +174,10 @@ public class Livro {
 				
 				livros.add(livro);
 			}
+			
+			try{
+				con.close();
+			}catch(SQLException ex){}
 
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -197,6 +216,10 @@ public class Livro {
 				
 				livros.add(livro);
 			}
+			
+			try{
+				con.close();
+			}catch(SQLException ex){}
 
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -235,6 +258,11 @@ public class Livro {
 				livros.add(livro);
 			}
 
+			
+			try{
+				con.close();
+			}catch(SQLException ex){}
+			
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -281,6 +309,10 @@ public class Livro {
 				livros.add(livro);
 			}
 
+			try{
+				con.close();
+			}catch(SQLException ex){}
+			
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -299,9 +331,11 @@ public class Livro {
 			PreparedStatement st = con.prepareStatement(sql);
 			st.setInt(1, id);
 			ResultSet rs = st.executeQuery();
+			
+			Livro livro = null;
 
 			if (rs.next()) {
-				Livro livro = new Livro(rs.getInt("id_livro"), rs.getString("titulo"),
+				livro = new Livro(rs.getInt("id_livro"), rs.getString("titulo"),
 						rs.getString("isbn"),
 						rs.getString("colecao"),
 						rs.getString("edicao"),
@@ -312,10 +346,14 @@ public class Livro {
 						rs.getInt("id_editora"),
 						rs.getInt("id_categoria"));
 				
-				return livro;
+				
 			}
 			
-			return null;
+			try{
+				con.close();
+			}catch(SQLException ex){}
+			
+			return livro;
 
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block

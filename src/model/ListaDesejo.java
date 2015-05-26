@@ -37,7 +37,12 @@ public class ListaDesejo {
 			PreparedStatement st = con.prepareStatement(sql);
 			st.setInt(1, this.id_livro);
 			st.setInt(2, this.id_usuario);
-			if(st.executeUpdate() == 1) return true;
+			if(st.executeUpdate() == 1) {
+				try{
+					con.close();
+				}catch(SQLException ex){}
+				return true;
+			}
 			return true;
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -58,7 +63,12 @@ public class ListaDesejo {
 			
 			
 
-			if (st.executeUpdate() == 1) return true;
+			if (st.executeUpdate() == 1){
+				try{
+					con.close();
+				}catch(SQLException ex){}
+				return true;
+			}
 			return false;
 
 		} catch (SQLException e) {
@@ -88,6 +98,10 @@ public class ListaDesejo {
 				
 				lst_desejo.add(listaDesejo);
 			}
+			
+			try{
+				con.close();
+			}catch(SQLException ex){}
 			
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block

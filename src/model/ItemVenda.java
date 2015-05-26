@@ -65,6 +65,9 @@ public class ItemVenda {
 			st.setDouble(3, this.livro.getPreco());
 			
 			if (st.executeUpdate() == 1) {
+				try{
+					con.close();
+				}catch(SQLException ex){}
 				return true;
 			}
 			else{
@@ -108,6 +111,11 @@ public class ItemVenda {
 				
 				itensVenda.add(itemvenda);
 			}
+			
+			try{
+				con.close();
+			}catch(SQLException ex){}
+			
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

@@ -24,7 +24,12 @@ public class ListaDeDesejos {
 			PreparedStatement st = con.prepareStatement(sql);
 			st.setInt(1, usuario.getId());
 			st.setInt(2, livro.getLivro_id());
-			if(st.executeUpdate() == 1) return true;
+			if(st.executeUpdate() == 1){
+				try{
+					con.close();
+				}catch(SQLException ex){}
+				return true;
+			}
 			return true;
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -47,7 +52,12 @@ public class ListaDeDesejos {
 			PreparedStatement st = con.prepareStatement(sql);
 			st.setInt(1, usuario.getId());
 			st.setInt(2, livro.getLivro_id());
-			if(st.executeUpdate() == 1) return true;
+			if(st.executeUpdate() == 1){
+				try{
+					con.close();
+				}catch(SQLException ex){}
+				return true;
+			}
 			return true;
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -89,6 +99,10 @@ public class ListaDeDesejos {
 				livros.add(livro);
 			}
 
+			try{
+				con.close();
+			}catch(SQLException ex){}
+			
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

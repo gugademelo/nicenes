@@ -52,8 +52,13 @@ public class Usuario {
 			if(id != 0) {
 				st.setInt(5, id);
 			}
-			if (st.executeUpdate() == 1)
+			if (st.executeUpdate() == 1){
+				try{
+					con.close();
+				}catch(SQLException ex){}
 				return true;
+			}
+				
 			return true;
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -75,7 +80,12 @@ public class Usuario {
 		try {
 			PreparedStatement st = con.prepareStatement(sql);
 			st.setInt(1, this.getId());
-			if (st.executeUpdate() == 1) return true;
+			if (st.executeUpdate() == 1) {
+				try{
+					con.close();
+				}catch(SQLException ex){}
+				return true;
+			}
 			return false;
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -96,15 +106,22 @@ public class Usuario {
 			st.setString(2, senha);
 
 			ResultSet rs = st.executeQuery();
+			Usuario usuario = null;
 
 			if (rs.next()) {
 				Perfil perfil = Perfil.getPerfilPeloId(rs.getInt("id_perfil"));
-				Usuario usuario = new Usuario(rs.getInt("id_usuario"),
+				 usuario = new Usuario(rs.getInt("id_usuario"),
 						rs.getString("nome"), rs.getString("email"),
 						rs.getString("senha"), perfil);
-				return usuario;
+				
 			}
-			return null;
+			
+			
+			try{
+				con.close();
+			}catch(SQLException ex){}
+			
+			return usuario;
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -133,6 +150,10 @@ public class Usuario {
 						rs.getString("email"), rs.getString("senha"), perfil);
 				usuarios.add(usuario);
 			}
+			
+			try{
+				con.close();
+			}catch(SQLException ex){}
 
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -151,16 +172,22 @@ public class Usuario {
 			PreparedStatement st = con.prepareStatement(sql);
 			st.setInt(1, id);
 			ResultSet rs = st.executeQuery();
+			
+			Usuario usuario = null;
 
 			if (rs.next()) {
 				Perfil perfil = Perfil.getPerfilPeloId(rs.getInt("id_perfil"));
-				Usuario usuario = new Usuario(Integer.parseInt(rs
+				 usuario = new Usuario(Integer.parseInt(rs
 						.getString("id_usuario")), rs.getString("nome"),
 						rs.getString("email"), rs.getString("senha"), perfil);
-				return usuario;
+				
 			}
 			
-			return null;
+			try{
+				con.close();
+			}catch(SQLException ex){}
+			
+			return usuario;
 
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block

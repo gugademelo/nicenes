@@ -95,7 +95,14 @@ public class Autor {
 			st.setInt   (10, this.qtdLivros);
 			st.setInt   (11, this.autor_Id);
 			
-			if(st.executeUpdate() == 1) return true;
+			if(st.executeUpdate() == 1){
+				try{
+					con.close();
+				}catch(SQLException ex){}
+				
+				return true;
+			}
+				
 			return true;
 		} catch (SQLException e){
 			
@@ -208,6 +215,10 @@ public class Autor {
 				autores.add(autor);
 			}
 			
+			try{
+				con.close();
+			}catch(SQLException ex){}
+			
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -229,9 +240,11 @@ public class Autor {
 			st.setInt(1, id);
 			ResultSet rs = st.executeQuery();
 
+			Autor autor = null;
+			
 			if (rs.next()) {
 				
-					Autor autor = new Autor(rs.getInt("id_autor"),
+					autor = new Autor(rs.getInt("id_autor"),
 					rs.getInt   ("qtd_livros"),
 					rs.getString("nome"),
 					rs.getString("sobrenome"),				
@@ -247,15 +260,22 @@ public class Autor {
 					autor.setDtNascimento(date);				
 
 				
-				return autor;
+				
 			}
 			
-			return null;
+			try{
+				con.close();
+			}catch(SQLException ex){}
+			
+			return autor;
 
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		
+
+
 		return null;
 	}
 
@@ -271,7 +291,12 @@ public class Autor {
 			
 			
 
-			if (st.executeUpdate() == 1) return true;
+			if (st.executeUpdate() == 1) {
+				try{
+					con.close();
+				}catch(SQLException ex){}
+				return true;
+			}
 			return false;
 
 		} catch (SQLException e) {
