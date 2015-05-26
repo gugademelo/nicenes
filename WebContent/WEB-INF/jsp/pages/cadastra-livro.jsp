@@ -14,6 +14,11 @@
 	<jsp:include page="/WEB-INF/jsp/partials/header.jsp" />
 <section class="container">
 	<jsp:include page="/WEB-INF/jsp/partials/menu.jsp" />
+	
+	<c:if test="${not empty visualizar }">
+		<form method="post" action="">
+	</c:if>
+	
 	<c:if test="${empty editar }">
 		<form method="post" action="novo-livro">
 	</c:if>
@@ -139,8 +144,11 @@
 		<c:if test="${not empty editar }">
 			<input type="hidden" name="editar_id" value="${editar.livro_id }">
 		</c:if>
-		
-	<input type="submit" value="Cadastrar">
+	
+	<c:if test="${empty visualizar }">
+		<input type="submit" value="Cadastrar">
+	</c:if>	
+
 	
 	</form>
 

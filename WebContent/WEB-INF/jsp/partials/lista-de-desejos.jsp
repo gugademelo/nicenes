@@ -17,7 +17,8 @@
 				<td><a href="google?autor=${livroListaDeDesejos.autor.autor_Id }">${livroListaDeDesejos.autor.nome }</a></td>
 				<td><a href="google?categoria=${livroListaDeDesejos.categoria.categoria_id }">${livroListaDeDesejos.categoria.categoria }</a></td>
 				<td>
-					<a href="remove-lista-de-desejos?id=${livroListaDeDesejos.livro_id }">Remover lista de desejos</a>
+					<a href="remove-lista-de-desejos?id=${livroListaDeDesejos.livro_id }">Remover lista de desejos</a> |
+					<a href="visualizar-livro?id=${livroListaDeDesejos.livro_id }">Detalhes</a>
 				</td>
 			</tr>
 		</c:forEach>

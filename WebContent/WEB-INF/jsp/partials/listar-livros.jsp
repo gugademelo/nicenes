@@ -17,7 +17,8 @@
 				<td><a href="google?categoria=${livro.categoria.categoria_id }">${livro.categoria.categoria }</a></td>
 				<td>
 					<a href="adiciona-carrinho?id=${livro.livro_id }">Adicionar ao carrinho</a> | 
-					<a href="adiciona-lista-de-desejos?id=${livro.livro_id }">Adicionar a lista de desejos</a>
+					<a href="adiciona-lista-de-desejos?id=${livro.livro_id }">Adicionar a lista de desejos</a> |
+					<a href="visualizar-livro?id=${livro.livro_id }">Detalhes</a>
 				</td>
 			</tr>
 		</c:forEach>

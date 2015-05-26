@@ -66,6 +66,7 @@ public class ListaCompras extends HttpServlet {
 			
 			request.getSession().setAttribute("vendas", vendas);
 			request.getSession().setAttribute("itensvenda", itensGeral);
+			request.getSession().setAttribute("usuarioLogado", usuario);
 		
 			
 		}else {
