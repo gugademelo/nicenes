@@ -20,8 +20,16 @@
 	<c:if test="${not empty editar }">
 		<form method="post" action="editar-categoria">
 	</c:if>
+	<table>
+		<tr>
+			<td>
 		<label for="nome">Categoria</label>
+			</td>
+			<td>
 		<input type="text" name="categoria" value="${editar.categoria} ">
+			</td>
+		</tr>
+	</table>
 		<c:if test="${not empty editar }">
 			<input type="hidden" name="editar_id" value="${editar.categoria_id }">
 		</c:if>

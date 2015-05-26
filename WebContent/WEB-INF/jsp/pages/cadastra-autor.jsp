@@ -21,28 +21,89 @@
 	<c:if test="${not empty editar }">
 		<form method="post" action="editar-autor">
 	</c:if>
-	
+		<table>
+		<tr>
+			<td>
 		<label for="nome">Nome</label>
+			</td>
+			<td>
 		<input type="text" name="nome" value="${editar.nome}">
+			</td>
+		</tr>
+		<tr>
+			<td>
 		<label for="sobrenome">Sobrenome</label>
+			</td>
+			<td>		
 		<input type="text" name="sobrenome" value="${editar.sobrenome}">
+					</td>
+		</tr>
+		<tr>
+			<td>
 		<label for="´principal_livro">Principal livro</label>
+			</td>
+			<td>		
 		<input type="text" name="principal_livro" value="${editar.principalLivro}">
+					</td>
+		</tr>
+		<tr>
+			<td>
 		<label for="endereco">Endereço</label>
+			</td>
+			<td>		
 		<input type="text" name="endereco" value="${editar.endereco}">
+					</td>
+		</tr>
+		<tr>
+			<td>
 		<label for="telefone">Telefone</label>
+			</td>
+			<td>		
 		<input type="text" name="telefone" value="${editar.telefone}">
+					</td>
+		</tr>
+		<tr>
+			<td>
 		<label for="email">Email</label>
+			</td>
+			<td>		
 		<input type="text" name="email" value="${editar.email}">
+					</td>
+		</tr>
+		<tr>
+			<td>
 		<label for="rg">Rg</label>
+			</td>
+			<td>		
 		<input type="text" name="rg" value="${editar.rg}">
+					</td>
+		</tr>
+		<tr>
+			<td>
 		<label for="data_nascimento">Data de nascimento</label>
+			</td>
+			<td>		
 		<u:formatDate var="dateFormat"  pattern="dd/MM/yyyy" value="${editar.dtNascimento}" />
 		<input type="text" name="data_nascimento" value="${dateFormat}">
+					</td>
+		</tr>
+		<tr>
+			<td>
 		<label for="obs">Observações</label>
+			</td>
+			<td>		
 		<input type="text" name="obs" value="${editar.obs}">
+					</td>
+		</tr>
+		<tr>
+			<td>
 		<label for="qtd_livros">Quantidade de livros</label>
+			</td>
+			<td>		
 		<input type="text" name="qtd_livros" value="${editar.qtdLivros}">
+					</td>
+		</tr>
+		</table>		
 		
 		<c:if test="${not empty editar }">
 			<input type="hidden" name="editar_id" value="${editar.autor_Id}">

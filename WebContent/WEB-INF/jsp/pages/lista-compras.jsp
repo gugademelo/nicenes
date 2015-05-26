@@ -25,11 +25,13 @@
 				<td>Número:&nbsp;${venda.id_venda}</td>
 				<td>Frete:&nbsp;${venda.frete}</td>
 				<td>Val.&nbsp;Frete:&nbsp;${venda.valor_frete}</td>
+				<td>Val.&nbsp;Total:&nbsp;${venda.valor_frete+venda.valor_total}</td>
 			</tr>
 			
 			<c:forEach var="item" items="${itensvenda}">
 				<c:if test="${item.venda.id_venda == venda.id_venda}">	
 					<tr>
+						<td>&nbsp;</td>	
 						<td>&nbsp;</td>	
 						<td>${item.livro.titulo}</td>
 						<td>${item.livro.preco}</td>

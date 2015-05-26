@@ -20,21 +20,60 @@
 	<c:if test="${not empty editar }">
 		<form method="post" action="editar-livro">
 	</c:if>
-	
+	<table>
+		<tr>
+			<td>
 	<label for="titulo">Titulo</label>
+			</td>
+			<td>
 	<input type="text" name="titulo" value="${editar.titulo}">
+			</td>
+		</tr>
+		<tr>
+			<td>
 	<label for="isbn">ISBN</label>
+			</td>
+			<td>	
 	<input type="text" name="isbn" value="${editar.isbn}">
+			</td>
+		</tr>
+		<tr>
+			<td>	
 	<label for="colecao">Coleção</label>
+			</td>
+			<td>	
 	<input type="text" name="colecao" value="${editar.colecao}">
+			</td>
+		</tr>
+		<tr>
+			<td>	
 	<label for="edicao">Edição</label>
+			</td>
+			<td>	
 	<input type="text" name="edicao" value="${editar.edicao}">
+			</td>
+		</tr>
+		<tr>
+			<td>	
 	<label for="idioma">Idioma</label>
+			</td>
+			<td>	
 	<input type="text" name="idioma" value="${editar.idioma}">
+			</td>
+		</tr>
+		<tr>
+			<td>	
 	<label for="ano">Ano</label>
+			</td>
+			<td>	
 	<input type="text" name="ano" value="${editar.ano}">
-
+			</td>
+		</tr>
+		<tr>
+			<td>	
 	<label for="categoria">Categoria</label>
+			</td>
+			<td>	
 	<select name="categoria">
 		<c:forEach var="categoria" items="${categorias}">
 		
@@ -47,7 +86,13 @@
 			
 		</c:forEach>
 	</select>
+			</td>
+		</tr>
+		<tr>
+			<td>	
 	<label for="editora">Editora</label>
+			</td>
+			<td>	
 	<select name="editora">
 		<c:forEach var="editora" items="${editoras}">
 		
@@ -60,8 +105,13 @@
 		
 		</c:forEach>
 	</select>
-
+			</td>
+		</tr>
+		<tr>
+			<td>
 	<label for="autor">Autor</label>
+			</td>
+			<td>	
 	<select name="autor">
 		<c:forEach var="autor" items="${autores}">
 		
@@ -74,9 +124,17 @@
 			
 		</c:forEach>
 	</select>
-	
+				</td>
+		</tr>
+		<tr>
+			<td>
 	<label for="assunto">Preço</label>
+			</td>
+			<td>	
 	<input type="text" name="preco" value="${editar.preco}">
+				</td>
+		</tr>
+	</table>
 	
 		<c:if test="${not empty editar }">
 			<input type="hidden" name="editar_id" value="${editar.livro_id }">

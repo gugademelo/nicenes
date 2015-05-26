@@ -23,6 +23,7 @@ public class Venda {
 	Usuario usuario;
 	String frete;
 	double valor_frete;
+	double valor_total;
 	
 	public Venda(int id_usuario, String frete, double valor_frete) {
 		super();
@@ -96,6 +97,14 @@ public class Venda {
 		this.valor_frete = valor_frete;
 	}
 	
+	public double getValor_total() {
+		return valor_total;
+	}
+
+	public void setValor_total(double valor_total) {
+		this.valor_total = valor_total;
+	}
+
 	public static Venda getVendaPeloId(Integer id_venda) {
 		Connection con = new ConnectionFactory().getConnection();
 				

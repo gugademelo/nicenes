@@ -41,6 +41,8 @@ public class ListaCompras extends HttpServlet {
 		Usuario usuario = (Usuario) request.getSession().getAttribute("usuarioLogado");
 		String address = "/WEB-INF/jsp/pages/lista-compras.jsp";
 		
+		
+		
 		if(usuario != null) {
 			List<Venda> vendas = Venda.lista(usuario);
 			
@@ -50,11 +52,14 @@ public class ListaCompras extends HttpServlet {
 			for(Venda venda: vendas) {
 				
 				List<ItemVenda> itensVendas = ItemVenda.lista(venda);
+				double valor_total = 0.0;
 				
 				for(ItemVenda item : itensVendas){
 					itensGeral.add(item);
+					valor_total += item.getLivro().getPreco();
 				}
 				
+				venda.setValor_total(valor_total);
 				
 			}
 			//System.out.println(itensGeral.get(1).getLivro().getTitulo());
