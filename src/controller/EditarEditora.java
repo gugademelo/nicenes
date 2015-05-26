@@ -66,16 +66,30 @@ public class EditarEditora extends HttpServlet {
 		
 		if(editora != null){
 			
-			editora.setNome(request.getParameter("nome"));
-			editora.setEndereco(request.getParameter("endereco"));
-			editora.setCidade(request.getParameter("cidade"));
-			editora.setUf(request.getParameter("uf"));
-			editora.setPais(request.getParameter("pais"));
-			editora.setCep(Integer.parseInt(request.getParameter("cep")));
-			editora.setFone(Integer.parseInt(request.getParameter("fone")));
-			editora.setCnpj(Integer.parseInt(request.getParameter("cnpj")));
-			editora.setRazaoSocial(request.getParameter("razao"));
-			editora.setWeb(request.getParameter("web"));
+			try{
+				editora.setNome(request.getParameter("nome"));
+				editora.setEndereco(request.getParameter("endereco"));
+				editora.setCidade(request.getParameter("cidade"));
+				editora.setUf(request.getParameter("uf"));
+				editora.setPais(request.getParameter("pais"));
+				editora.setCep(Integer.parseInt(request.getParameter("cep")));
+				editora.setFone(Integer.parseInt(request.getParameter("fone")));
+				editora.setCnpj(Integer.parseInt(request.getParameter("cnpj")));
+				editora.setRazaoSocial(request.getParameter("razao"));
+				editora.setWeb(request.getParameter("web"));
+				
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				
+				String linkerro = "/WEB-INF/jsp/pages/erro.jsp";
+				Mensagem msg = new Mensagem(); 
+				msg.setTexto("Campos Cep, Telefone ou Cnpj incorretos.");
+				request.setAttribute("mensagem", msg);
+				e.printStackTrace();
+				
+				RequestDispatcher dispatcher = request.getRequestDispatcher(linkerro);
+				dispatcher.forward(request, response);
+			}  
 
 			if(editora.salva()) {
 				Mensagem mensagem = new Mensagem("Editora Editada.");

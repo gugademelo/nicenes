@@ -48,7 +48,10 @@ public class NovoAutor extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         java.util.Date parsed;
-		try {
+        String address;
+        Mensagem mensagem = new Mensagem();
+        
+        try {
 			Autor autor = new Autor();
 			autor.setNome(request.getParameter("nome"));
 			autor.setSobrenome(request.getParameter("sobrenome"));
@@ -64,24 +67,31 @@ public class NovoAutor extends HttpServlet {
 	        
 	        autor.setObs(request.getParameter("obs"));
 	        autor.setQtdLivros(Integer.parseInt(request.getParameter("qtd_livros")));
+	      
 	        
-	        String address;
-	        Mensagem mensagem = new Mensagem();
+	       
+	        
 	        if(autor.salva()) {
 	        	address = "/WEB-INF/jsp/pages/sucesso.jsp";
 	        	mensagem.setTexto("Autor cadastrado com sucesso.");
 	        }
 	        else{
 	        	address = "/WEB-INF/jsp/pages/erro.jsp";
-	        	mensagem.setTexto("Autor cadastrado com sucesso.");
+	        	mensagem.setTexto("Autor não cadastrado.");
 	        }
 	        request.setAttribute("mensagem", mensagem);
-	        RequestDispatcher dispatcher = request.getRequestDispatcher(address);
-	        dispatcher.forward(request, response);
-		} catch (ParseException e) {
+
+		} catch (Exception e) {
 			// TODO Auto-generated catch block
+			
+			address = "/WEB-INF/jsp/pages/erro.jsp";
+			mensagem.setTexto("Campos Data de nascimento ou Qtd. Livros incorretos.");
+			request.setAttribute("mensagem", mensagem);
 			e.printStackTrace();
-		}        
+		}    
+        
+		RequestDispatcher dispatcher = request.getRequestDispatcher(address);
+        dispatcher.forward(request, response);
 		
 	}
 

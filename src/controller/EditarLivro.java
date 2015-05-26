@@ -78,18 +78,32 @@ public class EditarLivro extends HttpServlet {
 		if(livro != null){
 			
 			
-			
-			livro.setTitulo(request.getParameter("titulo"));
-			livro.setIsbn(request.getParameter("isbn"));
-			livro.setColecao(request.getParameter("colecao"));
-			livro.setEdicao(request.getParameter("edicao"));
-			livro.setIdioma(request.getParameter("idioma"));
-			livro.setPreco(Double.parseDouble(request.getParameter("preco").replace(",", ".")));
-			livro.setAno(Integer.parseInt(request.getParameter("ano")));
-			livro.setAutor(Integer.parseInt(request.getParameter("autor")));
-			livro.setEditora(Integer.parseInt(request.getParameter("editora")));
-			livro.setCategoria(Integer.parseInt(request.getParameter("categoria")));
-			
+			try{
+				
+				livro.setTitulo(request.getParameter("titulo"));
+				livro.setIsbn(request.getParameter("isbn"));
+				livro.setColecao(request.getParameter("colecao"));
+				livro.setEdicao(request.getParameter("edicao"));
+				livro.setIdioma(request.getParameter("idioma"));
+				livro.setPreco(Double.parseDouble(request.getParameter("preco").replace(",", ".")));
+				livro.setAno(Integer.parseInt(request.getParameter("ano")));
+				livro.setAutor(Integer.parseInt(request.getParameter("autor")));
+				livro.setEditora(Integer.parseInt(request.getParameter("editora")));
+				livro.setCategoria(Integer.parseInt(request.getParameter("categoria")));
+				
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				
+				String linkerro = "/WEB-INF/jsp/pages/erro.jsp";
+				Mensagem msg = new Mensagem(); 
+				msg.setTexto("Campos Preço ou Ano incorretos.");
+				request.setAttribute("mensagem", msg);
+				e.printStackTrace();
+				
+				RequestDispatcher dispatcher = request.getRequestDispatcher(linkerro);
+				dispatcher.forward(request, response);
+			}  
+				
 
 			if(livro.atualizar()) {
 				Mensagem mensagem = new Mensagem("Livro Editado.");

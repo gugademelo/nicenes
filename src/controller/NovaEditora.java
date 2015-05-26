@@ -40,33 +40,50 @@ public class NovaEditora extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		String address;		
-		Editora editora = new Editora();
-		editora.setNome(request.getParameter("nome"));
-		editora.setEndereco(request.getParameter("endereco"));
-		editora.setCidade(request.getParameter("cidade"));
-		editora.setUf(request.getParameter("uf"));
-		editora.setPais(request.getParameter("pais"));
-		editora.setCep(Integer.parseInt(request.getParameter("cep")));
-		editora.setFone(Integer.parseInt(request.getParameter("fone")));
-		editora.setCnpj(Integer.parseInt(request.getParameter("cnpj")));
-		editora.setRazaoSocial(request.getParameter("razao"));
-		editora.setWeb(request.getParameter("web"));
+		try {
+			
+			String address;		
+			Editora editora = new Editora();
+			editora.setNome(request.getParameter("nome"));
+			editora.setEndereco(request.getParameter("endereco"));
+			editora.setCidade(request.getParameter("cidade"));
+			editora.setUf(request.getParameter("uf"));
+			editora.setPais(request.getParameter("pais"));
+			editora.setCep(Integer.parseInt(request.getParameter("cep")));
+			editora.setFone(Integer.parseInt(request.getParameter("fone")));
+			editora.setCnpj(Integer.parseInt(request.getParameter("cnpj")));
+			editora.setRazaoSocial(request.getParameter("razao"));
+			editora.setWeb(request.getParameter("web"));
+			
+
 		
-		if(editora.salva()) {
-			Mensagem mensagem = new Mensagem("Editora cadastrada.");
-			request.setAttribute("mensagem", mensagem);
-			request.setAttribute("editora", editora);
-			address = "/WEB-INF/jsp/pages/sucesso.jsp";
-		}
-		else {
-			Mensagem mensagem = new Mensagem("Nao foi possivel cadastrar.");
-			request.setAttribute("mensagem", mensagem);
-			address = "/WEB-INF/jsp/pages/erro.jsp";
-		}
-		
-		RequestDispatcher dispatcher = request.getRequestDispatcher(address);
-		dispatcher.forward(request, response);
+			if(editora.salva()) {
+				Mensagem mensagem = new Mensagem("Editora cadastrada.");
+				request.setAttribute("mensagem", mensagem);
+				request.setAttribute("editora", editora);
+				address = "/WEB-INF/jsp/pages/sucesso.jsp";
+			}
+			else {
+				Mensagem mensagem = new Mensagem("Nao foi possivel cadastrar.");
+				request.setAttribute("mensagem", mensagem);
+				address = "/WEB-INF/jsp/pages/erro.jsp";
+			}
+			
+			RequestDispatcher dispatcher = request.getRequestDispatcher(address);
+			dispatcher.forward(request, response);
+			
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			
+			String linkerro = "/WEB-INF/jsp/pages/erro.jsp";
+			Mensagem msg = new Mensagem(); 
+			msg.setTexto("Campos Cep, Telefone ou Cnpj incorretos.");
+			request.setAttribute("mensagem", msg);
+			e.printStackTrace();
+			
+			RequestDispatcher dispatcher = request.getRequestDispatcher(linkerro);
+			dispatcher.forward(request, response);
+		}  
 	}
 
 	

@@ -64,29 +64,41 @@ public class EditarAutor extends HttpServlet {
 		if(autor != null){
 			
 			
-			
-			autor.setNome(request.getParameter("nome"));
-			autor.setSobrenome(request.getParameter("sobrenome"));
-			autor.setPrincipalLivro(request.getParameter("principal_livro"));
-			autor.setEndereco(request.getParameter("endereco"));
-			autor.setTelefone(request.getParameter("telefone"));
-			autor.setEmail(request.getParameter("email"));
-			autor.setRg(request.getParameter("rg"));
-			
-			java.util.Date parsed;
 			try{
-				SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
 			
-	
-				parsed = format.parse(request.getParameter("data_nascimento"));
-				autor.setDtNascimento(parsed);
-			} catch (ParseException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
+				autor.setNome(request.getParameter("nome"));
+				autor.setSobrenome(request.getParameter("sobrenome"));
+				autor.setPrincipalLivro(request.getParameter("principal_livro"));
+				autor.setEndereco(request.getParameter("endereco"));
+				autor.setTelefone(request.getParameter("telefone"));
+				autor.setEmail(request.getParameter("email"));
+				autor.setRg(request.getParameter("rg"));
+				
+				java.util.Date parsed;
+				
+					SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
+				
+		
+					parsed = format.parse(request.getParameter("data_nascimento"));
+					autor.setDtNascimento(parsed);
+				
+					// TODO Auto-generated catch block
+		        
+		        autor.setObs(request.getParameter("obs"));
+		        autor.setQtdLivros(Integer.parseInt(request.getParameter("qtd_livros")));
 	        
-	        autor.setObs(request.getParameter("obs"));
-	        autor.setQtdLivros(Integer.parseInt(request.getParameter("qtd_livros")));
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				
+				String linkerro = "/WEB-INF/jsp/pages/erro.jsp";
+				Mensagem msg = new Mensagem(); 
+				msg.setTexto("Campos Data de nascimento ou Qtd. Livros incorretos.");
+				request.setAttribute("mensagem", msg);
+				e.printStackTrace();
+				
+				RequestDispatcher dispatcher = request.getRequestDispatcher(linkerro);
+				dispatcher.forward(request, response);
+			}  
 
 			
 
