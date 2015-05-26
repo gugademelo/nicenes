@@ -3,14 +3,17 @@
 <ul>
 	
 	<li><a href="/nicenes">Início</a></li>
-	<li><a href="livros">Ver todos os livros</a></li>
+	
 	<c:if test = "${empty usuarioLogado }" >
 		<li><a href="novo-usuario">Cadastre-se</a></li>
 		<li><a href="login">Faça o login</a></li>
+		<li><a href="livros">Ver todos os livros</a></li>
 	</c:if>
 	<c:if test = "${not empty usuarioLogado }" >
 		<c:if test = "${usuarioLogado.perfil.id != 1 }" >
 			<li><a href="lista-compras">Lista de Compras</a>
+			<li><a href="livros">Ver todos os livros</a></li>
+			<li><a href="editar-usuario?id=${usuarioLogado.id }">Editar Perfil</a></li>
 		</c:if>
 		<c:if test = "${usuarioLogado.perfil.id == 1 }" >
 			<li><a href="novo-usuario">Cadastre um novo usuario</a></li>

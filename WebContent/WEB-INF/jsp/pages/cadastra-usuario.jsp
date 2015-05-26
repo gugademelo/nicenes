@@ -36,6 +36,10 @@
 			</c:forEach>
 			</select>
 		</c:if>
+		
+		<c:if test="${usuarioLogado.perfil.id != 1 }">
+			<input type="hidden" name="perfil" value="${usuarioLogado.perfil.id}">
+		</c:if>
 		<c:if test="${not empty editar }">
 			<input type="hidden" name="editar_id" value="${editar.id }">
 		</c:if>
